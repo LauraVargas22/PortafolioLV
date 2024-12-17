@@ -1,0 +1,12 @@
+.oswald-title {
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 700; /*200 to 700*/
+    font-style: normal;
+}
+
+.molengo-regular {
+  font-family: "Molengo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
