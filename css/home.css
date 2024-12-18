@@ -51,6 +51,7 @@ a:hover {
     font-weight: 500; 
     font-style: normal;
     font-size: clamp(4rem, 3.6087rem + 1.7391vw, 5rem);
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
 }
 
 .text {
