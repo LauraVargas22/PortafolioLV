@@ -1,2 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Molengo&family=Oswald:wght@200..700&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0B0337;
+}
+
+.text1{
+    margin: 3rem;
+    color: white;
+    font-family: "Oswald", serif;
+    font-weight: 300; 
+    font-style: normal;
+    font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
+}
+
+.text__title {
+    margin: 3rem;
+    text-align: center;
+    color: white;
+    font-family: "Oswald", serif;
+    font-weight: 700; 
+    font-style: normal;
+    font-size: clamp(2.8rem, 1.7435rem + 4.6957vw, 5.5rem);
+}
+
+.button {
+    margin: 3rem;
+    color: black;
+    background-color: #AFB7E3;
+    padding: 10px;
+    border-radius: 1rem;
+    font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
+    font-family: "Molengo", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .container__image {
+        width: 50%;
+    }
+    
+    .image {
+        width: 100%;
+    }
+    
+    .container__text {
+        width: 50%;
+    }
+    .text__title {
+        position: relative;
+        top: 8rem;
+    }
+    .button {
+        position: relative;
+        top: 16rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .container__image {
+        width: 100%;
+    }
+    
+    .image {
+        width: 100%;
+    }
+    
+    .container__text {
+        width: 100%;
+    }
+}
