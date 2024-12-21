@@ -45,6 +45,9 @@ section {
     background-color: #010a20;
 }
 
+#proyectos {
+    background-color:#cdd0e6;
+}
 .photo {
     width: 350px;
     height: 400px;
@@ -94,7 +97,7 @@ section {
 }
 
 .title__sections {
-    padding: 3rem;
+    padding: 2rem;
     text-align: center;
     color: #66251D;
     font-family: "Oswald", serif;
@@ -153,11 +156,80 @@ section {
 .icons {
     width: 7rem;
     padding: 10px;
+    margin-bottom: 4rem;
 }
 
 .icons:hover {
     box-shadow: 4px 4px 6px 2px rgb(255, 255, 255, 0.6);
 }
+
+.link {
+    text-decoration: none;
+}
+
+.col__proyects {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.col__proyects:hover {
+    border: 1px solid #AD9D5F;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
+    .proyects__title {
+        text-shadow: 0px 0px 9px #010a20;
+    }
+}
+.proyects__title {
+    text-decoration: none;
+    color: #010a20;
+    font-family: "Oswald", serif;
+    font-weight: 500; 
+    font-style: normal;
+    font-size: 3rem;
+}
+
+.proyects__image {
+    width: 22rem;
+    height: 14rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 7px 3px rgb(1, 10, 32, 0.6);
+}
+
+.enlace {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton {
+    background-color: #010a20;
+    color: white;
+    text-decoration: none;
+    font-family: "Oswald", serif;
+    font-weight: 200; 
+    font-style: normal;
+    font-size: clamp(1.8rem, 1.5261rem + 1.2174vw, 2.5rem);
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: max-content;
+    margin-top: 1rem;
+}
+
+.boton:hover {
+    color: black;
+    border: 1px solid #AD9D5F;
+    background-color: #e7e3cd;
+    transform: translateX(3px);
+    box-shadow: 2px 2px 4px 0 rgb(173, 157, 95, 0.5);
+}
+
 
 @media screen and (min-width: 1024px) {
     #about_me {
