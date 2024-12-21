@@ -25,7 +25,7 @@ section {
 }
 
 .menu {
-    background-color: #0B0337;
+    background-color: #010a20;
 }
 
 .aboutme {
@@ -34,11 +34,17 @@ section {
 
 #about_me {
     background-color: #cdd0e6;
+    text-align: center;
 }
 
 #aspiraciones {
     background-color: #cdd0e6;
 }
+
+#tecnologias {
+    background-color: #010a20;
+}
+
 .photo {
     width: 350px;
     height: 400px;
@@ -83,11 +89,11 @@ section {
     padding: 5px;
     box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
     .items__title {
-        text-shadow: 0px 0px 9px #0B0337;
+        text-shadow: 0px 0px 9px #010a20;
     }
 }
 
-.title__aspiraciones {
+.title__sections {
     padding: 3rem;
     text-align: center;
     color: #66251D;
@@ -111,7 +117,7 @@ section {
 }
 
 .items__title {
-    color: #0B0337;
+    color: #010a20;
     font-family: "Oswald", serif;
     font-weight: 400; 
     font-style: normal;
@@ -136,6 +142,23 @@ section {
     padding: 20px;
 }
 
+.logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.icons {
+    width: 7rem;
+    padding: 10px;
+}
+
+.icons:hover {
+    box-shadow: 4px 4px 6px 2px rgb(255, 255, 255, 0.6);
+}
+
 @media screen and (min-width: 1024px) {
     #about_me {
         display: flex;
@@ -156,7 +179,5 @@ section {
 
 
 @media screen and (max-width: 768px) {
-    #about_me {
-        text-align: center;
-    }
+
 }
