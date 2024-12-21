@@ -32,7 +32,7 @@ body {
 .button {
     margin: 3rem;
     color: black;
-    background-color: #AFB7E3;
+    background-color: #cdd0e6;
     padding: 10px;
     border-radius: 1rem;
     font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
@@ -43,7 +43,7 @@ body {
 }
 
 .button:hover {
-    background-color: #AD9D5F;
+    background-color: #d8d7d2;
     transform: translateX(3px);
     box-shadow: 2px 2px 4px 0 rgb(250, 249, 249, 0.5);
 }

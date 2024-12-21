@@ -6,6 +6,20 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #cdd0e6;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(#abb7dd, #010a20);
+    border-radius: 1rem;
+}
+
 section {
     height: max-content;
 }
@@ -15,19 +29,23 @@ section {
 }
 
 .aboutme {
-    background-color: #AFB7E3;
+    background-color: #cdd0e6;
 }
 
 #about_me {
-    background-color: #AFB7E3;
+    background-color: #cdd0e6;
+}
+
+#aspiraciones {
+    background-color: #cdd0e6;
 }
 .photo {
-    width: 400px;
+    width: 350px;
     height: 400px;
     border-radius: 50%;
 }
 
-a {
+.sections{
     color: white;
     text-decoration: none;
     font-family: "Oswald", serif;
@@ -37,14 +55,14 @@ a {
     line-height: 2;
 }
 
-a:hover {
+.sections:hover {
     border: 1px solid #AD9D5F;
     border-radius: 20px;
     padding: 5px;
 }
 
 .title {
-    margin: 3rem;
+    padding: 1.5rem;
     text-align: left;
     color: #66251D;
     font-family: "Oswald", serif;
@@ -54,8 +72,35 @@ a:hover {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
 }
 
+.col {
+    text-align: center;
+    padding: 15px;
+}
+
+.col:hover {
+    border: 1px solid #AD9D5F;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
+    .items__title {
+        text-shadow: 0px 0px 9px #0B0337;
+    }
+}
+
+.title__aspiraciones {
+    padding: 3rem;
+    text-align: center;
+    color: #66251D;
+    font-family: "Oswald", serif;
+    font-weight: 500; 
+    font-style: normal;
+    font-size: clamp(4rem, 3.6087rem + 1.7391vw, 5rem);
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
+}
+
 .text {
-    margin: 3rem;
+    margin: 0;
+    padding: 1.5rem;
     color: black;
     text-align: justify;
     font-size: clamp(1.8rem, 1.5261rem + 1.2174vw, 2.5rem);
@@ -63,6 +108,32 @@ a:hover {
     font-weight: 400;
     font-style: normal;
     line-height: 1.5;
+}
+
+.items__title {
+    color: #0B0337;
+    font-family: "Oswald", serif;
+    font-weight: 400; 
+    font-style: normal;
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.items__image {
+    text-align: center;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.items__text {
+    color: black;
+    text-align: justify;
+    font-size: 1.5rem;
+    font-family: "Molengo", serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    padding: 20px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -76,7 +147,7 @@ a:hover {
         width: 35%;
     }
     .photo {
-        margin-top: 2rem;
+        padding: 2rem;
     }
     .aboutme {
         width: 65%;
