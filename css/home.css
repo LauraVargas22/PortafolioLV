@@ -48,6 +48,10 @@ section {
 #proyectos {
     background-color:#cdd0e6;
 }
+
+#certificados {
+    background-color: #010a20;
+}
 .photo {
     width: 350px;
     height: 400px;
@@ -117,6 +121,7 @@ section {
     font-weight: 400;
     font-style: normal;
     line-height: 1.5;
+    border-bottom: 1px solid #010a20;
 }
 
 .items__title {
@@ -185,6 +190,7 @@ section {
         text-shadow: 0px 0px 9px #010a20;
     }
 }
+
 .proyects__title {
     text-decoration: none;
     color: #010a20;
@@ -220,6 +226,7 @@ section {
     border-radius: 10px;
     width: max-content;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .boton:hover {
@@ -230,6 +237,30 @@ section {
     box-shadow: 2px 2px 4px 0 rgb(173, 157, 95, 0.5);
 }
 
+.col__certificados {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.col__certificados--left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.certificados__image {
+    width: 22rem;
+    height: 14rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 7px 3px rgb(255, 255, 255, 0.3);
+}
+.certificados__image:hover {
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 3px 3px 5px 2px rgb(255, 255, 255, 0.5);
+}
 
 @media screen and (min-width: 1024px) {
     #about_me {
