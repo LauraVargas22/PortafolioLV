@@ -72,6 +72,10 @@ section {
     line-height: 2;
 }
 
+ul {
+    list-style: none;
+}
+
 .sections:hover {
     border: 1px solid #AD9D5F;
     border-radius: 20px;
@@ -338,6 +342,37 @@ section {
     font-style: normal;
     background: #010a20;
     border-radius: 5px;
+}
+
+footer {
+    background: #010a20;
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.links { 
+    margin: 0;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem;
+}
+
+.name__text {
+    color: white;
+    font-family: "Oswald", serif;
+    font-weight: 200; 
+    font-style: normal;
+    font-size: clamp(1.8rem, 1.7217rem + 0.3478vw, 2rem);
+    padding: 0 1rem;
+}
+
+.icon__link {
+    width: 4rem;
+    padding: 5px;
 }
 @media screen and (min-width: 1024px) {
     #about_me {
