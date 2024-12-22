@@ -52,6 +52,10 @@ section {
 #certificados {
     background-color: #010a20;
 }
+#contacto {
+    background-color:#cdd0e6;
+}
+
 .photo {
     width: 350px;
     height: 400px;
@@ -247,7 +251,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem;
+    padding-bottom: 3rem;
 }
 
 .certificados__image {
@@ -282,6 +286,58 @@ section {
     .certificados__title {
         text-shadow: 0px 0px 9px white;
     }
+}
+
+.contact {
+    background: #cdd0e6;
+}
+
+.contact__text {
+    background: url(../images/contacto.png);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 4rem;
+    padding: 2rem 4rem;
+}
+
+.contacto__text {
+    backdrop-filter: blur(10px);
+    color: white;
+    font-family: "Oswald", serif;
+    font-weight: 400; 
+    font-style: normal;
+    font-size: clamp(2.2rem, 1.887rem + 1.3913vw, 3rem);
+    padding: 10px 30px;
+    opacity: 3;
+    text-align: center;
+}
+
+.contacto__title {
+    margin: 3rem;
+    text-align: center;
+    color: #010a20;
+    font-family: "Oswald", serif;
+    font-weight: 700; 
+    font-style: normal;
+    font-size: clamp(3.5rem, 2.5217rem + 4.3478vw, 6rem);
+    text-shadow: 0px 0px 9px #010a20;
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+}
+
+.email {
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(2rem, 1.8043rem + 0.8696vw, 2.5rem);
+    font-family: "Molengo", serif;
+    font-weight: 400;
+    font-style: normal;
+    background: #010a20;
+    border-radius: 5px;
 }
 @media screen and (min-width: 1024px) {
     #about_me {
