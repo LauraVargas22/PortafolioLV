@@ -393,6 +393,16 @@ ul {
     border-radius: 5px;
 }
 
+/*Estilos bóton de redireccionamiento al email al hacer hover*/
+.email:hover {
+    background: white;
+    color: #00071a;
+    font-family: "Molengo", serif;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 35px;
+    box-shadow: 5px 5px 7px 3px rgb(255, 255, 255, 0.3);
+}
 
 /*Estilos pie de página*/
 footer {
@@ -428,6 +438,11 @@ footer {
 .icon__link {
     width: 4rem;
     padding: 5px;
+}
+
+/*Estilos de cada logo al hacer hover*/
+.icon__link:hover {
+    box-shadow: 4px 4px 6px 2px rgb(255, 255, 255, 0.6);
 }
 
 /*Modificaciones en los estilos en pantalla de mínimo 1024px*/
