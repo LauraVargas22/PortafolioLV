@@ -1,67 +1,83 @@
+/*Importación fuentes*/
 @import url('https://fonts.googleapis.com/css2?family=Molengo&family=Oswald:wght@200..700&display=swap');
 
+/*Modificación de las medidas estándar*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/*Estilos body*/
 body {
     background-color: #cdd0e6;
     overflow-x: hidden;
 }
 
+/*Estilos barra de desplazamiento*/
 body::-webkit-scrollbar {
     width: 0.3rem;
 }
-
+ /*Estilos del deslizador*/
 body::-webkit-scrollbar-thumb {
     background: linear-gradient(#abb7dd, #010a20);
     border-radius: 1rem;
 }
 
+/*Altura de las secciones de acuerdo al contenido*/
 section {
     height: max-content;
 }
 
+/*Color de fondo del menú*/
 .menu {
     background-color: #010a20;
 }
 
+/*Color de fondo del texto Sobre Mi*/
 .aboutme {
     background-color: #cdd0e6;
 }
 
+/*Estilos sección About me*/
 #about_me {
     background-color: #cdd0e6;
     text-align: center;
 }
 
+/*Estilos sección Aspiraciones*/
 #aspiraciones {
     background-color: #cdd0e6;
 }
 
+/*Estilos sección Conocimientos Técnicos*/
 #tecnologias {
     background-color: #010a20;
 }
 
+/*Estilos sección Proyectos*/
 #proyectos {
     background-color:#cdd0e6;
 }
 
+/*Estilos sección Certificados*/
 #certificados {
     background-color: #010a20;
 }
+
+/*Estilos sección Contacto*/
 #contacto {
     background-color:#cdd0e6;
 }
 
+/*Estilos foto personal*/
 .photo {
     width: 350px;
     height: 400px;
     border-radius: 50%;
 }
 
+/*Estilos menú de redireccionamiento a las secciones*/
 .sections{
     color: white;
     text-decoration: none;
@@ -72,16 +88,19 @@ section {
     line-height: 2;
 }
 
-ul {
-    list-style: none;
-}
-
+/*Estilos menú de redireccionamiento a las secciones al hacer hover*/
 .sections:hover {
     border: 1px solid #AD9D5F;
     border-radius: 20px;
     padding: 5px;
 }
 
+/*Estilos lista de menú de navegación*/
+ul {
+    list-style: none;
+}
+
+/*Estilos título de sección About Me*/
 .title {
     padding: 1.5rem;
     text-align: left;
@@ -93,32 +112,7 @@ ul {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
 }
 
-.col {
-    text-align: center;
-    padding: 15px;
-}
-
-.col:hover {
-    border: 1px solid #AD9D5F;
-    border-radius: 20px;
-    padding: 5px;
-    box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
-    .items__title {
-        text-shadow: 0px 0px 9px #010a20;
-    }
-}
-
-.title__sections {
-    padding: 2rem;
-    text-align: center;
-    color: #66251D;
-    font-family: "Oswald", serif;
-    font-weight: 500; 
-    font-style: normal;
-    font-size: clamp(4rem, 3.6087rem + 1.7391vw, 5rem);
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
-}
-
+/*Estilos texto*/
 .text {
     margin: 0;
     padding: 1.5rem;
@@ -132,6 +126,36 @@ ul {
     border-bottom: 1px solid #010a20;
 }
 
+/*Estilos columnas Aspiraciones*/
+.col {
+    text-align: center;
+    padding: 15px;
+}
+
+/*Estilos columnas Aspiraciones al hacer hover*/
+.col:hover {
+    border: 1px solid #AD9D5F;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
+    .items__title {
+        text-shadow: 0px 0px 9px #010a20;
+    }
+}
+
+/*Estilos títulos de las secciones con alineación centrada*/
+.title__sections {
+    padding: 2rem;
+    text-align: center;
+    color: #66251D;
+    font-family: "Oswald", serif;
+    font-weight: 500; 
+    font-style: normal;
+    font-size: clamp(4rem, 3.6087rem + 1.7391vw, 5rem);
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white, -2px 2px 0 white, 2px 2px 0 white, 1px 1px white, 2px 2px white, 3px 3px white, 4px 4px white, 5px 5px white, 6px 6px white, 7px 7px white, 8px 8px white, 9px 9px white;
+}
+
+/*Estilos subtítulo Aspiraciones*/
 .items__title {
     color: #010a20;
     font-family: "Oswald", serif;
@@ -141,12 +165,14 @@ ul {
     text-align: center;
 }
 
+/*Estilos imágenes aspiraciones*/
 .items__image {
     text-align: center;
     width: 80%;
     border-radius: 20px;
 }
 
+/*Estilos texto aspiraciones*/
 .items__text {
     color: black;
     text-align: justify;
@@ -158,6 +184,7 @@ ul {
     padding: 20px;
 }
 
+/*Estilos logos sección Conocimientos Técnicos */
 .logos {
     display: flex;
     flex-direction: row;
@@ -166,20 +193,24 @@ ul {
     flex-wrap: wrap;
 }
 
+/*Estilos de cada ícono*/
 .icons {
     width: 7rem;
     padding: 10px;
     margin-bottom: 4rem;
 }
 
+/*Estilos de cada ícono al hacer hover*/
 .icons:hover {
     box-shadow: 4px 4px 6px 2px rgb(255, 255, 255, 0.6);
 }
 
+/*Eliminar línea inferior texto sección proyectos*/
 .link {
     text-decoration: none;
 }
 
+/*Estilos columnas proyectos*/
 .col__proyects {
     display: flex;
     flex-direction: row;
@@ -189,16 +220,19 @@ ul {
     padding: 1.5rem;
 }
 
+/*Estilos columnas proyectos al hacer hover*/
 .col__proyects:hover {
     border: 1px solid #AD9D5F;
     border-radius: 20px;
     padding: 5px;
     box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
+    /*Estilos título de Proyectos al hacer hover*/
     .proyects__title {
         text-shadow: 0px 0px 9px #010a20;
     }
 }
 
+/*Estilos títulos proyectos*/
 .proyects__title {
     text-decoration: none;
     color: #010a20;
@@ -208,6 +242,7 @@ ul {
     font-size: 3rem;
 }
 
+/*Estilos imágenes proyectos*/
 .proyects__image {
     width: 22rem;
     height: 14rem;
@@ -215,6 +250,7 @@ ul {
     box-shadow: 5px 5px 7px 3px rgb(1, 10, 32, 0.6);
 }
 
+/*Estilos contenedor bóton Ver más*/
 .enlace {
     display: flex;
     flex-direction: row;
@@ -222,6 +258,7 @@ ul {
     align-items: center;
 }
 
+/*Estilos bóton Ver más*/
 .boton {
     background-color: #010a20;
     color: white;
@@ -237,6 +274,7 @@ ul {
     margin-bottom: 2rem;
 }
 
+/*Estilos bóton Ver más al hacer hover*/
 .boton:hover {
     color: black;
     border: 1px solid #AD9D5F;
@@ -245,11 +283,13 @@ ul {
     box-shadow: 2px 2px 4px 0 rgb(173, 157, 95, 0.5);
 }
 
+/*Estilos columnas certificados*/
 .col__certificados {
     text-align: center;
     padding: 1.5rem;
 }
 
+/*Estilos tercera columna certificados*/
 .col__certificados--left {
     display: flex;
     flex-direction: column;
@@ -258,6 +298,7 @@ ul {
     padding-bottom: 3rem;
 }
 
+/*Estilos imágen certificados*/
 .certificados__image {
     width: 22rem;
     height: 14rem;
@@ -265,7 +306,7 @@ ul {
     box-shadow: 5px 5px 7px 3px rgb(255, 255, 255, 0.3);
 }
 
-
+/*Estilos títulos certificados*/
 .certificados__title {
     text-decoration: none;
     color: white;
@@ -276,6 +317,7 @@ ul {
     text-align: center;
 }
 
+/*Estilos columnas certificados al hacer hover*/
 .col__certificados:hover {
     background: #00071a;
     box-shadow: 3px 3px 5px 2px rgb(255, 255, 255, 0.5);
@@ -284,18 +326,22 @@ ul {
     }
 }
 
+/*Estilos tercera columna certificados al hacer hover*/
 .col__certificados--left:hover {
     background: #00071a;
     box-shadow: 3px 3px 5px 2px rgb(255, 255, 255, 0.5);
+    /*Estilos títulos certificados al hacer hover*/
     .certificados__title {
         text-shadow: 0px 0px 9px white;
     }
 }
 
+/*Estilos contenedor contacto*/
 .contact {
     background: #cdd0e6;
 }
 
+/*Estilos contenedor del texto de contacto*/
 .contact__text {
     background: url(../images/contacto.png);
     display: flex;
@@ -306,8 +352,9 @@ ul {
     padding: 2rem 4rem;
 }
 
+/*Estilos texto contenedor contacto*/
 .contacto__text {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /*Filtro de background del texto*/
     color: white;
     font-family: "Oswald", serif;
     font-weight: 400; 
@@ -318,6 +365,7 @@ ul {
     text-align: center;
 }
 
+/*Estilos  título "Perfil Profesional"*/
 .contacto__title {
     margin: 3rem;
     text-align: center;
@@ -331,6 +379,7 @@ ul {
     padding: 10px 30px;
 }
 
+/*Estilos bóton de redireccionamiento al email*/
 .email {
     backdrop-filter: blur(10px);
     padding: 10px 30px;
@@ -344,23 +393,21 @@ ul {
     border-radius: 5px;
 }
 
+
+/*Estilos pie de página*/
 footer {
     background: #010a20;
 }
 
+/*Estilos contenedor pie de página*/
 .name {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-.links { 
-    margin: 0;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 2rem;
-}
 
+/*Estilos nombre pie de página*/
 .name__text {
     color: white;
     font-family: "Oswald", serif;
@@ -369,11 +416,21 @@ footer {
     font-size: clamp(1.8rem, 1.7217rem + 0.3478vw, 2rem);
     padding: 0 1rem;
 }
+/*Estilos contenedor logos*/
+.links { 
+    margin: 0;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem;
+}
 
+/*Estilos de cada logo*/
 .icon__link {
     width: 4rem;
     padding: 5px;
 }
+
+/*Modificaciones en los estilos en pantalla de mínimo 1024px*/
 @media screen and (min-width: 1024px) {
     #about_me {
         display: flex;
@@ -392,7 +449,7 @@ footer {
     }
 }
 
-
+/*Modificaciones en los estilos en pantalla de máximo 768px*/
 @media screen and (max-width: 768px) {
 
 }
