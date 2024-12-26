@@ -2,6 +2,8 @@
 # Portafolio Profesional
 
 Mediante este repositorio se desarrolla un Portafolio Profesional, el cual incluye información como: Sobre Mi, Aspiraciones, Conocimientos Técnicos, Certificados de estudio e información de contacto.
+Para la visualización del Portafolio Profesional siga el siguiente enlace:
+**https://lauravargas22.github.io/PortafolioLV/**
 
 ## Cover:
 
@@ -63,22 +65,20 @@ En está sección se implementó Bootstrap de igual forma para la visualización
 ```
 
 En la parte inferior de la sección se encuentra el botón "Ver más" con el fin de que el usuario se diriga a mi cuenta de Github.
-![alt text](images/proyectos.png.png)
+![alt text](images/proyectos.png)
 
 ### Certificados de Estudio:
 En la cuarta sección se encuentran tres tipos de certificados en torno al colegio, inglés y cursos relacionados al área TI.
 Al hacer hover en cada uno de los contenedores el usuario se puede dirigir a una carpeta de drive donde se encuentran los certificados correspondientes.
-![alt text](images/certificados.png.png)
+![alt text](images/certificados.png)
 
 ### Contacto:
 En está última sección, se encuentra un cuadro de texto en donde el usuario se podrá comunicar vía email.
 ```
 <a class="email" href="mailto:lauramarianavargasrojas22@gmail.com">Contáctame</a>
 ```
-![alt text](images/contacto-readme.png.png)
+![alt text](images/contacto-readme.png)
 
 ### Footer:
 En el pie de página se encuentra nombre completo e íconos de direccionamiento al usuario a perfiles profesionales de Github y Linkedin.
 
-Para la visualización del Portafolio Profesional siga el siguiente enlace:
-**https://lauravargas22.github.io/PortafolioLV/**
