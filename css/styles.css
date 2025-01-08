@@ -23,6 +23,11 @@ body {
     font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
 }
 
+/*Texto dentro del direccionamiento a home*/
+.text__click {
+    text-decoration: none;
+}
+
 /*Estilos título "Nombre" */
 .text__title {
     margin: 3rem;

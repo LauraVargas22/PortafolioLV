@@ -196,8 +196,10 @@ ul {
 /*Estilos de cada ícono*/
 .icons {
     width: 7rem;
+    height: 7rem;
     padding: 10px;
     margin-bottom: 4rem;
+    border-radius: 20px;
 }
 
 /*Estilos de cada ícono al hacer hover*/
@@ -438,6 +440,7 @@ footer {
 .icon__link {
     width: 4rem;
     padding: 5px;
+    border-radius: 15px;
 }
 
 /*Estilos de cada logo al hacer hover*/
