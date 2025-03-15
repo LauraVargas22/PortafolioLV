@@ -34,73 +34,6 @@ section {
     background-color: #010a20;
 }
 
-/*Color de fondo del texto Sobre Mi*/
-.aboutme {
-    background-color: #cdd0e6;
-}
-
-/*Estilos sección About me*/
-#about_me {
-    background-color: #cdd0e6;
-    text-align: center;
-    border-bottom: 1px solid #010a20;
-}
-
-/*Estilos sección Aspiraciones*/
-#aspiraciones {
-    background-color: #cdd0e6;
-}
-
-/*Estilos sección Conocimientos Técnicos*/
-#tecnologias {
-    background-color: #010a20;
-}
-
-/*Estilos sección Proyectos*/
-#proyectos {
-    background-color:#cdd0e6;
-}
-
-/*Estilos sección Certificados*/
-#certificados {
-    background-color: #010a20;
-}
-
-/*Estilos sección Contacto*/
-#contacto {
-    background-color:#cdd0e6;
-}
-
-/*Estilos foto personal*/
-.photo {
-    width: 350px;
-    height: 400px;
-    border-radius: 50%;
-}
-
-/*Estilos menú de redireccionamiento a las secciones*/
-.sections{
-    color: white;
-    text-decoration: none;
-    font-family: "Oswald", serif;
-    font-weight: 200; 
-    font-style: normal;
-    font-size: clamp(1.8rem, 1.5261rem + 1.2174vw, 2.5rem);
-    line-height: 2;
-}
-
-/*Estilos menú de redireccionamiento a las secciones al hacer hover*/
-.sections:hover {
-    border: 1px solid #AD9D5F;
-    border-radius: 20px;
-    padding: 5px;
-}
-
-/*Estilos lista de menú de navegación*/
-ul {
-   text-align: center;
-}
-
 /*Estilos título de sección About Me*/
 .title {
     padding: 1.5rem;
@@ -126,13 +59,13 @@ ul {
     line-height: 1.5;
 }
 
-/*Estilos columnas Aspiraciones*/
+/*Estilos columnas Aspiraciones
 .col {
     text-align: center;
     padding: 15px;
-}
+}*/
 
-/*Estilos columnas Aspiraciones al hacer hover*/
+/*Estilos columnas Aspiraciones al hacer hover
 .col:hover {
     border: 1px solid #AD9D5F;
     border-radius: 20px;
@@ -141,7 +74,7 @@ ul {
     .items__title {
         text-shadow: 0px 0px 9px #010a20;
     }
-}
+}*/
 
 /*Estilos títulos de las secciones con alineación centrada*/
 .title__sections {

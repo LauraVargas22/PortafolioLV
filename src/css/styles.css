@@ -14,14 +14,14 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 /*Estilos Navbar*/
-.logo {
-    letter-spacing: .1em;
-    text-shadow: 
-      0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 
-      0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
+.logo__image {
+    padding: 10px;
+    width: 5rem;
 }
 
 nav {
@@ -66,7 +66,7 @@ li.nav-link {
 }
 
 li.nav-link:hover {
-    border-bottom: 2px solid #FF057C;
+    border-bottom: 3px solid #FF057C;
 }
 
 li.nav-link a {
@@ -91,9 +91,10 @@ li.nav-link a {
 /*Estilos background*/
 .container {
     position: relative;
+    top: -35rem;
+    height: max-content;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    z-index: -1;
 }
 
 .bubbles{
@@ -102,8 +103,8 @@ li.nav-link a {
 }
 .bubbles span{
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background: #4fc3dc;
     margin: 0 4px;
     border-radius: 50%;
@@ -123,102 +124,69 @@ li.nav-link a {
 @keyframes animate {
     0% {
         transform: translateY(100vh) scale(0);
+        opacity: 1;
     }
     100% {
         transform: translateY(-10vh) scale(1);
+        opacity: 0;
     }
 }
-/*Estilos subtítulo "Portafolio"*/
+/*Estilos texto about me*/
+.container__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
 .text1{
-    margin: 3rem;
     color: white;
-    font-family: "Oswald", serif;
-    font-weight: 300; 
+    font-family: "Overlock", sans-serif;
+    font-weight: 400;
     font-style: normal;
     font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
 }
 
-/*Texto dentro del direccionamiento a home*/
-.text__click {
-    text-decoration: none;
-}
-
-/*Estilos título "Nombre" */
 .text__title {
-    margin: 3rem;
     text-align: center;
     color: white;
-    font-family: "Oswald", serif;
+    font-family: "Lilita One", sans-serif;
     font-weight: 700; 
     font-style: normal;
     font-size: clamp(2.8rem, 1.7435rem + 4.6957vw, 5.5rem);
-    text-shadow: 0px 0px 9px white;
+    text-shadow: 0px 0px 9px rgb(255, 255, 255, 0.1);
+    letter-spacing: .1em;
 }
 
-/*Estilos botón redireccionamiento home*/
-.button {
-    margin: 3rem;
-    color: black;
-    background-color: #cdd0e6;
-    padding: 10px;
-    border-radius: 1rem;
-    font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
-    font-family: "Molengo", serif;
-    font-weight: 400;
-    font-style: normal;
-    text-decoration: none;
+.text__me {
+    text-align: justify;
+    color: white;
+    font-family: "Overlock", sans-serif;
+    font-size: clamp(1.5rem, 1.3043rem + 0.8696vw, 2rem);
+}
+.photo {
+    padding: 2rem;
+    border-radius: 50%;
 }
 
-/*Estilos al hacer hover en el botón*/
-.button:hover {
-    background-color: #d8d7d2;
-    transform: translateX(3px);
-    box-shadow: 2px 2px 4px 0 rgb(250, 249, 249, 0.5);
+#col__photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 /*Modificaciones en los estilos en pantalla de mínimo 1024px*/
 @media screen and (min-width: 1024px) {
-    .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-    }
     .container__image {
         width: 50%;
     }
-    
+
     .image {
         width: 100%;
-    }
-    
-    .container__text {
-        width: 50%;
-    }
-    .text__title {
-        position: relative;
-        top: 8rem;
-    }
-    .button {
-        position: relative;
-        top: 16rem;
     }
 }
 
 /*Modificaciones en los estilos en pantalla de máximo 768px*/
 @media screen and (max-width: 768px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-    }
-    .container__image {
-        width: 100%;
-    }
     
-    .image {
-        width: 100%;
-    }
-    
-    .container__text {
-        width: 100%;
-    }
 }
