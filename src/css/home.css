@@ -80,8 +80,8 @@ section {
 .title__sections {
     padding: 2rem;
     text-align: center;
-    color: #66251D;
-    font-family: "Oswald", serif;
+    color: #5c0b27;
+    font-family: "Lilita One", sans-serif;
     font-weight: 500; 
     font-style: normal;
     font-size: clamp(4rem, 3.6087rem + 1.7391vw, 5rem);
