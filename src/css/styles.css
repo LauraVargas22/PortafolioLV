@@ -222,6 +222,37 @@ li.nav-link a {
     width: 80%;
     margin: 2rem;
 }
+
+/*Estilos contenedor de las imágenes*/
+.carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 2rem;
+}
+
+.wrap {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 250px;
+    justify-items: stretch;
+    animation: slide 15s linear infinite;
+}
+
+.wrap img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    to {
+        translate: calc(-4 * 250px);
+    }
+}
 /*Modificaciones en los estilos en pantalla de mínimo 1024px*/
 @media screen and (min-width: 1024px) {
     .container__image {
