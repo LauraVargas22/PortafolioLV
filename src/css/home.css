@@ -157,21 +157,24 @@ section {
 
 /*Estilos columnas proyectos al hacer hover*/
 .col__proyects:hover {
-    border: 1px solid #AD9D5F;
+    border: 1px solid #ff2d7544;
     border-radius: 20px;
     padding: 5px;
     box-shadow: 2px 2px 4px 0px rgba(20,20,20, 0.3);
     /*Estilos título de Proyectos al hacer hover*/
     .proyects__title {
-        text-shadow: 0px 0px 9px #010a20;
+        text-shadow: 0px 0px 9px white;
     }
 }
 
 /*Estilos títulos proyectos*/
 .proyects__title {
     text-decoration: none;
-    color: #010a20;
-    font-family: "Oswald", serif;
+    color: white;
+    font-family: "Lilita One", sans-serif;
+    font-style: normal;
+    text-shadow: 0px 0px 9px rgb(255, 255, 255, 0.1);
+    letter-spacing: .1em;
     font-weight: 500; 
     font-style: normal;
     font-size: 3rem;
@@ -179,8 +182,8 @@ section {
 
 /*Estilos imágenes proyectos*/
 .proyects__image {
-    width: 22rem;
-    height: 14rem;
+    width: 25rem;
+    height: 16rem;
     border-radius: 20px;
     box-shadow: 5px 5px 7px 3px rgb(1, 10, 32, 0.6);
 }

@@ -192,6 +192,7 @@ li.nav-link a {
   transition:800ms ease all;
   outline:none;
   text-align: center;
+  margin: 1rem;
 }
 .button:hover{
   background:#fff;
