@@ -1,84 +1,86 @@
+# Portafolio de Laura Vargas - Desarrolladora de Software
 
-# Portafolio Profesional
+Este proyecto es un portafolio web personal que muestra mi perfil profesional, habilidades técnicas, proyectos y datos de contacto como desarrolladora de software especializada en desarrollo front-end.
 
-Mediante este repositorio se desarrolla un Portafolio Profesional, el cual incluye información como: Sobre Mi, Aspiraciones, Conocimientos Técnicos, Certificados de estudio e información de contacto.
 Para la visualización del Portafolio Profesional siga el siguiente enlace:
 **https://lauravargas22.github.io/PortafolioLV/**
 
-## Cover:
+## 📋 Contenido
 
-Por medio de la página principal se realizó una página de presentación en la cual se puede visualizar tanto el nombre como una imágen. En este se encuentra un botón el cual dirige al usuario a la página home.
+El portafolio incluye las siguientes secciones:
+- **Inicio**: Presentación personal y profesional
+- **About Me**: Descripción de mis habilidades blandas y propósito profesional
+- **Skills**: Tecnologías y herramientas que domino
+- **Aspirations**: Misión, visión y valores personales
+- **Projects**: Galería de proyectos destacados con enlaces a GitHub
+- **Contact**: Información para contactarme
 
-## Home:
+## 🛠️ Tecnologías Utilizadas
 
-En esta página se desarrollarán secciones con la información ya mencionada anteriormente.
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap 5.3.3
+- Font Awesome 4.7.0
+- Vite (como bundler)
 
-### Sobre Mi:
+## 🚀 Instalación y Uso
 
-Esta sección está dividida en columnas cada un con un color de fondo diferente, el primera se encuentra una imágen con un menú de navegación, con el cual el usuario podrá navegar a la sección seleccionada de acuerdo con el id de la misma. En la segunda, se encuentran datos personales correspondientes.
-![alt text](/images/aboutme.png)
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/LauraVargas22/portfolio.git
+   cd portfolio
+   ```
 
-### Aspiraciones:
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-En la segunda sección, se encontrarán tres columnas con información sobre misión, visión y valores, para la visualización de esto se implementó Bootstrap de está manera:
+3. **Ejecutar en modo desarrollo**
+   ```bash
+   npm run dev
+   ```
 
-1. Emparejamiento de Bootstrap en HTML:
-    ```
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    ```
+4. **Construir para producción**
+   ```bash
+   npm run build
+   ```
 
-2. Organización del HTML en contenedores, se tiene un contenedor principal en el cual se encuentran otros tres, en donde en cada uno se tiene la información correspondiente a lo mencionado previamente:
-    ```
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
-        <!--Columna 1 (Misión)-->
-        <div class="col">
-            <!--Título de la columna-->
-            <h2 class="items__title">Misión</h2>
-            <!--Imágen de la columna-->
-            <img class="items__image" src="../images/mision.png">
-            <!--Descripción de la columna-->
-            <p class="items__text">Contribuir a la resolución de problemáticas tecnológicas mediante mi formación en desarrollo de software y el uso de habilidades blandas, fomentando un entorno inclusivo y efectivo que impulse el progreso en la sociedad.</p>
-        </div>
-    ```
-
-    En el primer contador se especifica por medio de la clase que se van a tener columnas horizontales de acuerdo al tamaño de pantalla por lo que en celular y tablet se va a ver de a una y en laptop de las tres.
-    ![alt text](images/aspiraciones.png)
-
-
-### Conocimientos Técnicos:
-Para esta sección se hizo uso de cada uno de los logos de las tecnologías o lenguajes de programación con el fin de compartir los Conocimientos técnicos, así mismp se aplicaron estilos a cada uno para realizar un box-shadow al hacer hover.
-![alt text](images/conocimientos.png)
-
-### Proyectos:
-En está sección se implementó Bootstrap de igual forma para la visualización de cada uno de los proyectos en columnas, al seleccionar en cada contenedor se permitirá redireccionar al usuario al repositorio donde se realizó dicho proyecto:
+## 📁 Estructura del Proyecto
 
 ```
-<div class="col__proyects">
-    <!--Redireccionamiento al repositorio del proyecto-->
-    <a class="link" href="https://github.com/LauraVargas22/LigaBetplay" target="_blank">
-        <!--Título de la columna-->
-        <h2 class="proyects__title">LigaBetplay</h2>
-        <!--Imágen de la columna-->
-        <img class="proyects__image" src="../images/ligabetplay.png" alt="LigaBetplay">
-    </a>
-</div>
+portfolio/
+│
+├── index.html
+├── src/
+│   ├── css/
+│   │   ├── styles.css
+│   │   └── home.css
+│   ├── images/
+│   │   ├── logo.png
+│   │   ├── perfil.png
+│   │   └── ... (resto de imágenes)
+│   └── main.js
+├── package.json
+└── README.md
 ```
 
-En la parte inferior de la sección se encuentra el botón "Ver más" con el fin de que el usuario se diriga a mi cuenta de Github.
-![alt text](images/proyectos.png)
+## 🔗 Enlaces y Recursos
 
-### Certificados de Estudio:
-En la cuarta sección se encuentran tres tipos de certificados en torno al colegio, inglés y cursos relacionados al área TI.
-Al hacer hover en cada uno de los contenedores el usuario se puede dirigir a una carpeta de drive donde se encuentran los certificados correspondientes.
-![alt text](images/certificados.png)
+- [GitHub](https://github.com/LauraVargas22)
+- [LinkedIn](https://www.linkedin.com/in/laura-vargas2209s/)
+- [CV Online](https://www.canva.com/design/DAGUDJUzZno/siniobSBlmfb5RhCsQ7Vzg/edit)
 
-### Contacto:
-En está última sección, se encuentra un cuadro de texto en donde el usuario se podrá comunicar vía email.
-```
-<a class="email" href="mailto:lauramarianavargasrojas22@gmail.com">Contáctame</a>
-```
-![alt text](images/contacto-readme.png)
+## 📂 Proyectos Destacados
 
-### Footer:
-En el pie de página se encuentra nombre completo e íconos de direccionamiento al usuario a perfiles profesionales de Github y Linkedin.
+- [LigaBetplay](https://github.com/LauraVargas22/LigaBetplay)
+- [The Chachipun](https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura)
+- [Music Concert](https://github.com/LauraVargas22/VargasLaura_ProyectoConcertCSS)
+- [Formula One](https://github.com/Omarjr33/projectf1.git)
+
+## 📬 Contacto
+
+Para consultas profesionales, colaboraciones o más información:
+- Email: [lauramarianavargasrojas22@gmail.com](mailto:lauramarianavargasrojas22@gmail.com)
 
