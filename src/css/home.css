@@ -27,6 +27,7 @@ body::-webkit-scrollbar-thumb {
 /*Altura de las secciones de acuerdo al contenido*/
 section {
     height: max-content;
+    margin: 1rem;
 }
 
 /*Color de fondo del menú*/
@@ -274,10 +275,6 @@ section {
     }
 }
 
-/*Estilos contenedor contacto*/
-.contact {
-    background: #cdd0e6;
-}
 
 /*Estilos contenedor del texto de contacto*/
 .contact__text {
@@ -318,33 +315,52 @@ section {
 }
 
 /*Estilos bóton de redireccionamiento al email*/
-.email {
-    backdrop-filter: blur(10px);
-    padding: 10px 30px;
-    color: white;
+.email{
+    font-family: "Overlock", sans-serif;
+    font-weight: 700;
+    background:#010a20;
     text-decoration: none;
-    font-size: clamp(2rem, 1.8043rem + 0.8696vw, 2.5rem);
-    font-family: "Molengo", serif;
-    font-weight: 400;
-    font-style: normal;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:2em;
+    padding:5px 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    text-align: center;
+    margin: 1rem;
+  }
+  .email:hover{
+    background:#fff;
+    color:#010a20;
+  }
+  .email:before, .email:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
     background: #010a20;
-    border-radius: 5px;
-}
-
-/*Estilos bóton de redireccionamiento al email al hacer hover*/
-.email:hover {
-    background: white;
-    color: #00071a;
-    font-family: "Molengo", serif;
-    font-weight: 400;
-    font-style: normal;
-    border-radius: 35px;
-    box-shadow: 5px 5px 7px 3px rgb(255, 255, 255, 0.3);
-}
+    transition:400ms ease all;
+  }
+  .email:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .email:hover:before, .email:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
 
 /*Estilos pie de página*/
 footer {
-    background: #010a20;
+    background: #02081f;
+    height: 5rem;
 }
 
 /*Estilos contenedor pie de página*/
@@ -353,20 +369,20 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background: #02081f;
 }
 
 /*Estilos nombre pie de página*/
 .name__text {
     color: white;
-    font-family: "Oswald", serif;
+    font-family: "Overlock", sans-serif;
     font-weight: 200; 
     font-style: normal;
     font-size: clamp(1.8rem, 1.7217rem + 0.3478vw, 2rem);
-    padding: 0 1rem;
+    padding: 2rem 1rem;
 }
 /*Estilos contenedor logos*/
 .links { 
-    margin: 0;
     justify-content: flex-end;
     align-items: center;
     padding: 2rem;
@@ -374,14 +390,65 @@ footer {
 
 /*Estilos de cada logo*/
 .icon__link {
-    width: 4rem;
+    width: 3rem;
     padding: 5px;
-    border-radius: 15px;
+    border-radius: 50%;
 }
 
 /*Estilos de cada logo al hacer hover*/
 .icon__link:hover {
     box-shadow: 4px 4px 6px 2px rgb(255, 255, 255, 0.6);
+}
+
+/*Iconos*/
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+}
+
+.btn-social {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.btn-social:hover {
+    transform: scale(1.05);
+}
+
+.soc-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    opacity: 0;
+    transition: 0.3s all ease;
+}
+
+.btn-social:hover .soc-label {
+    opacity: 1;
+    top: -32px;
+}
+
+.lk {
+    background-color: #0077b5;
+    color: white;
+}
+
+.gh {
+    background-color: black;
+    color: white;
 }
 
 /*Modificaciones en los estilos en pantalla de mínimo 1024px*/
