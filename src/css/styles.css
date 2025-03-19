@@ -30,7 +30,9 @@ nav {
     align-items: center;
     padding: 1rem;
     background-color: #02081f;
+    width: 100%;
     color: white;
+    margin: 0;
 }
 
 nav .bars {
@@ -167,6 +169,7 @@ li.nav-link a {
 .photo {
     padding: 2rem;
     border-radius: 50%;
+    width: 80%;
 }
 
 #col__photo{
