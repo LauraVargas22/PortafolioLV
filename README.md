@@ -3,7 +3,7 @@
 Este proyecto es un portafolio web personal que muestra mi perfil profesional, habilidades técnicas, proyectos y datos de contacto como desarrolladora de software especializada en desarrollo front-end.
 
 Para la visualización del Portafolio Profesional siga el siguiente enlace:
-**https://lauravargas22.github.io/PortafolioLV/**
+**https://lauravargasportafolio.netlify.app/**
 
 ## 📋 Contenido
 
