@@ -1,0 +1,43 @@
+{
+    "nav": {
+        "aboutme": "Sobre mi",
+        "skills": "Habilidades",
+        "aspirations": "Aspiraciones",
+        "projects": "Proyectos",
+        "contact-me": "Contáctame"
+    },
+
+    "main": {
+        "text1": "Soy Laura Vargas",
+        "text_title": "Desarrolladora de Software",
+        "text_me": "Con experiencia en desarrollo frontend y backend creando experiencias interactivas y amigables."
+    },
+
+    "aboutme": {
+        "title__sections": "Sobre mi",
+        "text_me": "Desarrolladora de Software en formación con conocimientos intermedios de inglés y experiencia en lenguajes de programación y tecnologías como Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL y PostgreSQL. Ha trabajado en proyectos de desarrollo web, creación de bases de datos y aplicaciones de consola. Se destaca por su capacidad de comunicación efectiva, liderazgo, adaptabilidad y trabajo en equipo, lo que facilita la colaboración en entornos académicos y profesionales."
+    },
+
+    "knowledge": {
+        "title__sections": "Tecnologías"
+    },
+
+    "aspirations": {
+        "title__sections": "Aspiraciones",
+        "tmsion": "Misión",
+        "mision": "Mediante mi experiencia en desarrollo de software y competencias interpersonales, mi objetivo es resolver los retos tecnológicos fomentando entornos de trabajo colaborativo que impulsen el progreso de la sociedad.",
+        "tvision": "Visión",
+        "vision": "Destacar como desarrollador de software resaltando mis habilidades interpersonales con el fin de adaptarme a diversos entornos. Mi objetivo es mejorar el bienestar e impulsar el progreso social mediante soluciones tecnológicas inclusivas y accesibles.",
+        "tvalues": "Valores",
+        "values": "Los valores que me caracterizan son la empatía, que me permite comprender a los demás y comunicar mis ideas con asertividad; el liderazgo, basado en la confianza para inspirar y motivar a los demás; y el compañerismo, esencial para fomentar la colaboración y lograr un trabajo en equipo eficaz."
+    },
+    "projects": {
+       "title__sections": "Proyectos",
+       "buttonp": "Ver más"
+    },
+    "contact": {
+        "contacto__text": "Conoce más sobre mi",
+        "contacto__title": "Perfil Profesional",
+        "email": "Contáctame"
+    }
+}

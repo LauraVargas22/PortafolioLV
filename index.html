@@ -17,14 +17,18 @@
           <i class="fa fa-bars"></i>
         </div>
         <ul class="nav-links">
-          <li class="nav-link"><a href="#aboutme">About Me</a></li>
-          <li class="nav-link"><a href="#knowledge">Skills</a></li>
-          <li class="nav-link"><a href="#aspirations">Aspirations</a></li>
-          <li class="nav-link"><a href="#projects">Projects</a></li>
-          <li class="nav-link"><a href="#contact">Contact me</a></li>
+          <li class="nav-link"><a href="#aboutme" data-value="aboutme" data-section="nav">About Me</a></li>
+          <li class="nav-link"><a href="#knowledge" data-value="skills" data-section="nav">Skills</a></li>
+          <li class="nav-link"><a href="#aspirations" data-value="aspirations" data-section="nav">Aspirations</a></li>
+          <li class="nav-link"><a href="#projects" data-value="projects" data-section="nav">Projects</a></li>
+          <li class="nav-link"><a href="#contact" data-value="contact-me" data-section="nav">Contact me</a></li>
+          <div class="languages">
+              <li class="nav-link"><button class="lang" data-language="es"><img class="language" src="./src/images/es.png" alt="ES"></button></li>
+              <li class="nav-link"><button class="lang" data-language="en"><img class="language" src="./src/images/en.png" alt="EN"></button></li>
+          </div>
         </ul>
       </nav>
-    <section>
+    <section id="main">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
             <div id="col__photo" class="col">
                 <img class="photo" src="./src/images/perfil.png" alt="photo">
@@ -55,20 +59,20 @@
             </div>
             <div class="col">
                 <div class="container__text">
-                    <h1 class="text1">I'm Laura Vargas</h1>
-                    <h1 class="text__title">Software Developer</h1>
-                    <p class="text__me">I'm from Duitama, Boyacá. I specialize in front-end development with a focus on creating interactive and user-friendly web applications.</p>
+                    <h1 class="text1" data-section="main" data-value="text1">I'm Laura Vargas</h1>
+                    <h1 class="text__title" data-section="main" data-value="text_title">Software Developer</h1>
+                    <p class="text__me" data-section="main" data-value="text_me">Experienced in frontend and backend development creating interactive and user friendly experiences.</p>
                     <a href="https://www.canva.com/design/DAGUDJUzZno/siniobSBlmfb5RhCsQ7Vzg/edit?utm_content=DAGUDJUzZno&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="button">CV</a>
                 </div>
             </div>
         </div>
     </section>
     <section id="aboutme">
-        <h2 class="title__sections">About Me</h2>
+        <h2 class="title__sections" data-value="title__sections" data-section="aboutme">About Me</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
             <div class="col">
                 <div class="container__text">
-                    <p class="text__me">Throughout my learning process, I have polished up key soft skills such as leadership, teamwork, and assertive communication, enabling me to work properly. My professional purpose is to leverage my programming expertise and strengths to tackle educational challenges through innovative solutions.</p>
+                    <p class="text__me" data-value="text_me" data-section="aboutme">Software developer in training with intermediate English skills and experience in programming languages and technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL. She has worked on web development projects, database design, and console applications. She is known for her effective communication, leadership, adaptability, and teamwork skills, which facilitate collaboration in both academic and professional environments.</p>
                 </div>
             </div>
             <div class="col">
@@ -77,7 +81,7 @@
         </div>
     </section>
     <section id="knowledge">
-        <h2 class="title__sections">Technologies I know</h2>
+        <h2 class="title__sections" data-value="title__sections" data-section="knowledge">Technologies I know</h2>
         <div class="carousel">
             <!--Logos que representan cada una de las tecnologías-->
             <div class="wrap">
@@ -90,60 +94,60 @@
                 <img src="./src/images/python.png"/> <!--Python-->
                 <img src="./src/images/vs.png"/> <!--Visual-->
                 <img src="./src/images/css.png"/> <!--Css-->
-                <img src="./src/images/github.png"/> <!--Github-->
+                <img src="./src/images/cs.png"/> <!--C#-->
                 <img src="./src/images/git.png"/> <!--Git-->
-                <img src="./src/images/cpp.png"/> <!--C++-->
+                <img src="./src/images/postgresql.png"/> <!--Postgresql-->
                 <img src="./src/images/mysql.png"/> <!--Mysql-->
             </div>
         </div>
     </section>
     <section id="aspirations">
         <!--Título de la sección-->
-        <h2 class="title__sections">Aspirations</h2>
+        <h2 class="title__sections" data-value="title__sections" data-section="aspirations">Aspirations</h2>
         <!--Implemetación de Bootstrap en donde se definen la cantidad de columnas según el tamaño de la pantalla-->
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
             <!--Columna 1 (Misión)-->
             <div class="col_a">
                 <!--Título de la columna-->
-                <h2 class="items__title">Mission</h2>
+                <h2 class="items__title" data-value="tmision" data-section="aspirations">Mission</h2>
                 <!--Imágen de la columna-->
                 <img class="items__image" src="./src/images/mision.png">
                 <!--Descripción de la columna-->
-                <p class="items__text">Through my expertise in software development and soft skills, I aim to solve technological challenges while fostering an inclusive and efficient environment that drives societal progress.</p>
+                <p data-value="mision" class="items__text" data-section="aspirations">Through my expertise in software development and soft skills, I aim to solve technological challenges while fostering an inclusive and efficient environment that drives societal progress.</p>
             </div>
             <!--Columna 2 (Visión)-->
             <div class="col_a">
                 <!--Título de la columna-->
-                <h2 class="items__title">Vision</h2>
+                <h2 data-value="tvision" class="items__title" data-section="aspirations">Vision</h2>
                 <!--Imágen de la columna-->
                 <img class="items__image" src="./src/images/vision.png">
                 <!--Descripción de la columna-->
-                <p class="items__text">I will stand out as a software developer by leveraging my soft skills to adapt seamlessly to diverse environments. My goal is to enhance well-being and drive social progress through inclusive and accessible technological solutions.</p>
+                <p data-value="vision" class="items__text" data-section="aspirations">I will stand out as a software developer by leveraging my soft skills to adapt seamlessly to diverse environments. My goal is to enhance well-being and drive social progress through inclusive and accessible technological solutions.</p>
             </div>
             <!--Columna 3 (Valores)-->
             <div class="col_a">
                 <!--Título de la columna-->
-                <h2 class="items__title">Values</h2>
+                <h2 data-value="tvalues" class="items__title" data-section="aspirations">Values</h2>
                 <!--Imágen de la columna-->
                 <img class="items__image" src="./src/images/valores.png">
                 <!--Descripción de la columna-->
-                <p class="items__text">The values that define me include empathy, which allows me to understand others and communicate my ideas assertively; leadership, built on confidence to inspire and motivate others; and camaraderie, essential for fostering collaboration and achieving effective teamwork.</p>
+                <p data-value="values" class="items__text" data-section="aspirations">The values that define me include empathy, which allows me to understand others and communicate my ideas assertively; leadership, built on confidence to inspire and motivate others; and camaraderie, essential for fostering collaboration and achieving effective teamwork.</p>
             </div>
         </div>
     </section>
     <section id="projects">
         <!--Título de la sección-->
-        <h2 class="title__sections">Projects</h2>
+        <h2 class="title__sections" data-value="title__sections" data-section="projects">Projects</h2>
         <!--Implementación de Bootstrap en las columnas-->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
             <!--Columna 1-->
             <div class="col__proyects">
                 <!--Redireccionamiento al repositorio del proyecto-->
-                <a class="link" href="https://github.com/LauraVargas22/LigaBetplay" target="_blank">
+                <a class="link" class="link" href="https://github.com/Isa94d-lab/InventoryManagement.git" target="_blank">
                     <!--Título de la columna-->
-                    <h2 class="proyects__title">LigaBetplay</h2>
+                    <h2 class="proyects__title">Inventory Management</h2>
                     <!--Imágen de la columna-->
-                    <img class="proyects__image" src="./src/images/ligabetplay.png" alt="LigaBetplay">
+                    <img class="proyects__image" src="./src/images/inventory.png" alt="Inventory">
                 </a>
             </div>
             <!--Columna 2-->
@@ -179,7 +183,7 @@
         </div>
         <!--Bóton de redireccionamiento a mi cuenta de Github-->
         <div class="enlace">
-            <a class="button" href="https://github.com/LauraVargas22" target="_blank">Ver Más</a>
+            <a data-value="buttonp" class="button" href="https://github.com/LauraVargas22" target="_blank" data-section="projects">See More</a>
         </div>
     </section>
     <!--Sección de Contacto-->
@@ -188,10 +192,10 @@
             <h1 class="title__sections"></h1>
             <!--Texto sobre imágen de contacto-->
             <div class="contact__text">
-                <h3 class="contacto__text">Know more about me</h3>
-                <h2 class="contacto__title">Professional Profile</h2>
+                <h3 class="contacto__text" data-value="contacto__text" data-section="contact">Know more about me</h3>
+                <h2 class="contacto__title" data-value="contacto__title" data-section="contact">Professional Profile</h2>
                 <!--Email al que se va a producir el redireccionamiento-->
-                <a class="email" href="mailto:lauramarianavargasrojas22@gmail.com">Contact Me</a>
+                <a class="email" href="mailto:lauramarianavargasrojas22@gmail.com" data-value="email" data-section="contact">Contact Me</a>
             </div>
             <h1 class="title__sections"></h1>
         </div>

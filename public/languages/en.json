@@ -1,0 +1,44 @@
+
+{
+    "nav": {
+        "aboutme": "About me",
+        "skills": "Skills",
+        "aspirations": "Aspirations",
+        "projects": "Projects",
+        "contact-me": "Contact me"
+    },
+
+    "main": {
+        "text1": "I'm Laura Vargas",
+        "text_title": "Software Developer",
+        "text_me": "Experienced in frontend and backend development creating interactive and user friendly experiences."
+    },
+
+    "aboutme": {
+        "title__sections": "About me",
+        "text_me": "Software developer in training with intermediate English skills and experience in programming languages and technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL. She has worked on web development projects, database design, and console applications. She is known for her effective communication, leadership, adaptability, and teamwork skills, which facilitate collaboration in both academic and professional environments."
+    },
+
+    "knowledge": {
+        "title__sections": "Technologies I know"
+    },
+
+    "aspirations": {
+        "title__sections": "Aspirations",
+        "tmsion": "Mission",
+        "mision": "Through my expertise in software development and soft skills, I aim to solve technological challenges while fostering an inclusive and efficient environment that drives societal progress.",
+        "tvision": "Vision",
+        "vision": "I will stand out as a software developer by leveraging my soft skills to adapt seamlessly to diverse environments. My goal is to enhance well-being and drive social progress through inclusive and accessible technological solutions.",
+        "tvalues": "Values",
+        "values": "The values that define me include empathy, which allows me to understand others and communicate my ideas assertively; leadership, built on confidence to inspire and motivate others; and camaraderie, essential for fostering collaboration and achieving effective teamwork."
+    },
+    "projects": {
+       "title__sections": "Projects",
+       "buttonp": "See more"
+    },
+    "contact": {
+        "contacto__text": "Know more about me",
+        "contacto__title": "Professional Profile",
+        "email": "Contact Me"
+    }
+}
