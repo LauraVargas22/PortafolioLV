@@ -16,7 +16,11 @@
 
     "aboutme": {
         "title__sections": "About me",
-        "text_me": "Software developer in training with intermediate English skills and experience in programming languages and technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL. She has worked on web development projects, database design, and console applications. She is known for her effective communication, leadership, adaptability, and teamwork skills, which facilitate collaboration in both academic and professional environments."
+        "text_me": "Software developer in training with intermediate English skills and experience in programming languages and technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL. She has worked on web development projects, database design, and console applications. She is known for her effective communication, leadership, adaptability, and teamwork skills, which facilitate collaboration in both academic and professional environments.",
+        "title_1": "Frontend",
+        "text_1": "Developer",
+        "title_2": "Backend",
+        "text_2": "Developer"
     },
 
     "knowledge": {
