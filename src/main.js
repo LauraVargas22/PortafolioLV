@@ -15,7 +15,8 @@ let currentLanguage = 'en'; // Idioma por defecto
 const getProjectTranslations = async (language) => {
     try {
         console.log('Fetching translations for language:', language);
-        const response = await fetch(`./public/languages/${language}.json`);
+        // Usar una ruta relativa que funcione tanto en desarrollo como en producción
+        const response = await fetch(`languages/${language}.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -58,7 +59,8 @@ langButtons.forEach((button) => {
         console.log('Language button clicked:', button.dataset.language);
         currentLanguage = button.dataset.language;
         try {
-            const response = await fetch(`./public/languages/${currentLanguage}.json`);
+            // Usar una ruta relativa que funcione tanto en desarrollo como en producción
+            const response = await fetch(`languages/${currentLanguage}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -86,56 +88,56 @@ const cards = [
     id: 'ligabetplay',
     title: 'LigaBetplay',
     description: 'Python application to manage football teams and players, simulating a sports league system.',
-    image: './src/images/ligabetplay.png',
+    image: 'src/images/ligabetplay.png',
     link: 'https://github.com/LauraVargas22/LigaBetplay.git'
   },
   {
     id: 'concerts',
     title: 'Concerts',
     description: 'Responsive website built with HTML and CSS to showcase upcoming music concerts and events.',
-    image: './src/images/musicconcert.png',
+    image: 'src/images/musicconcert.png',
     link: 'https://github.com/LauraVargas22/VargasLaura_ProyectoConcertCSS.git'
   },
   {
     id: 'formula1',
     title: 'Formula One',
     description: 'JavaScript web project that simulates a Formula 1 fan page with interactive features.',
-    image: './src/images/formula1.png',
+    image: 'src/images/formula1.png',
     link: 'https://github.com/Omarjr33/projectf1.git'
   },
   {
     id: 'chachipun',
     title: 'The Chachipun',
     description: 'Python game project inspired by rock-paper-scissors with added creative mechanics.',
-    image: './src/images/chachipun.jpg',
+    image: 'src/images/chachipun.jpg',
     link: 'https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura'
   },
   {
     id: 'campuslove',
     title: 'Campus Love ... Where Is Love',
     description: 'C# console application that simulates matchmaking logic within a fictional campus environment.',
-    image: './src/images/CampusLove.png',
+    image: 'src/images/CampusLove.png',
     link: 'https://github.com/LauraVargas22/CampusLove.git'
   },
   {
     id: 'inventory',
     title: 'Inventory Management',
     description: 'C# console-based CRUD system for managing inventory operations.',
-    image: './src/images/inventory.png',
+    image: 'src/images/inventory.png',
     link: 'https://github.com/Isa94d-lab/InventoryManagement.git'
   },
   {
     id: 'campusdb',
     title: 'Campus Database',
     description: 'MySQL database system designed to manage educational processes and student data for Campuslands.',
-    image: './src/images/campusdb.png',
+    image: 'src/images/campusdb.png',
     link: 'https://github.com/LauraVargas22/ProyectoMySQL.git'
   },
   {
     id: 'invoice',
     title: 'Electronic Invoice',
     description: 'JavaScript project using Lit and Vite to create a dynamic electronic invoicing system with web components.',
-    image: './src/images/invoice.png',
+    image: 'src/images/invoice.png',
     link: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git'
   }
 ];
