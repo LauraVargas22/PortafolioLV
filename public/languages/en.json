@@ -1,4 +1,3 @@
-
 {
     "nav": {
         "aboutme": "About me",
@@ -38,7 +37,41 @@
     },
     "projects": {
        "title__sections": "Projects",
-       "buttonp": "See more"
+       "buttonp": "See more",
+       "cards": {
+           "ligabetplay": {
+               "title": "LigaBetplay",
+               "description": "Python application to manage football teams and players, simulating a sports league system."
+           },
+           "concerts": {
+               "title": "Concerts",
+               "description": "Responsive website built with HTML and CSS to showcase upcoming music concerts and events."
+           },
+           "formula1": {
+               "title": "Formula One",
+               "description": "JavaScript web project that simulates a Formula 1 fan page with interactive features."
+           },
+           "chachipun": {
+               "title": "The Chachipun",
+               "description": "Python game project inspired by rock-paper-scissors with added creative mechanics."
+           },
+           "campuslove": {
+               "title": "Campus Love ... Where Is Love",
+               "description": "C# console application that simulates matchmaking logic within a fictional campus environment."
+           },
+           "inventory": {
+               "title": "Inventory Management",
+               "description": "C# console-based CRUD system for managing inventory operations."
+           },
+           "campusdb": {
+               "title": "Campus Database",
+               "description": "MySQL database system designed to manage educational processes and student data for Campuslands."
+           },
+           "invoice": {
+               "title": "Electronic Invoice",
+               "description": "JavaScript project using Lit and Vite to create a dynamic electronic invoicing system with web components."
+           }
+       }
     },
     "contact": {
         "contacto__text": "Know more about me",

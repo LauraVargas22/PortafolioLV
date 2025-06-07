@@ -160,49 +160,22 @@
     <section id="projects">
         <!--Título de la sección-->
         <h2 class="title__sections" data-value="title__sections" data-section="projects">Projects</h2>
-        <!--Implementación de Bootstrap en las columnas-->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
-            <!--Columna 1-->
-            <div class="col__proyects">
-                <!--Redireccionamiento al repositorio del proyecto-->
-                <a class="link" class="link" href="https://github.com/Isa94d-lab/InventoryManagement.git" target="_blank">
-                    <!--Título de la columna-->
-                    <h2 class="proyects__title">Inventory Management</h2>
-                    <!--Imágen de la columna-->
-                    <img class="proyects__image" src="./src/images/inventory.png" alt="Inventory">
-                </a>
-            </div>
-            <!--Columna 2-->
-            <div class="col__proyects">
-                <!--Redireccionamiento al repositorio del proyecto-->
-                <a class="link" href="https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura" target="_blank">
-                    <!--Título de la columna-->
-                    <h2 class="proyects__title">The Chachipun</h2>
-                    <!--Imágen de la columna-->
-                    <img class="proyects__image" src="./src/images/thechachipun.png" alt="The Chachipun">
-                </a>
-            </div>
-            <!--Columna 3-->
-            <div class="col__proyects">
-                <!--Redireccionamiento al repositorio del proyecto-->
-                <a class="link" href="https://github.com/LauraVargas22/VargasLaura_ProyectoConcertCSS" target="_blank">
-                    <!--Título de la columna-->
-                    <h2 class="proyects__title">Music Concert</h2>
-                    <!--Imágen de la columna-->
-                    <img class="proyects__image" src="./src/images/musicconcert.png" alt="Music Concert">
-                </a>
-            </div>
-            <!--Columna 4-->
-            <div class="col__proyects">
-                <!--Redireccionamiento al repositorio del proyecto-->
-                <a class="link" class="link" href="https://github.com/Omarjr33/projectf1.git" target="_blank">
-                    <!--Título de la columna-->
-                    <h2 class="proyects__title">Formula One</h2>
-                    <!--Imágen de la columna-->
-                    <img class="proyects__image" src="./src/images/formula1.png" alt="Formula Uno">
-                </a>
-            </div>
+        <div class="cards" aria-live="polite" aria-atomic="true">
+            <!--Cards-->
         </div>
+        <nav class="pagination_navigation" role="navigation" aria-label="Pagination Navigation">
+            <button type="button" id="go-previous-page" class="pagination_button" aria-label="Go to Previous Page">
+                <!--Svg "True"-->
+            </button>
+            <label for="pagination_select" class="visually-hidden">
+                Choose a page
+            </label>
+            <select id="pagination_select">
+            </select>
+            <button type="button" id="go-next-page" class="pagination_button" aria-label="Go to Next Page">
+                <!--SVG "True"-->
+            </button>
+        </nav>
         <!--Bóton de redireccionamiento a mi cuenta de Github-->
         <div class="enlace">
             <a data-value="buttonp" class="button" href="https://github.com/LauraVargas22" target="_blank" data-section="projects">See More</a>

@@ -37,7 +37,41 @@
     },
     "projects": {
        "title__sections": "Proyectos",
-       "buttonp": "Ver más"
+       "buttonp": "Ver más",
+       "cards": {
+           "ligabetplay": {
+               "title": "LigaBetplay",
+               "description": "Aplicación en Python para gestionar equipos y jugadores de fútbol, simulando un sistema de liga deportiva."
+           },
+           "concerts": {
+               "title": "Conciertos",
+               "description": "Sitio web responsivo construido con HTML y CSS para mostrar próximos conciertos y eventos musicales."
+           },
+           "formula1": {
+               "title": "Fórmula Uno",
+               "description": "Proyecto web en JavaScript que simula una página de fans de Fórmula 1 con características interactivas."
+           },
+           "chachipun": {
+               "title": "El Chachipun",
+               "description": "Proyecto de juego en Python inspirado en piedra-papel-tijera con mecánicas creativas adicionales."
+           },
+           "campuslove": {
+               "title": "Campus Love ... Where Is Love",
+               "description": "Aplicación de consola en C# que simula la lógica de emparejamiento dentro de un entorno de campus ficticio."
+           },
+           "inventory": {
+               "title": "Gestión de Inventario",
+               "description": "Sistema CRUD basado en consola en C# para gestionar operaciones de inventario."
+           },
+           "campusdb": {
+               "title": "Base de Datos Campus",
+               "description": "Sistema de base de datos MySQL diseñado para gestionar procesos educativos y datos de estudiantes para Campuslands."
+           },
+           "invoice": {
+               "title": "Factura Electrónica",
+               "description": "Proyecto JavaScript usando Lit y Vite para crear un sistema dinámico de facturación electrónica con componentes web."
+           }
+       }
     },
     "contact": {
         "contacto__text": "Conoce más sobre mi",
