@@ -88,56 +88,56 @@ const cards = [
     id: 'ligabetplay',
     title: 'LigaBetplay',
     description: 'Python application to manage football teams and players, simulating a sports league system.',
-    image: 'src/images/ligabetplay.png',
+    image: new URL('./images/ligabetplay.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/LigaBetplay.git'
   },
   {
     id: 'concerts',
     title: 'Concerts',
     description: 'Responsive website built with HTML and CSS to showcase upcoming music concerts and events.',
-    image: 'src/images/musicconcert.png',
+    image: new URL('./images/musicconcert.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/VargasLaura_ProyectoConcertCSS.git'
   },
   {
     id: 'formula1',
     title: 'Formula One',
     description: 'JavaScript web project that simulates a Formula 1 fan page with interactive features.',
-    image: 'src/images/formula1.png',
+    image: new URL('./images/formula1.png', import.meta.url).href,
     link: 'https://github.com/Omarjr33/projectf1.git'
   },
   {
     id: 'chachipun',
     title: 'The Chachipun',
     description: 'Python game project inspired by rock-paper-scissors with added creative mechanics.',
-    image: 'src/images/chachipun.jpg',
+    image: new URL('./images/chachipun.jpg', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura'
   },
   {
     id: 'campuslove',
     title: 'Campus Love ... Where Is Love',
     description: 'C# console application that simulates matchmaking logic within a fictional campus environment.',
-    image: 'src/images/CampusLove.png',
+    image: new URL('./images/CampusLove.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/CampusLove.git'
   },
   {
     id: 'inventory',
     title: 'Inventory Management',
     description: 'C# console-based CRUD system for managing inventory operations.',
-    image: 'src/images/inventory.png',
+    image: new URL('./images/inventory.png', import.meta.url).href,
     link: 'https://github.com/Isa94d-lab/InventoryManagement.git'
   },
   {
     id: 'campusdb',
     title: 'Campus Database',
     description: 'MySQL database system designed to manage educational processes and student data for Campuslands.',
-    image: 'src/images/campusdb.png',
+    image: new URL('./images/campusdb.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/ProyectoMySQL.git'
   },
   {
     id: 'invoice',
     title: 'Electronic Invoice',
     description: 'JavaScript project using Lit and Vite to create a dynamic electronic invoicing system with web components.',
-    image: 'src/images/invoice.png',
+    image: new URL('./images/invoice.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git'
   }
 ];
@@ -179,7 +179,7 @@ const changeCards = (cards, pageIndex, itemsPerPage) => {
   cardsElement.innerHTML = cards.slice(startIndex, endIndex).map(card => /*html*/`
     <article>
       <figure>
-        <img src="${card.image}" alt="${card.translatedTitle || card.title}" onerror="this.src='./src/images/formula1.png'; this.alt='Image not available';">
+        <img src="${card.image}" alt="${card.translatedTitle || card.title}" onerror="this.src='${new URL('./images/formula1.png', import.meta.url).href}'; this.alt='Image not available';">
       </figure>
       <a class="link" href="${card.link}" target="_blank">
         <div class="article-preview">
