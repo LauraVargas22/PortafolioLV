@@ -139,6 +139,13 @@ const cards = [
     description: 'JavaScript project using Lit and Vite to create a dynamic electronic invoicing system with web components.',
     image: new URL('./images/invoice.png', import.meta.url).href,
     link: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git'
+  },
+  {
+    id: 'sgta',
+    title: 'Automotive System',
+    description: 'Fullstack project that allows the repair cars shop management through .NET, PostreSQL, Vite + React and Typescript.',
+    image: new URL('./images/sgta.png', import.meta.url).href,
+    link: 'https://github.com/LauraVargas22/SistemaAutomotriz.git'
   }
 ];
 
@@ -201,7 +208,7 @@ const changeCards = (cards, pageIndex, itemsPerPage) => {
   paginationSelect.selectedIndex = currentPage - 1;
 
   // Scroll suave a la sección de proyectos
-  const projectsSection = document.querySelector('#projects');
+  const projectsSection = document.querySelector('#');
   if (projectsSection) {
     projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }

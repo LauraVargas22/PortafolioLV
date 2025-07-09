@@ -18,6 +18,8 @@
         "text_me": "Desarrolladora de Software en formación con conocimientos intermedios de inglés y experiencia en lenguajes de programación y tecnologías como Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL y PostgreSQL. Ha trabajado en proyectos de desarrollo web, creación de bases de datos y aplicaciones de consola. Se destaca por su capacidad de comunicación efectiva, liderazgo, adaptabilidad y trabajo en equipo, lo que facilita la colaboración en entornos académicos y profesionales.",
         "title_1": "Desarrolladora",
         "text_1": "Frontend",
+        "title_3": "Diseñadora de",
+        "text_3": "Bases de Datos",
         "title_2": "Desarrolladora",
         "text_2": "Backend"
     },
@@ -70,6 +72,10 @@
            "invoice": {
                "title": "Factura Electrónica",
                "description": "Proyecto JavaScript usando Lit y Vite para crear un sistema dinámico de facturación electrónica con componentes web."
+           },
+           "sgta": {
+               "title": "Sistema Automotriz",
+               "description": "Proyecto Fullstack que permite el manejo de un taller automotriz, mediante .NET, PostreSQL, Vite + React y Typescript."
            }
        }
     },

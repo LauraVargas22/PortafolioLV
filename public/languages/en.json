@@ -18,6 +18,8 @@
         "text_me": "Software developer in training with intermediate English skills and experience in programming languages and technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL. She has worked on web development projects, database design, and console applications. She is known for her effective communication, leadership, adaptability, and teamwork skills, which facilitate collaboration in both academic and professional environments.",
         "title_1": "Frontend",
         "text_1": "Developer",
+         "title_3": "Database",
+        "text_3": "Designer",
         "title_2": "Backend",
         "text_2": "Developer"
     },
@@ -70,6 +72,10 @@
            "invoice": {
                "title": "Electronic Invoice",
                "description": "JavaScript project using Lit and Vite to create a dynamic electronic invoicing system with web components."
+           },
+           "sgta": {
+               "title": "Automotive System",
+               "description": "Fullstack project that allows the repair cars shop management through .NET, PostreSQL, Vite + React and Typescript."
            }
        }
     },
