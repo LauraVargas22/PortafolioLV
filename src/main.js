@@ -184,17 +184,17 @@ const changeCards = (cards, pageIndex, itemsPerPage) => {
   const endIndex = startIndex + itemsPerPage;
 
   cardsElement.innerHTML = cards.slice(startIndex, endIndex).map(card => /*html*/`
+    <a class="link" href="${card.link}" target="_blank">
     <article>
       <figure>
         <img src="${card.image}" alt="${card.translatedTitle || card.title}" onerror="this.src='${new URL('./images/formula1.png', import.meta.url).href}'; this.alt='Image not available';">
       </figure>
-      <a class="link" href="${card.link}" target="_blank">
         <div class="article-preview">
           <h2>${card.translatedTitle || card.title}</h2>
           <p>${card.translatedDescription || card.description}</p>
         </div>
-      </a>
     </article>
+    </a>
   `).join('');
 
   currentPage = pageIndex;
