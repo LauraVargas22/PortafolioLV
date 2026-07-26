@@ -25,7 +25,15 @@
     },
 
     "knowledge": {
-        "title__sections": "Tecnologías"
+        "title__sections": "Tecnolog\u00edas que manejo",
+        "subtitle": "Herramientas con las que construyo interfaces responsive, logica backend y bases de datos confiables.",
+        "carousel": {
+            "carouselLabel": "Carrusel de tecnologias",
+            "previous": "Mostrar tecnologias anteriores",
+            "next": "Mostrar tecnologias siguientes",
+            "level": "Nivel de dominio",
+            "goTo": "Ir a la tecnologia"
+        }
     },
 
     "aspirations": {

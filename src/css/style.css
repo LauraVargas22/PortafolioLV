@@ -737,3 +737,286 @@ footer {
     white-space: nowrap;
     border: 0;
 }
+
+/*Importación de las fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+/*Modificación de las medidas estándar*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Estilos del body*/
+body {
+    background: linear-gradient(128deg, rgba(255,255,255,1) 0%, rgba(2,8,31,1) 0%, rgba(11,22,59,1) 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/*Estilos Navbar*/
+.logo__image {
+    padding: 10px;
+    width: 5rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #02081f;
+    width: 100%;
+    color: white;
+    margin: 0;
+}
+
+nav .bars {
+    position: absolute;
+    right: 1rem;
+    font-size: xx-large;
+    display: none;
+}
+
+nav.active {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+ul.nav-links {
+    display: flex;
+}
+
+/* responsive */
+nav.active ul.nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+li.nav-link {
+    list-style: none;
+    margin: 0.5rem 1rem;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+}
+
+li.nav-link:hover {
+    border-bottom: 3px solid #FF057C;
+}
+
+li.nav-link a {
+    text-decoration: none;
+    color: inherit;
+    font-family: "Overlock", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 800px) {
+    nav .bars {
+      display: block;
+    }
+  
+    nav .nav-links {
+      display: none;
+    }
+}
+
+/*Estilos background*/
+.container {
+    position: relative;
+    top: -35rem;
+    height: max-content;
+    width: 100%;
+    z-index: -1;
+}
+
+.bubbles{
+    position: relative;
+    display: flex;
+}
+.bubbles span{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44, 
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even){
+    background: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d7544, 
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75;
+}
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
+}
+/*Estilos texto about me*/
+.container__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.text1{
+    color: white;
+    font-family: "Overlock", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(2rem, 1.6087rem + 1.7391vw, 3rem);
+}
+
+.text__title {
+    text-align: center;
+    color: white;
+    font-family: "Lilita One", sans-serif;
+    font-weight: 700; 
+    font-style: normal;
+    font-size: clamp(2.8rem, 1.7435rem + 4.6957vw, 5.5rem);
+    text-shadow: 0px 0px 9px rgb(255, 255, 255, 0.1);
+    letter-spacing: .1em;
+}
+
+.text__me {
+    text-align: justify;
+    color: white;
+    font-family: "Overlock", sans-serif;
+    font-size: clamp(1.5rem, 1.3043rem + 0.8696vw, 2rem);
+}
+.photo {
+    padding: 2rem;
+    border-radius: 50%;
+    width: 80%;
+}
+
+#col__photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Estilos Botón CV*/
+.button{
+  font-family: "Overlock", sans-serif;
+  font-weight: 700;
+  background:#ff2d75;
+  text-decoration: none;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:2em;
+  padding:5px 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  text-align: center;
+  margin: 1rem;
+}
+.button:hover{
+  background:#fff;
+  color:#ff2d75;
+}
+.button:before, .button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ff2d75;
+  transition:400ms ease all;
+}
+.button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button:hover:before, .button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.programming{
+    width: 80%;
+    margin: 2rem;
+}
+
+/*Estilos contenedor de las imágenes*/
+.carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 2rem;
+}
+
+.wrap {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 250px;
+    justify-items: stretch;
+    animation: slide 15s linear infinite;
+}
+
+.wrap img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    to {
+        translate: calc(-4 * 250px);
+    }
+}
+/*Modificaciones en los estilos en pantalla de mínimo 1024px*/
+@media screen and (min-width: 1024px) {
+    .container__image {
+        width: 50%;
+    }
+
+    .image {
+        width: 100%;
+    }
+}
+
+/*Modificaciones en los estilos en pantalla de máximo 768px*/
+@media screen and (max-width: 768px) {
+    
+}
+
+.lang {
+    background: #02081f;
+    border: 0px;
+}
+.language {
+    width: 2rem;
+}

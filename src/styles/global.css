@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --font-body: 'Manrope', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --bg-deep: #030817;
+  --bg-primary: #071325;
+  --bg-secondary: #0a1b35;
+  --bg-tertiary: #11284b;
+  --surface: rgba(7, 19, 37, 0.82);
+  --surface-strong: rgba(10, 26, 51, 0.94);
+  --surface-soft: rgba(14, 35, 67, 0.72);
+  --text-primary: #eef4ff;
+  --text-secondary: #a9b8d3;
+  --text-muted: #7f93b6;
+  --accent: #6ed3ff;
+  --accent-strong: #3a88ff;
+  --accent-soft: #a8dbff;
+  --line: rgba(169, 184, 211, 0.18);
+  --line-strong: rgba(110, 211, 255, 0.34);
+  --shadow: 0 28px 80px rgba(2, 6, 23, 0.38);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --content-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 0;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at top left, rgba(58, 136, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 80% 15%, rgba(110, 211, 255, 0.12), transparent 20%),
+    radial-gradient(circle at bottom right, rgba(95, 122, 255, 0.14), transparent 28%),
+    linear-gradient(145deg, var(--bg-deep), var(--bg-primary) 40%, var(--bg-secondary) 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  opacity: 0.2;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* FIX: sin grid-template-columns, los <section> (ítems del grid) usan
+   min-width: auto por defecto y no se encogen bajo su contenido intrínseco.
+   Eso empuja el ancho más allá del viewport y rompe el apilado responsive
+   de Bootstrap dentro de cada sección. minmax(0, 1fr) fuerza a la columna
+   a poder encogerse hasta 0 y ceder el control del ancho a sus hijos. */
+main.page-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.35rem;
+  padding: 0 0 2.5rem;
+  width: 100%;
+}
+
+/* FIX complementario: refuerza lo mismo a nivel de cada sección, por si
+   algún hijo interno (flex con flex:1, texto sin salto de línea, etc.)
+   intenta imponer su propio ancho mínimo. */
+section.page-section {
+  min-width: 0;
+  padding-inline: 1.1rem;
+}
+
+portfolio-home-page,
+portfolio-personality-page,
+portfolio-studies-page,
+portfolio-experience-page {
+  display: block;
+  min-width: 0;
+}
+
+.anchor-target {
+  position: relative;
+  top: 0;
+  height: 0;
+}
+
+::selection {
+  background: rgba(110, 211, 255, 0.3);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(3, 8, 23, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(110, 211, 255, 0.8), rgba(58, 136, 255, 0.8));
+}
+
+@media (max-width: 720px) {
+  main.page-stack {
+    gap: 1rem;
+  }
+
+  section.page-section {
+    padding-inline: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section.page-section {
+    padding-inline: 0.65rem;
+  }
+}

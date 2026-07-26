@@ -1,0 +1,628 @@
+/* =========================================================
+   Tokens de referencia (ya definidos globalmente, con fallback
+   por si este archivo se carga antes que las variables raíz)
+   ========================================================= */
+:root {
+  --home-bg: #050f22;
+  --home-surface: rgba(255, 255, 255, 0.04);
+  --home-border: rgba(169, 184, 211, 0.14);
+  --home-text: rgba(238, 244, 255, 0.92);
+  --home-text-muted: rgba(226, 232, 240, 0.78);
+  --home-accent: #6ed3ff;
+  --home-accent-2: #ff2d75;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  overflow-x: hidden;
+}
+
+.home-section {
+  position: relative;
+}
+
+/* Evita que columnas de Bootstrap se desborden por contenido largo (imágenes, texto sin espacios) */
+.home-page [class*='col-'] {
+  min-width: 0;
+}
+
+/* =========================================================
+   Reveal on scroll
+   ========================================================= */
+.home-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================================================
+   Shells comunes (hero / secciones)
+   ========================================================= */
+.home-hero-shell,
+.home-section-shell {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-radius: 28px;
+  border: 1px solid var(--home-border);
+  overflow: hidden;
+  box-shadow: 0 24px 54px rgba(2, 6, 23, 0.28);
+}
+
+.home-hero-shell {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(110, 211, 255, 0.2), transparent 22%),
+    radial-gradient(circle at 82% 20%, rgba(255, 45, 117, 0.16), transparent 18%),
+    radial-gradient(circle at 70% 78%, rgba(58, 136, 255, 0.16), transparent 24%),
+    linear-gradient(155deg, rgba(5, 15, 34, 0.98), rgba(8, 22, 46, 0.94));
+}
+
+.home-section-shell {
+  background: linear-gradient(155deg, rgba(7, 19, 37, 0.94), rgba(10, 27, 53, 0.84));
+}
+
+.home-hero-shell::before,
+.home-section-shell::before {
+  content: '';
+  position: absolute;
+  inset: auto auto -3rem -2rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 999px;
+  background: rgba(110, 211, 255, 0.12);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+@media (max-width: 767.98px) {
+  .home-hero-shell,
+  .home-section-shell {
+    padding: 1.15rem;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .home-hero-shell,
+  .home-section-shell {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+}
+
+/* =========================================================
+   Encabezados de sección
+   ========================================================= */
+.home-section-heading {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.home-section-eyebrow,
+.home-contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 211, 255, 0.22);
+  background: rgba(110, 211, 255, 0.08);
+  color: var(--home-accent);
+  font-family: var(--font-display, inherit);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-section-title,
+.home-hero-title {
+  margin: 0;
+  color: white;
+  font-family: var(--font-display, inherit);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.home-section-title {
+  font-size: clamp(1.7rem, 1.35rem + 2vw, 2.9rem);
+}
+
+.home-hero-title {
+  font-size: clamp(2rem, 1.4rem + 3.2vw, 4.4rem);
+  text-shadow: 0 10px 30px rgba(110, 211, 255, 0.12);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.home-hero-greeting {
+  margin: 0 0 0.5rem;
+  color: var(--home-text);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1rem, 0.92rem + 0.4vw, 1.35rem);
+  font-weight: 600;
+}
+
+.home-hero-description {
+  margin: 1rem 0 1.5rem;
+  max-width: 34rem;
+  color: var(--home-text-muted);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.08rem);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.home-hero-copy {
+  min-width: 0;
+}
+
+.home-hero-actions {
+  margin-bottom: 1.1rem;
+}
+
+.home-hero-visual {
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 0.9;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767.98px) {
+  .home-hero-visual {
+    width: min(72%, 18rem);
+    aspect-ratio: 0.86;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-hero-visual {
+    width: min(66%, 15rem);
+  }
+}
+
+.home-hero-glow {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(22px);
+  animation: home-glow-pulse 6s ease-in-out infinite;
+}
+
+.home-hero-glow--one {
+  width: clamp(8rem, 32vw, 15rem);
+  height: clamp(8rem, 32vw, 15rem);
+  left: 4%;
+  top: 8%;
+  background: radial-gradient(circle, rgba(110, 211, 255, 0.36), transparent 70%);
+}
+
+.home-hero-glow--two {
+  width: clamp(6rem, 22vw, 11rem);
+  height: clamp(6rem, 22vw, 11rem);
+  right: 2%;
+  bottom: 10%;
+  background: radial-gradient(circle, rgba(255, 45, 117, 0.3), transparent 72%);
+  animation-direction: reverse;
+}
+
+.home-hero-particle {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+
+.home-hero-particle--one {
+  top: 14%;
+  right: 18%;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--home-accent);
+  animation: home-particle-drift 9s ease-in-out infinite;
+}
+
+.home-hero-particle--two {
+  bottom: 20%;
+  left: 10%;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: rgba(255, 255, 255, 0.85);
+  animation: home-particle-drift 7s ease-in-out infinite reverse;
+}
+
+.home-hero-particle--three {
+  top: 46%;
+  left: 42%;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--home-accent-2);
+  animation: home-particle-drift 11s ease-in-out infinite;
+}
+
+.home-hero-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: home-float 7s ease-in-out infinite;
+}
+
+.home-hero-photo-frame {
+  position: relative;
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+    linear-gradient(180deg, rgba(7, 19, 37, 0.76), rgba(7, 19, 37, 0.34));
+  border: 1px solid var(--home-border);
+  box-shadow: 0 24px 58px rgba(2, 6, 23, 0.34);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.home-hero-photo-frame:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 66px rgba(2, 6, 23, 0.4), 0 0 34px rgba(110, 211, 255, 0.14);
+}
+
+.home-hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 22px;
+  display: block;
+}
+
+/* =========================================================
+   Botones y pills (compartidos)
+   ========================================================= */
+.home-primary-button,
+.home-secondary-button,
+.home-social-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.home-primary-button,
+.home-secondary-button {
+  min-height: 3.1rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 16px;
+}
+
+.home-primary-button {
+  background: linear-gradient(135deg, rgba(255, 45, 117, 0.96), rgba(255, 45, 117, 0.84));
+  color: white;
+  box-shadow: 0 16px 32px rgba(255, 45, 117, 0.22);
+}
+
+.home-secondary-button {
+  border: 1px solid var(--home-border);
+  background: var(--home-surface);
+  color: white;
+}
+
+.home-primary-button:hover,
+.home-secondary-button:hover {
+  transform: translateY(-2px);
+}
+
+.home-secondary-button:hover {
+  border-color: rgba(110, 211, 255, 0.34);
+}
+
+.home-social-pill {
+  min-height: 2.6rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--home-border);
+  background: var(--home-surface);
+  color: white;
+  font-size: 0.88rem;
+}
+
+.home-social-pill:hover {
+  border-color: rgba(110, 211, 255, 0.34);
+  color: var(--home-accent);
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+.home-about-copy {
+  position: relative;
+  height: 100%;
+  padding-left: 1.1rem;
+}
+
+.home-about-line {
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  bottom: 0.15rem;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(110, 211, 255, 0.95), rgba(255, 45, 117, 0.75));
+  box-shadow: 0 0 18px rgba(110, 211, 255, 0.28);
+}
+
+.home-about-paragraphs {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.home-about-text {
+  margin: 0;
+  color: var(--home-text-muted);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.home-highlight {
+  color: white;
+  font-weight: 700;
+  background: rgba(110, 211, 255, 0.14);
+  border: 1px solid rgba(110, 211, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.06rem 0.5rem;
+  white-space: nowrap;
+}
+
+/* Acordeón de imágenes: horizontal en desktop, se expande la que tiene :hover/:focus.
+   En móvil se apila como una lista vertical de tarjetas. */
+.home-about-accordion {
+  display: flex;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: 22rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-about-item {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(2, 6, 23, 0.28);
+  cursor: pointer;
+  transition: flex-grow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-about-accordion:hover .home-about-item {
+  flex-grow: 0.6;
+}
+
+.home-about-accordion:hover .home-about-item:hover,
+.home-about-item:focus-within {
+  flex-grow: 3;
+}
+
+.home-about-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms ease;
+}
+
+.home-about-item:hover .home-about-image {
+  transform: scale(1.04);
+}
+
+.home-about-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(0deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.2) 60%);
+}
+
+.home-about-card-copy {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  display: grid;
+  gap: 0.3rem;
+  color: white;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.home-about-item:hover .home-about-card-copy,
+.home-about-item:focus-within .home-about-card-copy {
+  opacity: 1;
+  transform: none;
+}
+
+.home-about-card-copy h3 {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+.home-about-card-copy p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.86);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+  .home-about-accordion {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .home-about-copy {
+    padding-left: 0.9rem;
+  }
+
+  .home-about-accordion {
+    flex-direction: column;
+  }
+
+  .home-about-item,
+  .home-about-accordion:hover .home-about-item {
+    flex: none;
+    height: 12rem;
+  }
+
+  .home-about-card-copy,
+  .home-about-item:hover .home-about-card-copy {
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-about-card-copy h3,
+  .home-about-card-copy p {
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   Carousel / Projects shells (contenido lo maneja cada componente)
+   ========================================================= */
+.home-carousel-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border-radius: 28px;
+  border: 1px solid var(--home-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.home-projects-shell {
+  width: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .home-carousel-shell {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+.home-contact-description {
+  margin: 1rem 0 1.5rem;
+  max-width: 34rem;
+  color: var(--home-text-muted);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.08rem);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.home-contact-card {
+  height: 100%;
+}
+
+.home-contact-card-surface {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  height: 100%;
+  min-height: 12rem;
+  padding: 1.4rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(8, 20, 39, 0.82), rgba(5, 13, 28, 0.95)),
+    url('../images/contacto.png') center / cover no-repeat;
+  border: 1px solid var(--home-border);
+}
+
+.home-contact-mail {
+  margin: 0;
+  color: white;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.5rem);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 767.98px) {
+  .home-contact-card-surface {
+    padding: 1.15rem;
+    min-height: 0;
+  }
+}
+
+/* =========================================================
+   Extra small phones
+   ========================================================= */
+@media (max-width: 400px) {
+  .home-hero-actions,
+  .home-contact-actions {
+    width: 100%;
+  }
+
+  .home-primary-button,
+  .home-secondary-button {
+    width: 100%;
+  }
+
+  .home-hero-title {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* =========================================================
+   Animaciones
+   ========================================================= */
+@keyframes home-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes home-glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes home-particle-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.75; }
+  50% { transform: translate3d(10px, -14px, 0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-photo-wrap,
+  .home-hero-glow,
+  .home-hero-particle {
+    animation: none;
+  }
+}

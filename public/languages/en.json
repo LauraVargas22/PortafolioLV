@@ -25,7 +25,15 @@
     },
 
     "knowledge": {
-        "title__sections": "Technologies I know"
+        "title__sections": "Technologies I work with",
+        "subtitle": "Tools I use to build responsive interfaces, backend logic, and reliable databases.",
+        "carousel": {
+            "carouselLabel": "Technology carousel",
+            "previous": "Show previous technologies",
+            "next": "Show next technologies",
+            "level": "Proficiency",
+            "goTo": "Go to technology"
+        }
     },
 
     "aspirations": {
