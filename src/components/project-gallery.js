@@ -1,8 +1,8 @@
 import { projects } from '../data/projects';
+import { experienceContent } from '../data/site-content';
 import { escapeHtml } from './utils';
 import '../styles/featured-projects.css';
 
-/* Iconos inline (currentColor) — sin dependencias externas */
 const icons = {
   github: `
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -16,6 +16,33 @@ const icons = {
     </svg>`,
 };
 
+const palettes = [
+  {
+    accent: '#ff6091',
+    accentSoft: 'rgba(255, 96, 145, 0.2)',
+    accentStrong: 'rgba(255, 96, 145, 0.34)',
+    secondarySoft: 'rgba(110, 211, 255, 0.16)',
+  },
+  {
+    accent: '#6ed3ff',
+    accentSoft: 'rgba(110, 211, 255, 0.2)',
+    accentStrong: 'rgba(110, 211, 255, 0.34)',
+    secondarySoft: 'rgba(255, 188, 92, 0.16)',
+  },
+  {
+    accent: '#ffbc5c',
+    accentSoft: 'rgba(255, 188, 92, 0.2)',
+    accentStrong: 'rgba(255, 188, 92, 0.34)',
+    secondarySoft: 'rgba(255, 96, 145, 0.14)',
+  },
+  {
+    accent: '#8f7cff',
+    accentSoft: 'rgba(143, 124, 255, 0.2)',
+    accentStrong: 'rgba(143, 124, 255, 0.32)',
+    secondarySoft: 'rgba(110, 211, 255, 0.14)',
+  },
+];
+
 class ProjectGallery extends HTMLElement {
   constructor() {
     super();
@@ -23,89 +50,107 @@ class ProjectGallery extends HTMLElement {
   }
 
   connectedCallback() {
+    const { banner } = experienceContent;
+
     this.innerHTML = `
-      <div class="container-xl">
-        <div class="projects-heading home-reveal">
-          <span class="projects-eyebrow">
-            <span class="projects-eyebrow-dot"></span>
-            Seleccion destacada
-          </span>
-          <h2 class="projects-title">Proyectos</h2>
-          <p class="projects-subtitle">
-            Proyectos personales y colaborativos a lo largo de mi proceso de aprendizaje. Cada uno refleja el avance de mis habilidades técnicas, la aplicación de buenas prácticas y mi enfoque en la experiencia del usuario.
-          </p>
-        </div>
+      <section class="trajectory-panel">
+        <div class="trajectory-glow trajectory-glow--one" aria-hidden="true"></div>
+        <div class="trajectory-glow trajectory-glow--two" aria-hidden="true"></div>
+        <div class="trajectory-glow trajectory-glow--three" aria-hidden="true"></div>
+        <div class="container-xl trajectory-content">
+          <div class="projects-heading home-reveal">
+            <span class="projects-eyebrow">
+              <span class="projects-eyebrow-dot"></span>
+              ${escapeHtml(banner.eyebrow)}
+            </span>
+            <h1 class="projects-title">${escapeHtml(banner.title)}</h1>
+            <p class="projects-subtitle">${escapeHtml(banner.description)}</p>
+          </div>
 
-        <div class="projects-grid">
-          ${projects
-            .map(
-              (project) => `
-                <article class="project-card home-reveal">
-                  <div class="project-card-media">
-                    <img
-                      src="${escapeHtml(project.image)}"
-                      alt="${escapeHtml(project.title)}"
-                      loading="lazy"
-                    >
-                  </div>
+          <div class="projects-grid">
+            ${projects
+              .map((project, index) => {
+                const palette = palettes[index % palettes.length];
 
-                  <div class="project-card-body">
-                    <h3 class="project-card-title">${escapeHtml(project.title)}</h3>
-                    <p class="project-card-summary">${escapeHtml(project.summary)}</p>
-
-                    ${
-                      (project.tags?.length || project.stack?.length)
-                        ? `
-                          <ul class="project-card-tags">
-                            ${(project.tags ?? project.stack ?? [])
-                              .map((tag) => `<li>${escapeHtml(tag)}</li>`)
-                              .join('')}
-                          </ul>
-                        `
-                        : ''
-                    }
-
-                    <div class="project-card-links">
-                      ${
-                        (project.repoUrl ?? project.repository)
-                          ? `
-                            <a
-                              class="project-card-link"
-                              href="${escapeHtml(project.repoUrl ?? project.repository)}"
-                              target="_blank"
-                              rel="noreferrer"
-                              aria-label="Repositorio de ${escapeHtml(project.title)}"
-                            >
-                              ${icons.github}
-                              <span>Código</span>
-                            </a>
-                          `
-                          : ''
-                      }
-                      ${
-                        project.demoUrl
-                          ? `
-                            <a
-                              class="project-card-link"
-                              href="${escapeHtml(project.demoUrl)}"
-                              target="_blank"
-                              rel="noreferrer"
-                              aria-label="Demo de ${escapeHtml(project.title)}"
-                            >
-                              ${icons.external}
-                              <span>Demo</span>
-                            </a>
-                          `
-                          : ''
-                      }
+                return `
+                  <article
+                    class="project-card home-reveal"
+                    style="
+                      --project-accent: ${palette.accent};
+                      --project-accent-soft: ${palette.accentSoft};
+                      --project-accent-strong: ${palette.accentStrong};
+                      --project-secondary-soft: ${palette.secondarySoft};
+                    "
+                  >
+                    <div class="project-card-media">
+                      <span class="project-card-badge">${escapeHtml(project.category)}</span>
+                      <span class="project-card-index">${String(index + 1).padStart(2, '0')}</span>
+                      <img
+                        src="${escapeHtml(project.image)}"
+                        alt="${escapeHtml(project.title)}"
+                        loading="lazy"
+                      >
+                      <div class="project-card-shade" aria-hidden="true"></div>
                     </div>
-                  </div>
-                </article>
-              `
-            )
-            .join('')}
+
+                    <div class="project-card-body">
+                      <h3 class="project-card-title">${escapeHtml(project.title)}</h3>
+                      <p class="project-card-summary">${escapeHtml(project.summary)}</p>
+
+                      ${
+                        (project.tags?.length || project.stack?.length)
+                          ? `
+                            <ul class="project-card-tags">
+                              ${(project.tags ?? project.stack ?? [])
+                                .map((tag) => `<li>${escapeHtml(tag)}</li>`)
+                                .join('')}
+                            </ul>
+                          `
+                          : ''
+                      }
+
+                      <div class="project-card-links">
+                        ${
+                          (project.repoUrl ?? project.repository)
+                            ? `
+                              <a
+                                class="project-card-link project-card-link--repo"
+                                href="${escapeHtml(project.repoUrl ?? project.repository)}"
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Repositorio de ${escapeHtml(project.title)}"
+                              >
+                                ${icons.github}
+                                <span>Codigo</span>
+                              </a>
+                            `
+                            : ''
+                        }
+                        ${
+                          project.demoUrl
+                            ? `
+                              <a
+                                class="project-card-link project-card-link--demo"
+                                href="${escapeHtml(project.demoUrl)}"
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Demo de ${escapeHtml(project.title)}"
+                              >
+                                ${icons.external}
+                                <span>Demo</span>
+                              </a>
+                            `
+                            : ''
+                        }
+                      </div>
+                    </div>
+                  </article>
+                `;
+              })
+              .join('')}
+          </div>
         </div>
-      </div>
+      </section>
     `;
 
     this._setupRevealObserver();

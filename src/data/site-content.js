@@ -56,10 +56,10 @@ export const homeContent = {
     ],
   },
   projects: {
-    eyebrow: 'Experience Preview',
-    title: 'Proyectos Destacados',
+    eyebrow: 'Seleccion de proyectos',
+    title: 'Proyectos destacados',
     cta: {
-      label: 'See More',
+      label: 'Ver trayectoria',
       href: 'experience.html',
     },
   },
@@ -109,55 +109,80 @@ export const personalityContent = {
     eyebrow: 'Lecturas',
     title: 'Intereses literarios',
     description:
-      'No duermas para descansar; duerme para soñar, porque los sueños están para cumplirse.',
+      'Cada libro abre una conversacion distinta entre la imaginacion, la memoria y la forma en la que entiendo el mundo.',
   },
 };
 
 export const studiesContent = {
   banner: {
-    eyebrow: 'Studies',
-    title: 'Formacion academica y crecimiento continuo',
+    eyebrow: 'Recorrido formativo',
+    title: 'Estudios',
     description:
-      'La pagina queda planteada como un espacio para ordenar tu cronologia de aprendizaje y los cursos que complementan tu perfil.',
+      'Un recorrido por mi formacion academica y los hitos que han fortalecido mis habilidades tecnicas, comunicativas y de aprendizaje continuo.',
   },
-  timeline: [
-    {
-      stage: 'Formacion principal',
-      status: 'Borrador',
-      description:
-        'Agregar institucion, periodo, enfoque academico y logros destacados de la formacion principal.',
-    },
-    {
-      stage: 'Fortalecimiento tecnico',
-      status: 'Borrador',
-      description:
-        'Agregar hitos relacionados con desarrollo de software, bases de datos, proyectos o practicas relevantes.',
-    },
-    {
-      stage: 'Proximo paso',
-      status: 'Borrador',
-      description:
-        'Reservado para especializaciones, certificaciones o metas formativas futuras.',
-    },
-  ],
   coursesDraft: {
-    eyebrow: 'Draft',
+    eyebrow: 'Credenciales',
     title: 'Cursos adicionales',
     description:
-      'Zona lista para registrar cursos, bootcamps, certificaciones e iniciativas de aprendizaje complementario.',
-    items: [
-      'Curso o certificacion 1.',
-      'Curso o certificacion 2.',
-      'Ruta de aprendizaje futura.',
+      'A continuacion se presentan cursos que fortalecen mi crecimiento profesional y consolidan mis habilidades tecnicas y blandas.',
+    courses: [
+      {
+        title: 'English for IT 2',
+        issuer: 'Cisco Networking Academy',
+        issuedAt: 'Julio 2026',
+        credentialUrl:
+          'https://www.credly.com/badges/e2c6399b-2e8d-409b-8de3-765fe80d9c85/public_url',
+        image: asset('english-for-it-2-badge.png'),
+        imageAlt: 'Credencial English for IT 2 emitida por Cisco',
+        summary:
+          'Credencial orientada al ingles aplicado en entornos IT, con enfoque en software, networking, customer support y security engineering en nivel B2.',
+        tags: ['English for IT', 'Nivel B2'],
+      },
+      {
+        title: 'English for IT 1',
+        issuer: 'Cisco Networking Academy',
+        issuedAt: 'Julio 2026',
+        credentialUrl:
+          'https://www.credly.com/badges/e05232cf-7f33-4fb0-b746-78b61511868a/public_url',
+        image: asset('english-for-it-1-badge.png'),
+        imageAlt: 'Credencial English for IT 1 emitida por Cisco',
+        summary:
+          'Credencial orientada al ingles aplicado en entornos IT, con enfoque en software, networking, customer support y security engineering en nivel B1.',
+        tags: ['English for IT', 'Nivel B1'],
+      },
+      {
+        title: 'Artificial Intelligence Fundamentals',
+        issuer: 'IBM',
+        issuedAt: 'Agosto 2025',
+        credentialUrl:
+          'https://www.credly.com/earner/earned/badge/fed03078-d710-44a1-a977-e5ccaac7f3b9',
+        image: asset('artificial-intelligence.png'),
+        imageAlt: 'Credencial Artificial Intelligence Fundamentals emitida por IBM',
+        summary:
+          'Credencial orientada a la comprension de conceptos fundamentales de inteligencia artificial, incluyendo aprendizaje automatico, redes neuronales y procesamiento del lenguaje natural.',
+        tags: ['Inteligencia Artificial'],
+      },
+      {
+        title: 'Aspectos basicos: Datos en todas partes',
+        issuer: 'Google',
+        issuedAt: 'Diciembre 2024',
+        credentialUrl:
+          'https://www.coursera.org/account/accomplishments/records/76U4VNP7NTF6',
+        image: asset('datos.png'),
+        imageAlt: 'Credencial Aspectos basicos: Datos en todas partes emitida por Google',
+        summary:
+          'Credencial orientada a la comprension de conceptos fundamentales de datos, incluyendo su recopilacion, analisis y visualizacion para la toma de decisiones.',
+        tags: ['Datos', 'Analisis'],
+      },
     ],
   },
 };
 
 export const experienceContent = {
   banner: {
-    eyebrow: 'Experience',
-    title: 'Proyectos con mayor contexto y detalle',
+    eyebrow: 'Trayectoria creativa',
+    title: 'Trayectoria',
     description:
-      'Esta pagina expande los proyectos del home y deja una base elegante para profundizar en objetivos, stack, decisiones y resultados.',
+      'Una coleccion de proyectos personales y colaborativos que refleja mi evolucion en desarrollo, diseno de interfaces, logica y construccion de experiencias utiles.',
   },
 };

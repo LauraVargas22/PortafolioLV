@@ -49,7 +49,7 @@ class PortfolioNavbar extends HTMLElement {
       { id: 'home', label: 'Home', href: homeHref },
       { id: 'personality', label: 'Sobre Mi', href: 'personality.html' },
       { id: 'studies', label: 'Estudios', href: 'studies.html' },
-      { id: 'experience', label: 'Proyectos', href: 'experience.html' },
+      { id: 'experience', label: 'Trayectoria', href: 'experience.html' },
       { id: 'contact', label: 'Contacto', href: contactHref },
     ];
 

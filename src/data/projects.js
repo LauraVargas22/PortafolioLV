@@ -4,16 +4,16 @@ export const projects = [
   {
     id: 'sgta',
     title: 'Sistema Automotriz',
-    category: 'Fullstack',
+    category: 'Full Stack',
     image: asset('sgta.png'),
     summary:
-      'Aplicacion fullstack para administrar clientes, vehículos, reparaciones y procesos internos de un taller automotriz.',
+      'Aplicacion full stack para administrar clientes, vehiculos, reparaciones y procesos internos de un taller automotriz.',
     description:
-      'Proyecto orientado a la gestión operativa de un taller, conectando interfaz, lógica de negocio y persistencia para centralizar el seguimiento de servicios.',
+      'Proyecto orientado a la gestion operativa de un taller, integrando interfaz, logica de negocio y persistencia para centralizar el seguimiento de servicios.',
     stack: ['.NET', 'PostgreSQL', 'React', 'TypeScript', 'Vite'],
     highlights: [
-      'Organización del flujo administrativo del taller.',
-      'Integración entre frontend y backend.',
+      'Organizacion del flujo administrativo del taller.',
+      'Integracion entre frontend y backend.',
       'Enfoque en mantenimiento y escalabilidad.',
     ],
     repository: 'https://github.com/LauraVargas22/SistemaAutomotriz.git',
@@ -25,13 +25,13 @@ export const projects = [
     category: 'Web Components',
     image: asset('invoice.png'),
     summary:
-      'Sistema web para generar una experiencia de facturación dinámica utilizando componentes reutilizables.',
+      'Sistema web para construir una experiencia de facturacion dinamica mediante componentes reutilizables.',
     description:
-      'Explora una arquitectura basada en componentes, formularios dinámicos y una estructura modular pensada para crecer sin perder claridad.',
+      'Explora una arquitectura basada en componentes, formularios dinamicos y una estructura modular pensada para crecer con claridad.',
     stack: ['JavaScript', 'Lit', 'Vite', 'Componentes Web'],
     highlights: [
-      'Construcción de interfaces modulares.',
-      'Manejo de datos y cálculos en tiempo real.',
+      'Construccion de interfaces modulares.',
+      'Manejo de datos y calculos en tiempo real.',
       'Experiencia centrada en claridad visual.',
     ],
     repository: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git',
@@ -39,18 +39,18 @@ export const projects = [
   },
   {
     id: 'ligabetplay',
-    title: 'LigaBetplay',
-    category: 'Backend Logic',
+    title: 'Liga BetPlay',
+    category: 'Backend',
     image: asset('ligabetplay.png'),
     summary:
-      'Aplicación en Python para modelar y gestionar equipos, jugadores y dinámicas de una liga deportiva.',
+      'Aplicacion en Python para modelar y gestionar equipos, jugadores y dinamicas de una liga deportiva.',
     description:
-      'Se centra en lógica de negocio, estructuras de datos y simulación de procesos para representar el comportamiento de una liga.',
+      'Se centra en logica de negocio, estructuras de datos y simulacion de procesos para representar el comportamiento de una liga.',
     stack: ['Python', 'Estructura de datos'],
     highlights: [
-      'Gestión de equipos y jugadores.',
-      'Simulación de reglas deportivas.',
-      'Organización clara de entidades y procesos.',
+      'Gestion de equipos y jugadores.',
+      'Simulacion de reglas deportivas.',
+      'Organizacion clara de entidades y procesos.',
     ],
     repository: 'https://github.com/LauraVargas22/LigaBetplay.git',
     featured: true,
@@ -58,17 +58,17 @@ export const projects = [
   {
     id: 'campusdb',
     title: 'Campus Database',
-    category: 'Databases',
+    category: 'Bases de datos',
     image: asset('campusdb.png'),
     summary:
-      'Base de datos MySQL diseñada para administrar procesos educativos y datos asociados a Campuslands.',
+      'Base de datos MySQL disenada para administrar procesos educativos y datos asociados a Campuslands.',
     description:
-      'Proyecto enfocado en estructura relacional, consistencia de la información y modelado de entidades para escenarios académicos.',
+      'Proyecto enfocado en estructura relacional, consistencia de la informacion y modelado de entidades para escenarios academicos.',
     stack: ['MySQL', 'Modelo relacional', 'Consultas SQL'],
     highlights: [
-      'Diseño de tablas y relaciones.',
-      'Consultas pensadas para necesidades académicas.',
-      'Implementación de funciones y procedimientos almacenados.',
+      'Diseno de tablas y relaciones.',
+      'Consultas pensadas para necesidades academicas.',
+      'Implementacion de funciones y procedimientos almacenados.',
     ],
     repository: 'https://github.com/LauraVargas22/ProyectoMySQL.git',
   },
@@ -78,14 +78,14 @@ export const projects = [
     category: 'C# Console App',
     image: asset('inventory.png'),
     summary:
-      'Sistema CRUD de consola para registrar y controlar operaciones de inventario.',
+      'Aplicacion de consola tipo CRUD para registrar y controlar operaciones de inventario.',
     description:
-      'Una solución orientada al flujo básico de inventario con foco en lógica, mantenimiento y organización del código.',
+      'Una solucion orientada al flujo basico de inventario, con foco en logica, mantenimiento y organizacion del codigo.',
     stack: ['C#', 'Figgle', 'CRUD', 'Consola'],
     highlights: [
       'Registro de productos y movimientos.',
-      'Lógica clara para operaciones básicas.',
-      'Base sólida para ampliar funcionalidades.',
+      'Logica clara para operaciones basicas.',
+      'Base solida para ampliar funcionalidades.',
     ],
     repository: 'https://github.com/Isa94d-lab/InventoryManagement.git',
   },
@@ -95,31 +95,31 @@ export const projects = [
     category: 'Frontend',
     image: asset('formula1.png'),
     summary:
-      'Página web interactiva inspirada en Formula 1 con componentes visuales y dinámica en JavaScript.',
+      'Sitio web interactivo inspirado en la Formula 1, con componentes visuales y dinamicas en JavaScript.',
     description:
-      'Proyecto pensado para experimentar con narrativa visual, secciones interactivas y una experiencia mas inmersiva para el usuario.',
+      'Proyecto pensado para experimentar con narrativa visual, secciones interactivas y una experiencia inmersiva para el usuario.',
     stack: ['JavaScript', 'HTML', 'CSS'],
     highlights: [
-      'Diseño temático y visualmente dinámico.',
+      'Diseno tematico y visualmente dinamico.',
       'Sistema con funcionalidades CRUD para pilotos y equipos.',
-      'Simulación de carreras y estádisticas de competición en tiempo real.',
+      'Simulacion de carreras y estadisticas de competicion en tiempo real.',
     ],
     repository: 'https://github.com/Omarjr33/projectf1.git',
   },
   {
     id: 'campuslove',
     title: 'Campus Love',
-    category: 'C# Logic',
+    category: 'Logica en C#',
     image: asset('campuslove.png'),
     summary:
-      'Aplicación de consola que simula lógicas de decisión y condiciones para un juego de citas en un campus universitario.',
+      'Aplicacion de consola que simula decisiones y condiciones dentro de un juego de citas ambientado en un campus universitario.',
     description:
       'Proyecto orientado a resolver reglas y condiciones con una estructura clara de decisiones dentro de una experiencia ligera.',
-    stack: ['C#', 'Figgle', 'Lógica condicional'],
+    stack: ['C#', 'Figgle', 'Logica condicional'],
     highlights: [
       'Manejo de condiciones y decisiones.',
-      'Implementación de chats entre usuarios.',
-      'Simulación de interacciones y resultados basados en elecciones del usuario.',
+      'Implementacion de chats entre usuarios.',
+      'Simulacion de interacciones y resultados segun las elecciones del usuario.',
     ],
     repository: 'https://github.com/LauraVargas22/CampusLove.git',
   },
@@ -129,32 +129,33 @@ export const projects = [
     category: 'Python Game',
     image: asset('chachipun.png'),
     summary:
-      'Juego en Python inspirado en piedra, papel o tijera con mecanicas propias.',
+      'Juego en Python inspirado en piedra, papel o tijera, con mecanicas propias.',
     description:
       'Un ejercicio creativo para practicar flujo del programa, reglas del juego y experiencia de usuario en consola.',
     stack: ['Python', 'Game Logic', 'Consola'],
     highlights: [
-      'Manejo de lógica de programación básica y estructuras de control.',
-      'Modo de juego contra la computadora y contra otro jugador.'
+      'Manejo de logica de programacion basica y estructuras de control.',
+      'Modo de juego contra la computadora y contra otro jugador.',
     ],
     repository: 'https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura',
   },
   {
     id: 'simulador',
-    title: 'Simulador Mecánico',
+    title: 'Simulador Mecanico',
     category: 'Python',
     image: asset('simulador.png'),
     summary:
-      'Simulador educativo e interactivo que representa el comportamiento de dos cuerpos conectados mediante polea ideal y plano inclinado.',
+      'Simulador educativo e interactivo que representa el comportamiento de dos cuerpos conectados por una polea ideal y un plano inclinado.',
     description:
-      'Simula el comportamiento de dos cuerpos conectados mediante polea ideal y plano inclinado, teniendo en cuenta la aceleración, fricción y masas de los cuerpos.',
+      'Simula el comportamiento de dos cuerpos conectados por una polea ideal y un plano inclinado, teniendo en cuenta la aceleracion, la friccion y las masas involucradas.',
     stack: ['Python', 'Streamlit', 'Consola'],
     highlights: [
-      'Manejo de lógica de programación básica y estructuras de control.',
-      'Modo de juego contra la computadora y contra otro jugador.'
+      'Representacion interactiva de un sistema fisico.',
+      'Calculo de aceleracion, friccion y fuerzas involucradas.',
+      'Visualizacion didactica de variables y resultados.',
     ],
     repository: 'https://github.com/LauraVargas22/SimuladorMecanica',
-  }
+  },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
