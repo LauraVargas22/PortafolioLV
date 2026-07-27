@@ -1,9 +1,16 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {
     assetsDir: 'assets',
     rollupOptions: {
+      input: {
+        index: resolve(__dirname, 'index.html'),
+        personality: resolve(__dirname, 'personality.html'),
+        studies: resolve(__dirname, 'studies.html'),
+        experience: resolve(__dirname, 'experience.html'),
+      },
       output: {
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.')
