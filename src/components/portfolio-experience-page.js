@@ -1,23 +1,16 @@
 import './portfolio-navbar.js';
 import './site-footer.js';
-import './page-banner.js';
-import './experience-gallery.js';
-import { experienceContent } from '../data/site-content';
+import './project-gallery.js';
 
 class PortfolioExperiencePage extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <portfolio-navbar current-page="experience"></portfolio-navbar>
+      <div style="padding-bottom: 1rem;">
+        <portfolio-navbar current-page="experience"></portfolio-navbar>
+      </div>
       <main class="page-stack">
         <section class="page-section">
-          <page-banner
-            eyebrow="${experienceContent.banner.eyebrow}"
-            title="${experienceContent.banner.title}"
-            description="${experienceContent.banner.description}">
-          </page-banner>
-        </section>
-        <section class="page-section">
-          <experience-gallery></experience-gallery>
+          <project-gallery></project-gallery>
         </section>
       </main>
       <site-footer></site-footer>

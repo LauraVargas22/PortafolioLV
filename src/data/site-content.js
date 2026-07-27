@@ -106,15 +106,10 @@ export const personalityContent = {
   visionImage: asset('vision.png'),
   valuesImage: asset('valores.png'),
   interestsDraft: {
-    eyebrow: 'Draft',
+    eyebrow: 'Lecturas',
     title: 'Intereses literarios',
     description:
-      'Seccion en borrador para incorporar autores, lecturas favoritas, resenas o temas que conecten con tu identidad personal.',
-    items: [
-      'Espacio para autores y obras clave.',
-      'Tarjetas para lecturas favoritas o resenas breves.',
-      'Posible relacion entre literatura, creatividad y tecnologia.',
-    ],
+      'No duermas para descansar; duerme para soñar, porque los sueños están para cumplirse.',
   },
 };
 

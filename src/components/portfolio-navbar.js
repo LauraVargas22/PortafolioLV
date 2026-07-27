@@ -1,6 +1,13 @@
 import { escapeHtml } from './utils';
 
 const logoUrl = new URL('../images/logo.png', import.meta.url).href;
+const VALID_PAGES = new Set([
+  'home',
+  'personality',
+  'studies',
+  'experience',
+  'contact',
+]);
 
 class PortfolioNavbar extends HTMLElement {
   constructor() {
@@ -13,22 +20,30 @@ class PortfolioNavbar extends HTMLElement {
         this.render();
       }
     };
+    this._handleLocationChange = () => {
+      this.render();
+    };
   }
 
   connectedCallback() {
     window.addEventListener('resize', this._handleResize);
+    window.addEventListener('hashchange', this._handleLocationChange);
+    window.addEventListener('popstate', this._handleLocationChange);
     this.render();
   }
 
   disconnectedCallback() {
     window.removeEventListener('resize', this._handleResize);
+    window.removeEventListener('hashchange', this._handleLocationChange);
+    window.removeEventListener('popstate', this._handleLocationChange);
   }
 
   render() {
-    const currentPage = this.getAttribute('current-page') ?? 'home';
-    const homeHref = currentPage === 'home' ? '#main' : 'index.html';
-    const contactHref =
-      currentPage === 'home' ? '#contactMe' : 'index.html#contactMe';
+    const currentPage = this._resolveCurrentPage();
+    const activeLinkId = this._resolveActiveLinkId(currentPage);
+    const isHomePage = currentPage === 'home';
+    const homeHref = isHomePage ? '#main' : 'index.html';
+    const contactHref = isHomePage ? '#contactMe' : 'index.html#contactMe';
 
     const links = [
       { id: 'home', label: 'Home', href: homeHref },
@@ -312,7 +327,7 @@ class PortfolioNavbar extends HTMLElement {
                   <a
                     class="nav-link"
                     href="${link.href}"
-                    ${currentPage === link.id ? 'aria-current="page"' : ''}>
+                    ${activeLinkId === link.id ? 'aria-current="page"' : ''}>
                     ${escapeHtml(link.label)}
                   </a>
                 `
@@ -335,14 +350,75 @@ class PortfolioNavbar extends HTMLElement {
       }
     });
 
-    this.shadowRoot.querySelectorAll('.nav-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        if (this._isOpen) {
-          this._isOpen = false;
-          this.render();
+    const closeMenuAfterNavigation = () => {
+      if (!this._isOpen) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        if (!this.isConnected) {
+          return;
         }
-      });
+
+        this._isOpen = false;
+        this.render();
+      }, 0);
+    };
+
+    this.shadowRoot.querySelector('.brand')?.addEventListener('click', closeMenuAfterNavigation);
+    this.shadowRoot.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', closeMenuAfterNavigation);
     });
+  }
+
+  _resolveCurrentPage() {
+    const routePage = this._resolvePageFromLocation();
+
+    if (routePage) {
+      return routePage;
+    }
+
+    const attributePage = (this.getAttribute('current-page') ?? '').toLowerCase();
+    return VALID_PAGES.has(attributePage) ? attributePage : 'home';
+  }
+
+  _resolvePageFromLocation() {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    const lastSegment =
+      window.location.pathname.split('/').filter(Boolean).pop()?.toLowerCase() ?? '';
+
+    if (!lastSegment || lastSegment === 'index.html' || lastSegment === 'index') {
+      return 'home';
+    }
+
+    if (lastSegment === 'personality.html' || lastSegment === 'personality') {
+      return 'personality';
+    }
+
+    if (lastSegment === 'studies.html' || lastSegment === 'studies') {
+      return 'studies';
+    }
+
+    if (lastSegment === 'experience.html' || lastSegment === 'experience') {
+      return 'experience';
+    }
+
+    return null;
+  }
+
+  _resolveActiveLinkId(currentPage) {
+    if (currentPage === 'home' && typeof window !== 'undefined') {
+      const currentHash = window.location.hash.toLowerCase();
+
+      if (currentHash === '#contact' || currentHash === '#contactme') {
+        return 'contact';
+      }
+    }
+
+    return currentPage;
   }
 }
 

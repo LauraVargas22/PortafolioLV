@@ -81,7 +81,7 @@ export const projects = [
       'Sistema CRUD de consola para registrar y controlar operaciones de inventario.',
     description:
       'Una solución orientada al flujo básico de inventario con foco en lógica, mantenimiento y organización del código.',
-    stack: ['C#', '.NET', 'CRUD', 'Consola'],
+    stack: ['C#', 'Figgle', 'CRUD', 'Consola'],
     highlights: [
       'Registro de productos y movimientos.',
       'Lógica clara para operaciones básicas.',
@@ -110,7 +110,7 @@ export const projects = [
     id: 'campuslove',
     title: 'Campus Love',
     category: 'C# Logic',
-    image: asset('CampusLove.png'),
+    image: asset('campuslove.png'),
     summary:
       'Aplicación de consola que simula lógicas de decisión y condiciones para un juego de citas en un campus universitario.',
     description:
@@ -127,7 +127,7 @@ export const projects = [
     id: 'chachipun',
     title: 'The Chachipun',
     category: 'Python Game',
-    image: asset('chachipun.jpg'),
+    image: asset('chachipun.png'),
     summary:
       'Juego en Python inspirado en piedra, papel o tijera con mecanicas propias.',
     description:
@@ -148,7 +148,7 @@ export const projects = [
       'Simulador educativo e interactivo que representa el comportamiento de dos cuerpos conectados mediante polea ideal y plano inclinado.',
     description:
       'Simula el comportamiento de dos cuerpos conectados mediante polea ideal y plano inclinado, teniendo en cuenta la aceleración, fricción y masas de los cuerpos.',
-    stack: ['Python', 'Game Logic', 'Consola'],
+    stack: ['Python', 'Streamlit', 'Consola'],
     highlights: [
       'Manejo de lógica de programación básica y estructuras de control.',
       'Modo de juego contra la computadora y contra otro jugador.'
