@@ -1,15 +1,20 @@
 import styles from './literary-carousel.css?raw';
 import { bootstrapCss } from './bootstrap-css';
 import { sectionFrameStyles } from './shared-styles';
-import { books as defaultBooks } from '../data/books';
+import { getBooks } from '../data/books';
 import { escapeHtml } from './utils';
 
 const DEFAULT_LABELS = {
-  carousel: 'Carrusel de intereses literarios',
-  previous: 'Mostrar libro anterior',
-  next: 'Mostrar libro siguiente',
-  goTo: 'Ir al libro',
-  return: 'Volver a la portada',
+  carousel: 'Literary interests carousel',
+  previous: 'Show previous book',
+  next: 'Show next book',
+  goTo: 'Go to book',
+  return: 'Back to cover',
+  emptyState: 'There are no books available to show right now.',
+  reviewBadge: 'Review',
+  ratingLabel: 'Rating',
+  byConnector: 'by',
+  statusConnector: 'Status',
 };
 
 const SWIPE_THRESHOLD = 52;
@@ -45,6 +50,13 @@ const getStatusTone = (status = '') => {
   const normalizedStatus = status.toLowerCase();
 
   if (normalizedStatus.includes('final')) {
+    return 'completed';
+  }
+
+  if (
+    normalizedStatus.includes('finished') ||
+    normalizedStatus.includes('completed')
+  ) {
     return 'completed';
   }
 
@@ -85,7 +97,7 @@ class LiteraryCarousel extends HTMLElement {
 
     this.attachShadow({ mode: 'open' });
 
-    this._books = defaultBooks.map((book, index) => normalizeBook(book, index));
+    this._books = getBooks().map((book, index) => normalizeBook(book, index));
     this._labels = { ...DEFAULT_LABELS };
     this._currentIndex = 0;
     this._flippedBookId = null;
@@ -218,12 +230,13 @@ class LiteraryCarousel extends HTMLElement {
         <div class="ambient-halo" aria-hidden="true"></div>
         <div class="container-fluid literary-stack">
           <header class="section-header literary-header">
+            <span class="eyebrow">${escapeHtml(eyebrow)}</span>
             <h2 class="title literary-title">${escapeHtml(title)}</h2>
             ${
               description
                 ? `
                   <blockquote class="literary-quote">
-                    <p class="description literary-description">${escapeHtml(description)} "</p>
+                    <p class="description literary-description">${escapeHtml(description)}</p>
                   </blockquote>
                 `
                 : ''
@@ -293,7 +306,7 @@ class LiteraryCarousel extends HTMLElement {
               `
               : `
                 <div class="empty-state">
-                  <p>No hay libros disponibles para mostrar en este momento.</p>
+                  <p>${escapeHtml(this._labels.emptyState)}</p>
                 </div>
               `
           }
@@ -368,9 +381,9 @@ class LiteraryCarousel extends HTMLElement {
           tabindex="0"
           role="button"
           aria-pressed="false"
-          aria-label="${escapeHtml(book.title)} de ${escapeHtml(
+          aria-label="${escapeHtml(book.title)} ${escapeHtml(this._labels.byConnector)} ${escapeHtml(
             book.author
-          )}. Estado ${escapeHtml(book.status)}."
+          )}. ${escapeHtml(this._labels.statusConnector)} ${escapeHtml(book.status)}."
         >
           <div class="book-card__inner">
             <div class="book-card__face book-card__front">
@@ -386,7 +399,9 @@ class LiteraryCarousel extends HTMLElement {
                 ${
                   formattedRating
                     ? `
-                      <span class="book-card__score" aria-label="Calificacion ${formattedRating} de 5">
+                      <span class="book-card__score" aria-label="${escapeHtml(
+                        this._labels.ratingLabel
+                      )} ${formattedRating} / 5">
                         <strong>${formattedRating}</strong>
                       </span>
                     `
@@ -402,7 +417,9 @@ class LiteraryCarousel extends HTMLElement {
               </div>
             </div>
             <div class="book-card__face book-card__back">
-              <span class="book-card__back-badge">Resena</span>
+              <span class="book-card__back-badge">${escapeHtml(
+                this._labels.reviewBadge
+              )}</span>
               <div class="book-card__back-copy">
                 <p class="book-card__back-title">${escapeHtml(book.title)}</p>
                 <p class="book-card__back-author">${escapeHtml(book.author)}</p>
@@ -412,7 +429,9 @@ class LiteraryCarousel extends HTMLElement {
                 ${
                   formattedRating
                     ? `
-                      <div class="book-rating" aria-label="Calificacion ${formattedRating} de 5">
+                      <div class="book-rating" aria-label="${escapeHtml(
+                        this._labels.ratingLabel
+                      )} ${formattedRating} / 5">
                         <span class="book-stars" aria-hidden="true">${renderStars()}</span>
                         <strong>${formattedRating}</strong>
                       </div>
@@ -660,7 +679,7 @@ class LiteraryCarousel extends HTMLElement {
     }
 
     if (this._elements.liveRegion) {
-      this._elements.liveRegion.textContent = `${activeBook.title} de ${activeBook.author}. Estado ${activeBook.status}.`;
+      this._elements.liveRegion.textContent = `${activeBook.title} ${this._labels.byConnector} ${activeBook.author}. ${this._labels.statusConnector} ${activeBook.status}.`;
     }
 
     this._elements.slides.forEach((slide, index) => {

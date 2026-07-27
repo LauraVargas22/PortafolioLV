@@ -1,5 +1,5 @@
-import { projects } from '../data/projects';
-import { experienceContent } from '../data/site-content';
+import { getProjects } from '../data/projects';
+import { getExperienceContent } from '../data/site-content';
 import { escapeHtml } from './utils';
 import '../styles/featured-projects.css';
 
@@ -50,7 +50,18 @@ class ProjectGallery extends HTMLElement {
   }
 
   connectedCallback() {
-    const { banner } = experienceContent;
+    this.render();
+  }
+
+  disconnectedCallback() {
+    this._observer?.disconnect();
+    this._observer = null;
+  }
+
+  render() {
+    const projects = getProjects();
+    const experienceContent = getExperienceContent();
+    const { banner, labels } = experienceContent;
 
     this.innerHTML = `
       <section class="trajectory-panel">
@@ -98,10 +109,10 @@ class ProjectGallery extends HTMLElement {
                       <p class="project-card-summary">${escapeHtml(project.summary)}</p>
 
                       ${
-                        (project.tags?.length || project.stack?.length)
+                        project.stack?.length
                           ? `
                             <ul class="project-card-tags">
-                              ${(project.tags ?? project.stack ?? [])
+                              ${project.stack
                                 .map((tag) => `<li>${escapeHtml(tag)}</li>`)
                                 .join('')}
                             </ul>
@@ -111,17 +122,17 @@ class ProjectGallery extends HTMLElement {
 
                       <div class="project-card-links">
                         ${
-                          (project.repoUrl ?? project.repository)
+                          project.repository
                             ? `
                               <a
                                 class="project-card-link project-card-link--repo"
-                                href="${escapeHtml(project.repoUrl ?? project.repository)}"
+                                href="${escapeHtml(project.repository)}"
                                 target="_blank"
                                 rel="noreferrer"
-                                aria-label="Repositorio de ${escapeHtml(project.title)}"
+                                aria-label="${escapeHtml(labels.repositoryAria)} ${escapeHtml(project.title)}"
                               >
                                 ${icons.github}
-                                <span>Codigo</span>
+                                <span>${escapeHtml(labels.code)}</span>
                               </a>
                             `
                             : ''
@@ -134,10 +145,10 @@ class ProjectGallery extends HTMLElement {
                                 href="${escapeHtml(project.demoUrl)}"
                                 target="_blank"
                                 rel="noreferrer"
-                                aria-label="Demo de ${escapeHtml(project.title)}"
+                                aria-label="${escapeHtml(labels.demoAria)} ${escapeHtml(project.title)}"
                               >
                                 ${icons.external}
-                                <span>Demo</span>
+                                <span>${escapeHtml(labels.demo)}</span>
                               </a>
                             `
                             : ''
@@ -154,11 +165,6 @@ class ProjectGallery extends HTMLElement {
     `;
 
     this._setupRevealObserver();
-  }
-
-  disconnectedCallback() {
-    this._observer?.disconnect();
-    this._observer = null;
   }
 
   _setupRevealObserver() {

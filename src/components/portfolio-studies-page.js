@@ -3,10 +3,34 @@ import './site-footer.js';
 import './page-banner.js';
 import './studies-timeline.js';
 import './course-credentials.js';
-import { studiesContent } from '../data/site-content';
+import { getStudiesContent } from '../data/site-content';
+import { getCurrentLanguage, onLanguageChange, setCurrentLanguage } from '../i18n';
+import { escapeHtml } from './utils';
 
 class PortfolioStudiesPage extends HTMLElement {
+  constructor() {
+    super();
+    this._removeLanguageListener = null;
+  }
+
   connectedCallback() {
+    this._removeLanguageListener = onLanguageChange(() => this.render());
+    this.render();
+  }
+
+  disconnectedCallback() {
+    this._removeLanguageListener?.();
+    this._removeLanguageListener = null;
+  }
+
+  render() {
+    const language = getCurrentLanguage();
+    const studiesContent = getStudiesContent(language);
+
+    setCurrentLanguage(language);
+    document.title =
+      language === 'es' ? 'Laura Vargas | Estudios' : 'Laura Vargas | Studies';
+
     this.innerHTML = `
       <div style="padding-bottom: 1rem;">
         <portfolio-navbar current-page="studies"></portfolio-navbar>
@@ -14,9 +38,9 @@ class PortfolioStudiesPage extends HTMLElement {
       <main class="page-stack">
         <section class="page-section">
           <page-banner
-            eyebrow="${studiesContent.banner.eyebrow}"
-            title="${studiesContent.banner.title}"
-            description="${studiesContent.banner.description}"
+            eyebrow="${escapeHtml(studiesContent.banner.eyebrow)}"
+            title="${escapeHtml(studiesContent.banner.title)}"
+            description="${escapeHtml(studiesContent.banner.description)}"
             plain>
           </page-banner>
         </section>
@@ -25,9 +49,9 @@ class PortfolioStudiesPage extends HTMLElement {
         </section>
         <section class="page-section">
           <course-credentials
-            eyebrow="${studiesContent.coursesDraft.eyebrow}"
-            title="${studiesContent.coursesDraft.title}"
-            description="${studiesContent.coursesDraft.description}">
+            eyebrow="${escapeHtml(studiesContent.coursesDraft.eyebrow)}"
+            title="${escapeHtml(studiesContent.coursesDraft.title)}"
+            description="${escapeHtml(studiesContent.coursesDraft.description)}">
           </course-credentials>
         </section>
       </main>

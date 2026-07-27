@@ -1,5 +1,4 @@
-import { socialLinks } from '../data/site-content';
-import { escapeHtml } from './utils';
+import { getFooterContent } from '../data/site-content';
 
 class SiteFooter extends HTMLElement {
   constructor() {
@@ -12,15 +11,17 @@ class SiteFooter extends HTMLElement {
   }
 
   render() {
+    const footerContent = getFooterContent();
+
     this.shadowRoot.innerHTML = `
       <style>
         :host {
           display: block;
           width: 100%;
           margin-top: 2rem;
-          border-top: 1px solid rgba(169, 184, 211, 0.14);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           background:
-            linear-gradient(180deg, rgba(7, 19, 37, 0.96), rgba(4, 11, 24, 0.98));
+            linear-gradient(180deg, rgba(11, 11, 13, 0.96), rgba(18, 19, 24, 0.98));
         }
 
         * {
@@ -55,12 +56,12 @@ class SiteFooter extends HTMLElement {
         .text {
           color: var(--text-muted);
           font-size: 0.92rem;
-          opacity: 0.8;
+          opacity: 0.84;
         }
 
         .text:last-child {
           font-size: 0.85rem;
-          opacity: 0.6;
+          opacity: 0.64;
         }
 
         .social {
@@ -210,7 +211,7 @@ class SiteFooter extends HTMLElement {
           .social-link .tooltip {
             transition: none !important;
           }
-          
+
           .social-link:hover {
             transform: none !important;
           }
@@ -218,14 +219,14 @@ class SiteFooter extends HTMLElement {
       </style>
       <footer class="footer">
         <div class="copy">
-          <span class="title">Laura Mariana Vargas Rojas</span>
-          <span class="text">Desarrolladora de Software</span>
-          <span class="text">Estudiante de Ingeniería en Ciencia de Datos</span>
+          <span class="title">${footerContent.name}</span>
+          <span class="text">${footerContent.role}</span>
+          <span class="text">${footerContent.study}</span>
         </div>
         <div class="social">
-          <a 
-            href="https://www.linkedin.com/in/laura-vargas2209s/" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/in/laura-vargas2209s/"
+            target="_blank"
             rel="noopener noreferrer"
             class="social-link linkedin"
             aria-label="LinkedIn"
@@ -235,9 +236,9 @@ class SiteFooter extends HTMLElement {
             </svg>
             <span class="tooltip">LinkedIn</span>
           </a>
-          <a 
-            href="https://github.com/LauraVargas22" 
-            target="_blank" 
+          <a
+            href="https://github.com/LauraVargas22"
+            target="_blank"
             rel="noopener noreferrer"
             class="social-link github"
             aria-label="GitHub"

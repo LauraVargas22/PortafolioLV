@@ -3,8 +3,8 @@
 }
 
 .literary-frame {
-  --book-accent: #6ed3ff;
-  --book-accent-soft: rgba(110, 211, 255, 0.24);
+  --book-accent: #ffbc5c;
+  --book-accent-soft: rgba(255, 188, 92, 0.22);
   --near-shift: 70%;
   --far-shift: 120%;
   position: relative;
@@ -12,7 +12,7 @@
   background:
     radial-gradient(circle at 14% 16%, var(--book-accent-soft), transparent 22%),
     radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.08), transparent 18%),
-    linear-gradient(160deg, rgba(6, 16, 34, 0.98), rgba(10, 27, 53, 0.9));
+    linear-gradient(160deg, rgba(12, 12, 15, 0.98), rgba(24, 25, 31, 0.92));
 }
 
 .literary-frame::after {
@@ -82,14 +82,14 @@
   gap: 0.55rem;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(110, 211, 255, 0.18);
+  border: 1px solid rgba(255, 188, 92, 0.18);
   background: linear-gradient(
       135deg,
-      rgba(110, 211, 255, 0.12),
-      rgba(143, 91, 255, 0.08)
+      rgba(255, 188, 92, 0.12),
+      rgba(244, 114, 182, 0.08)
     ),
-    rgba(7, 19, 37, 0.68);
-  color: var(--accent-soft, #a8dbff);
+    rgba(14, 14, 18, 0.72);
+  color: #ffd9a3;
   font-family: var(--font-display, inherit);
   font-size: 0.76rem;
   font-weight: 700;
@@ -100,17 +100,17 @@
 
 .literary-title {
   margin: 0;
-  background: linear-gradient(96deg, #f8fbff 18%, #6ed3ff 60%, #8f5bff 100%);
+  background: linear-gradient(96deg, #f8fbff 18%, #ffbc5c 60%, #fb7185 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 14px 34px rgba(110, 211, 255, 0.12);
+  text-shadow: 0 14px 34px rgba(255, 188, 92, 0.12);
 }
 
 .literary-quote {
   margin: 0;
   padding: 0.2rem 0 0 1.15rem;
-  border-left: 2px solid rgba(110, 211, 255, 0.28);
+  border-left: 2px solid rgba(255, 188, 92, 0.28);
 }
 
 .literary-description {
@@ -128,7 +128,7 @@
   position: absolute;
   left: -0.85rem;
   top: -0.12rem;
-  color: rgba(110, 211, 255, 0.56);
+  color: rgba(255, 188, 92, 0.56);
   font-size: 1.55rem;
   line-height: 1;
 }
@@ -157,7 +157,7 @@
   border-radius: 18px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
-    rgba(4, 14, 27, 0.74);
+    rgba(18, 19, 24, 0.78);
   color: white;
   cursor: pointer;
   box-shadow:
@@ -173,10 +173,10 @@
 
 .nav-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  border-color: rgba(110, 211, 255, 0.28);
+  border-color: rgba(255, 188, 92, 0.28);
   box-shadow:
     0 18px 38px rgba(2, 6, 23, 0.3),
-    0 0 22px rgba(110, 211, 255, 0.12);
+    0 0 22px rgba(255, 188, 92, 0.12);
 }
 
 .nav-button:disabled {
@@ -188,7 +188,7 @@
 .nav-button:focus-visible,
 .indicator:focus-visible,
 .book-card__return:focus-visible {
-  outline: 2px solid rgba(110, 211, 255, 0.56);
+  outline: 2px solid rgba(255, 188, 92, 0.56);
   outline-offset: 4px;
 }
 
@@ -285,7 +285,7 @@
 }
 
 .book-card:focus-visible {
-  outline: 2px solid rgba(110, 211, 255, 0.58);
+  outline: 2px solid rgba(255, 188, 92, 0.58);
   outline-offset: 6px;
   border-radius: 32px;
 }
@@ -439,7 +439,7 @@
 }
 
 .book-status--current {
-  color: #7ecbff;
+  color: #ffbc5c;
 }
 
 .book-status--pending {
@@ -455,7 +455,7 @@
   background:
     radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 22%),
     radial-gradient(circle at bottom left, var(--book-accent-soft), transparent 32%),
-    linear-gradient(160deg, rgba(9, 21, 43, 0.98), rgba(29, 15, 54, 0.96));
+    linear-gradient(160deg, rgba(18, 19, 24, 0.98), rgba(33, 20, 26, 0.96));
 }
 
 .book-card__back-badge {
@@ -556,7 +556,7 @@
 
 .book-card__return:hover {
   transform: translateY(-1px);
-  border-color: rgba(110, 211, 255, 0.28);
+  border-color: rgba(255, 188, 92, 0.28);
   box-shadow: 0 12px 24px rgba(2, 6, 23, 0.22);
 }
 

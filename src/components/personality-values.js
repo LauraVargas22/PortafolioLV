@@ -1,4 +1,4 @@
-import { personalityContent } from '../data/site-content';
+import { getPersonalityContent } from '../data/site-content';
 import { shellStyles } from './shared-styles';
 import { escapeHtml, renderBulletList } from './utils';
 
@@ -9,36 +9,37 @@ class PersonalityValues extends HTMLElement {
   }
 
   connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const personalityContent = getPersonalityContent();
     const valuesList = personalityContent.values.map((value) => value.title);
     const cards = [
       {
         index: '01',
-        title: 'Mision',
-        eyebrow: 'Pilar esencial',
+        title: personalityContent.missionCard.title,
         copy: personalityContent.mission,
         image: personalityContent.missionImage,
-        alt: 'Mision',
+        alt: personalityContent.missionCard.alt,
         accent: '#6ed3ff',
         glow: 'rgba(110, 211, 255, 0.26)',
       },
       {
         index: '02',
-        title: 'Vision',
-        eyebrow: 'Direccion profesional',
+        title: personalityContent.visionCard.title,
         copy: personalityContent.vision,
         image: personalityContent.visionImage,
-        alt: 'Vision',
+        alt: personalityContent.visionCard.alt,
         accent: '#ff2d75',
         glow: 'rgba(255, 45, 117, 0.24)',
       },
       {
         index: '03',
-        title: 'Valores',
-        eyebrow: 'Base de colaboracion',
-        copy:
-          'Los valores que sostienen mi forma de aprender, colaborar y construir soluciones.',
+        title: personalityContent.valuesCard.title,
+        copy: personalityContent.valuesCard.copy,
         image: personalityContent.valuesImage,
-        alt: 'Valores',
+        alt: personalityContent.valuesCard.alt,
         accent: '#9f7cff',
         glow: 'rgba(159, 124, 255, 0.24)',
         values: valuesList,
@@ -53,7 +54,7 @@ class PersonalityValues extends HTMLElement {
           background:
             radial-gradient(circle at 14% 16%, rgba(110, 211, 255, 0.12), transparent 22%),
             radial-gradient(circle at 84% 18%, rgba(255, 45, 117, 0.1), transparent 18%),
-            linear-gradient(160deg, rgba(7, 19, 37, 0.94), rgba(10, 27, 53, 0.86));
+            linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
         }
 
         .grid {
@@ -75,7 +76,7 @@ class PersonalityValues extends HTMLElement {
           isolation: isolate;
           background:
             linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 26%),
-            linear-gradient(180deg, rgba(10, 26, 51, 0.96), rgba(6, 17, 33, 0.98));
+            linear-gradient(180deg, rgba(28, 28, 36, 0.96), rgba(12, 13, 18, 0.98));
           border: 1px solid rgba(169, 184, 211, 0.14);
           box-shadow: 0 22px 48px rgba(2, 6, 23, 0.22);
           transition:
@@ -178,21 +179,6 @@ class PersonalityValues extends HTMLElement {
           display: grid;
           gap: 0.85rem;
           flex: 1;
-        }
-
-        .card-eyebrow {
-          display: inline-flex;
-          width: fit-content;
-          align-items: center;
-          padding: 0.36rem 0.7rem;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          background: rgba(255, 255, 255, 0.05);
-          color: rgba(238, 244, 255, 0.74);
-          font-size: 0.76rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
         }
 
         .card-title {

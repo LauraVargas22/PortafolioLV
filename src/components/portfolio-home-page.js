@@ -3,38 +3,58 @@ import './hero-section.js';
 import './site-footer.js';
 import './technology-carousel.js';
 import './featured-projects.js';
-import { homeContent, socialLinks } from '../data/site-content';
+import { getHomeContent, socialLinks } from '../data/site-content';
 import { technologies } from '../data/technologies';
+import { getCurrentLanguage, onLanguageChange, setCurrentLanguage } from '../i18n';
 import { escapeHtml } from './utils';
 
-const highlightedWords = [
-  'Python',
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'C#',
-  'GitHub',
-  'Git',
-  'MySQL',
-  'PostgreSQL',
-  'communication',
-  'leadership',
-  'adaptability',
-  'teamwork',
-];
+const highlightedWordsByLanguage = {
+  es: [
+    'Python',
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'C#',
+    'GitHub',
+    'Git',
+    'MySQL',
+    'PostgreSQL',
+    'comunicacion',
+    'liderazgo',
+    'adaptabilidad',
+    'trabajo en equipo',
+  ],
+  en: [
+    'Python',
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'C#',
+    'GitHub',
+    'Git',
+    'MySQL',
+    'PostgreSQL',
+    'communication',
+    'leadership',
+    'adaptability',
+    'teamwork',
+  ],
+};
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const highlightText = (text) => {
+const highlightText = (text, language) => {
   let highlighted = escapeHtml(text);
 
-  highlightedWords.forEach((word) => {
-    const matcher = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'g');
-    highlighted = highlighted.replace(
-      matcher,
-      `<span class="home-highlight">${word}</span>`
-    );
-  });
+  (highlightedWordsByLanguage[language] ?? highlightedWordsByLanguage.en).forEach(
+    (word) => {
+      const matcher = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
+      highlighted = highlighted.replace(
+        matcher,
+        (match) => `<span class="home-highlight">${match}</span>`
+      );
+    }
+  );
 
   return highlighted;
 };
@@ -43,13 +63,32 @@ class PortfolioHomePage extends HTMLElement {
   constructor() {
     super();
     this._observer = null;
+    this._removeLanguageListener = null;
   }
 
   connectedCallback() {
-    const hero = homeContent.hero;
-    const about = homeContent.about;
-    const contact = homeContent.contact;
-    const heroLinks = socialLinks.filter((link) => link.label !== 'Email');
+    this._removeLanguageListener = onLanguageChange(() => this.render());
+    this.render();
+  }
+
+  disconnectedCallback() {
+    this._observer?.disconnect();
+    this._observer = null;
+    this._removeLanguageListener?.();
+    this._removeLanguageListener = null;
+  }
+
+  render() {
+    const language = getCurrentLanguage();
+    const homeContent = getHomeContent(language);
+    const { hero, about, knowledge, contact } = homeContent;
+
+    setCurrentLanguage(language);
+    document.title =
+      language === 'es' ? 'Laura Vargas | Inicio' : 'Laura Vargas | Home';
+
+    this._observer?.disconnect();
+    this._observer = null;
 
     this.innerHTML = `
       <div style="padding-bottom: 1rem;">
@@ -64,7 +103,7 @@ class PortfolioHomePage extends HTMLElement {
           <div class="container-xl">
             <div class="home-section-shell home-section-shell--about home-reveal">
               <div class="home-section-heading home-reveal">
-                <span class="home-section-eyebrow">Sobre mí</span>
+                <span class="home-section-eyebrow">${escapeHtml(about.eyebrow)}</span>
                 <h2 class="home-section-title">${escapeHtml(about.title)}</h2>
               </div>
 
@@ -76,7 +115,7 @@ class PortfolioHomePage extends HTMLElement {
                       ${about.paragraphs
                         .map(
                           (paragraph) => `
-                            <p class="home-about-text">${highlightText(paragraph)}</p>
+                            <p class="home-about-text">${highlightText(paragraph, language)}</p>
                           `
                         )
                         .join('')}
@@ -119,9 +158,9 @@ class PortfolioHomePage extends HTMLElement {
                 visible-items="3"
                 autoplay="true"
                 autoplay-interval="4200"
-                heading="Technologies I know"
-                subheading=""
-                locale="en">
+                heading="${escapeHtml(knowledge.heading)}"
+                subheading="${escapeHtml(knowledge.subheading)}"
+                locale="${escapeHtml(language)}">
               </technology-carousel>
             </div>
           </div>
@@ -146,7 +185,7 @@ class PortfolioHomePage extends HTMLElement {
 
                     <div class="d-flex flex-column flex-sm-row gap-3 home-contact-actions">
                       <a class="home-primary-button" href="mailto:${escapeHtml(contact.email)}">
-                        Contact Me
+                        ${escapeHtml(contact.primaryCta.label)}
                       </a>
                       <a
                         class="home-secondary-button"
@@ -154,7 +193,7 @@ class PortfolioHomePage extends HTMLElement {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        ${escapeHtml(hero.primaryCta.label)}
+                        ${escapeHtml(contact.secondaryCta.label)}
                       </a>
                     </div>
                   </div>
@@ -194,14 +233,10 @@ class PortfolioHomePage extends HTMLElement {
     const carousel = this.querySelector('technology-carousel');
     if (carousel) {
       carousel.technologies = technologies;
+      carousel.labels = knowledge.labels;
     }
 
     this._setupRevealObserver();
-  }
-
-  disconnectedCallback() {
-    this._observer?.disconnect();
-    this._observer = null;
   }
 
   _setupRevealObserver() {

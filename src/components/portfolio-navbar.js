@@ -1,3 +1,5 @@
+import { getNavigationContent } from '../data/site-content';
+import { getCurrentLanguage, setCurrentLanguage } from '../i18n';
 import { escapeHtml } from './utils';
 
 const logoUrl = new URL('../images/logo.png', import.meta.url).href;
@@ -39,6 +41,8 @@ class PortfolioNavbar extends HTMLElement {
   }
 
   render() {
+    const language = getCurrentLanguage();
+    const navigationContent = getNavigationContent(language);
     const currentPage = this._resolveCurrentPage();
     const activeLinkId = this._resolveActiveLinkId(currentPage);
     const isHomePage = currentPage === 'home';
@@ -46,11 +50,31 @@ class PortfolioNavbar extends HTMLElement {
     const contactHref = isHomePage ? '#contactMe' : 'index.html#contactMe';
 
     const links = [
-      { id: 'home', label: 'Home', href: homeHref },
-      { id: 'personality', label: 'Sobre Mi', href: 'personality.html' },
-      { id: 'studies', label: 'Estudios', href: 'studies.html' },
-      { id: 'experience', label: 'Trayectoria', href: 'experience.html' },
-      { id: 'contact', label: 'Contacto', href: contactHref },
+      {
+        id: 'home',
+        label: navigationContent.links.home.label,
+        href: homeHref,
+      },
+      {
+        id: 'personality',
+        label: navigationContent.links.personality.label,
+        href: 'personality.html',
+      },
+      {
+        id: 'studies',
+        label: navigationContent.links.studies.label,
+        href: 'studies.html',
+      },
+      {
+        id: 'experience',
+        label: navigationContent.links.experience.label,
+        href: 'experience.html',
+      },
+      {
+        id: 'contact',
+        label: navigationContent.links.contact.label,
+        href: contactHref,
+      },
     ];
 
     this.shadowRoot.innerHTML = `
@@ -67,11 +91,11 @@ class PortfolioNavbar extends HTMLElement {
 
         .nav-shell {
           width: 100%;
-          border-bottom: 1px solid rgba(85, 102, 152, 0.28);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           background:
-            linear-gradient(180deg, rgba(10, 17, 34, 0.98), rgba(6, 12, 26, 0.96)),
-            linear-gradient(90deg, rgba(94, 53, 177, 0.08), rgba(110, 211, 255, 0.06));
-          box-shadow: 0 12px 28px rgba(2, 6, 23, 0.18);
+            linear-gradient(180deg, rgba(8, 8, 10, 0.98), rgba(18, 19, 24, 0.96)),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(110, 211, 255, 0.04));
+          box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
         }
 
         .nav-frame {
@@ -101,9 +125,9 @@ class PortfolioNavbar extends HTMLElement {
           place-items: center;
           border-radius: 999px;
           background:
-            radial-gradient(circle at 35% 28%, rgba(110, 211, 255, 0.22), transparent 55%),
-            linear-gradient(180deg, rgba(20, 33, 65, 0.98), rgba(11, 21, 41, 0.98));
-          border: 1px solid rgba(110, 211, 255, 0.18);
+            radial-gradient(circle at 35% 28%, rgba(110, 211, 255, 0.18), transparent 55%),
+            linear-gradient(180deg, rgba(24, 24, 30, 0.98), rgba(12, 13, 18, 0.98));
+          border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow:
             0 10px 24px rgba(2, 6, 23, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -130,7 +154,7 @@ class PortfolioNavbar extends HTMLElement {
         }
 
         .brand-subtitle {
-          color: rgba(169, 184, 211, 0.9);
+          color: rgba(188, 196, 211, 0.86);
           font-size: 0.84rem;
           white-space: nowrap;
         }
@@ -170,17 +194,63 @@ class PortfolioNavbar extends HTMLElement {
         }
 
         .nav-link:focus-visible,
-        .menu-toggle:focus-visible {
+        .menu-toggle:focus-visible,
+        .lang-option:focus-visible {
           outline: 2px solid rgba(110, 211, 255, 0.55);
           outline-offset: 3px;
         }
 
         .nav-link[aria-current='page'] {
           color: white;
-          background: linear-gradient(135deg, rgba(94, 53, 177, 0.95), rgba(79, 70, 229, 0.92));
+          background: linear-gradient(135deg, rgba(56, 58, 66, 0.96), rgba(28, 30, 36, 0.96));
           box-shadow:
-            0 10px 22px rgba(94, 53, 177, 0.28),
+            0 10px 22px rgba(15, 17, 24, 0.34),
             inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-tools {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+        }
+
+        .lang-switch {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.25rem;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.03);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .lang-option {
+          min-width: 2.75rem;
+          min-height: 2.2rem;
+          padding: 0.45rem 0.78rem;
+          border: 0;
+          border-radius: 999px;
+          background: transparent;
+          color: rgba(226, 232, 240, 0.78);
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          cursor: pointer;
+          transition:
+            background 180ms ease,
+            color 180ms ease,
+            transform 180ms ease;
+        }
+
+        .lang-option:hover {
+          color: white;
+          transform: translateY(-1px);
+        }
+
+        .lang-option.is-active {
+          background: linear-gradient(135deg, rgba(110, 211, 255, 0.92), rgba(58, 136, 255, 0.88));
+          color: #06111f;
+          box-shadow: 0 10px 20px rgba(58, 136, 255, 0.22);
         }
 
         .menu-toggle {
@@ -191,7 +261,7 @@ class PortfolioNavbar extends HTMLElement {
           justify-content: center;
           gap: 0.24rem;
           flex-direction: column;
-          border: 1px solid rgba(169, 184, 211, 0.16);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 14px;
           background: rgba(255, 255, 255, 0.03);
           color: white;
@@ -217,7 +287,7 @@ class PortfolioNavbar extends HTMLElement {
 
         @media (max-width: 991px) {
           .nav-shell {
-            box-shadow: 0 10px 22px rgba(2, 6, 23, 0.16);
+            box-shadow: 0 10px 22px rgba(2, 6, 23, 0.22);
           }
 
           .nav-frame {
@@ -235,7 +305,7 @@ class PortfolioNavbar extends HTMLElement {
             gap: 0.55rem;
             padding-top: 0.85rem;
             margin-top: 0.15rem;
-            border-top: 1px solid rgba(169, 184, 211, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
           }
 
           .nav-link {
@@ -267,6 +337,15 @@ class PortfolioNavbar extends HTMLElement {
 
           .brand-subtitle {
             font-size: 0.78rem;
+          }
+
+          .nav-tools {
+            gap: 0.45rem;
+          }
+
+          .lang-option {
+            min-width: 2.45rem;
+            padding-inline: 0.62rem;
           }
         }
 
@@ -306,21 +385,13 @@ class PortfolioNavbar extends HTMLElement {
               <img src="${logoUrl}" alt="Laura Vargas">
             </span>
             <span class="brand-copy">
-              <span class="brand-title">Laura Vargas</span>
-              <span class="brand-subtitle">Software Developer</span>
+              <span class="brand-title">${escapeHtml(navigationContent.brandTitle)}</span>
+              <span class="brand-subtitle">${escapeHtml(navigationContent.brandSubtitle)}</span>
             </span>
           </a>
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Abrir menu"
-            aria-controls="portfolio-nav-links"
-            aria-expanded="${this._isOpen ? 'true' : 'false'}">
-            <span class="menu-toggle-line"></span>
-            <span class="menu-toggle-line"></span>
-            <span class="menu-toggle-line"></span>
-          </button>
-          <nav class="nav-links" id="portfolio-nav-links" aria-label="Navegacion principal">
+          <nav class="nav-links" id="portfolio-nav-links" aria-label="${escapeHtml(
+            navigationContent.navLabel
+          )}">
             ${links
               .map(
                 (link) => `
@@ -334,6 +405,38 @@ class PortfolioNavbar extends HTMLElement {
               )
               .join('')}
           </nav>
+          <div class="nav-tools">
+            <div class="lang-switch" role="group" aria-label="${escapeHtml(
+              navigationContent.languageLabel
+            )}">
+              <button
+                class="lang-option ${language === 'es' ? 'is-active' : ''}"
+                type="button"
+                data-lang="es"
+                aria-pressed="${language === 'es'}"
+              >
+                ES
+              </button>
+              <button
+                class="lang-option ${language === 'en' ? 'is-active' : ''}"
+                type="button"
+                data-lang="en"
+                aria-pressed="${language === 'en'}"
+              >
+                EN
+              </button>
+            </div>
+            <button
+              class="menu-toggle"
+              type="button"
+              aria-label="${escapeHtml(navigationContent.menuLabel)}"
+              aria-controls="portfolio-nav-links"
+              aria-expanded="${this._isOpen ? 'true' : 'false'}">
+              <span class="menu-toggle-line"></span>
+              <span class="menu-toggle-line"></span>
+              <span class="menu-toggle-line"></span>
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -341,6 +444,18 @@ class PortfolioNavbar extends HTMLElement {
     this.shadowRoot.querySelector('.menu-toggle')?.addEventListener('click', () => {
       this._isOpen = !this._isOpen;
       this.render();
+    });
+
+    this.shadowRoot.querySelectorAll('.lang-option').forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextLanguage = button.getAttribute('data-lang');
+
+        if (!nextLanguage || nextLanguage === language) {
+          return;
+        }
+
+        setCurrentLanguage(nextLanguage);
+      });
     });
 
     this.shadowRoot.querySelector('.nav-frame')?.addEventListener('keydown', (event) => {

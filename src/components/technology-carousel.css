@@ -17,9 +17,9 @@
   border-radius: 2rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(244, 114, 182, 0.16), transparent 35%),
-    linear-gradient(145deg, rgba(4, 12, 34, 0.96), rgba(8, 21, 55, 0.92));
+    radial-gradient(circle at top right, rgba(255, 188, 92, 0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(244, 114, 182, 0.14), transparent 35%),
+    linear-gradient(145deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.92));
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow:
     0 30px 60px rgba(2, 6, 23, 0.35),
@@ -39,7 +39,7 @@
   inset: auto auto 2.5rem 1.5rem;
   width: 9rem;
   height: 9rem;
-  background: rgba(56, 189, 248, 0.16);
+  background: rgba(255, 188, 92, 0.14);
 }
 
 .carousel-frame::after {
@@ -62,7 +62,7 @@
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 1.7rem + 2vw, 3.8rem);
   letter-spacing: 0.04em;
-  text-shadow: 0 0 24px rgba(56, 189, 248, 0.16);
+  text-shadow: 0 0 24px rgba(255, 188, 92, 0.16);
 }
 
 .section-subtitle {
@@ -81,7 +81,7 @@
 }
 
 .carousel-panel:focus-visible .viewport {
-  outline: 2px solid rgba(56, 189, 248, 0.5);
+  outline: 2px solid rgba(255, 188, 92, 0.5);
   outline-offset: 0.35rem;
 }
 
@@ -143,7 +143,7 @@
 
 .card:hover {
   transform: translateY(-0.45rem);
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: rgba(255, 188, 92, 0.35);
   box-shadow:
     0 22px 36px rgba(2, 6, 23, 0.36),
     0 0 0 1px rgba(255, 255, 255, 0.03);
@@ -273,7 +273,7 @@
   align-items: center;
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 999px;
-  background: rgba(8, 15, 34, 0.92);
+  background: rgba(18, 19, 24, 0.92);
   color: #f8fafc;
   cursor: pointer;
   transition:
@@ -284,8 +284,8 @@
 
 .nav-button:hover {
   transform: translateY(-1px);
-  background: rgba(15, 23, 42, 1);
-  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(28, 30, 36, 1);
+  border-color: rgba(255, 188, 92, 0.5);
 }
 
 .nav-button:active {
@@ -294,7 +294,7 @@
 
 .nav-button:focus-visible,
 .indicator:focus-visible {
-  outline: 2px solid rgba(56, 189, 248, 0.55);
+  outline: 2px solid rgba(255, 188, 92, 0.55);
   outline-offset: 3px;
 }
 
@@ -326,7 +326,7 @@
 
 .indicator[aria-current='true'] {
   width: 2rem;
-  background: linear-gradient(90deg, #38bdf8, #fb923c);
+  background: linear-gradient(90deg, #ffbc5c, #fb7185);
   border-color: transparent;
 }
 

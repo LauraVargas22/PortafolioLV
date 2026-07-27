@@ -176,7 +176,7 @@ export const shellStyles = `
     border-radius: var(--radius-xl);
     background:
       radial-gradient(circle at top right, rgba(110, 211, 255, 0.14), transparent 24%),
-      linear-gradient(160deg, rgba(7, 19, 37, 0.94), rgba(10, 27, 53, 0.84));
+      linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
     overflow: hidden;
@@ -296,7 +296,7 @@ export const shellStyles = `
     z-index: 1;
     padding: 1.3rem;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(11, 28, 55, 0.92), rgba(6, 17, 33, 0.98));
+    background: linear-gradient(180deg, rgba(27, 28, 34, 0.94), rgba(12, 13, 18, 0.98));
     border: 1px solid rgba(169, 184, 211, 0.14);
     box-shadow: 0 16px 36px rgba(2, 6, 23, 0.22);
   }

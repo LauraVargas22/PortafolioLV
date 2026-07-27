@@ -1,3 +1,4 @@
+import { getStudiesContent } from '../data/site-content';
 import { bootstrapCss } from './bootstrap-css';
 import { shellStyles } from './shared-styles';
 import { escapeHtml } from './utils';
@@ -56,11 +57,12 @@ class CourseCredentials extends HTMLElement {
   }
 
   render() {
-    const eyebrow = this.getAttribute('eyebrow') ?? 'Credenciales';
-    const title = this.getAttribute('title') ?? 'Cursos adicionales';
+    const eyebrow = this.getAttribute('eyebrow') ?? 'Credentials';
+    const title = this.getAttribute('title') ?? 'Additional courses';
     const description =
       this.getAttribute('description') ??
-      'Credenciales y cursos complementarios con evidencia verificable.';
+      'Credentials and complementary courses with verifiable evidence.';
+    const labels = getStudiesContent().coursesDraft.labels;
 
     this.shadowRoot.innerHTML = `
       <style>${bootstrapCss}</style>
@@ -77,8 +79,8 @@ class CourseCredentials extends HTMLElement {
           background:
             radial-gradient(circle at 15% 25%, rgba(110, 211, 255, 0.08), transparent 30%),
             radial-gradient(circle at 85% 75%, rgba(255, 45, 117, 0.06), transparent 25%),
-            radial-gradient(circle at 50% 50%, rgba(58, 136, 255, 0.04), transparent 40%),
-            linear-gradient(160deg, rgba(6, 16, 34, 0.96), rgba(10, 27, 53, 0.88));
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 40%),
+            linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
           border-radius: 28px;
           border: 1px solid rgba(169, 184, 211, 0.08);
           box-shadow: 0 24px 54px rgba(2, 6, 23, 0.25);
@@ -161,7 +163,6 @@ class CourseCredentials extends HTMLElement {
           line-height: 1.7;
         }
 
-        /* ========== COURSE GRID ========== */
         .courses-grid {
           position: relative;
           z-index: 1;
@@ -227,7 +228,6 @@ class CourseCredentials extends HTMLElement {
           }
         }
 
-        /* ========== MEDIA ========== */
         .course-media {
           position: relative;
           display: block;
@@ -235,7 +235,7 @@ class CourseCredentials extends HTMLElement {
           width: 100%;
           aspect-ratio: 16 / 9;
           overflow: hidden;
-          background: linear-gradient(180deg, rgba(10, 19, 34, 0.12), rgba(10, 19, 34, 0.52)), #081325;
+          background: linear-gradient(180deg, rgba(24, 25, 31, 0.3), rgba(12, 12, 15, 0.72)), #08090d;
           text-decoration: none;
         }
 
@@ -325,7 +325,6 @@ class CourseCredentials extends HTMLElement {
           fill: #ff6b9d;
         }
 
-        /* ========== BODY ========== */
         .course-body {
           min-width: 0;
           flex: 1;
@@ -423,7 +422,6 @@ class CourseCredentials extends HTMLElement {
           margin-top: 0.3rem;
         }
 
-        /* ========== TAGS ========== */
         .course-tags {
           display: flex;
           flex-wrap: wrap;
@@ -450,7 +448,6 @@ class CourseCredentials extends HTMLElement {
           color: rgba(238, 244, 255, 0.85);
         }
 
-        /* ========== LINK ========== */
         .course-link {
           display: inline-flex;
           align-items: center;
@@ -481,7 +478,6 @@ class CourseCredentials extends HTMLElement {
           flex-shrink: 0;
         }
 
-        /* ========== EMPTY STATE ========== */
         .empty-state {
           padding: 2rem;
           border-radius: 20px;
@@ -491,10 +487,6 @@ class CourseCredentials extends HTMLElement {
           text-align: center;
           font-size: 0.95rem;
         }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
 
         @media (max-width: 720px) {
           .credentials-shell {
@@ -571,15 +563,15 @@ class CourseCredentials extends HTMLElement {
           .media-overlay .view-icon {
             transition: none !important;
           }
-          
+
           .course-card:hover {
             transform: none !important;
           }
-          
+
           .course-card:hover img {
             transform: none !important;
           }
-          
+
           .media-overlay,
           .media-overlay .view-icon {
             opacity: 0 !important;
@@ -614,21 +606,21 @@ class CourseCredentials extends HTMLElement {
                             href="${escapeHtml(course.credentialUrl ?? '#')}"
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Ver credencial de ${escapeHtml(course.title ?? 'curso')}"
+                            aria-label="${escapeHtml(labels.credentialAria)} ${escapeHtml(course.title ?? labels.courseFallback)}"
                           >
                             <img
                               src="${escapeHtml(course.image ?? '')}"
-                              alt="${escapeHtml(course.imageAlt ?? course.title ?? 'Credencial de curso')}"
+                              alt="${escapeHtml(course.imageAlt ?? course.title ?? labels.courseFallback)}"
                               loading="lazy"
                             />
                             <span class="media-badge">
                               ${icons.star}
-                              Certificado
+                              ${escapeHtml(labels.certificate)}
                             </span>
                             <span class="media-overlay">
                               <span class="view-icon">
                                 ${icons.external}
-                                Ver credencial
+                                ${escapeHtml(labels.viewCredential)}
                               </span>
                             </span>
                           </a>
@@ -637,18 +629,18 @@ class CourseCredentials extends HTMLElement {
                             <div class="course-top-row">
                               <span class="course-kicker">
                                 ${icons.badge}
-                                Verificado
+                                ${escapeHtml(labels.verified)}
                               </span>
                               <span class="course-meta">
                                 ${icons.calendar}
-                                ${escapeHtml(course.issuedAt ?? 'Por confirmar')}
+                                ${escapeHtml(course.issuedAt ?? labels.pendingDate)}
                               </span>
                             </div>
 
                             <div>
-                              <h3 class="course-title">${escapeHtml(course.title ?? 'Curso')}</h3>
+                              <h3 class="course-title">${escapeHtml(course.title ?? labels.courseFallback)}</h3>
                               <p class="course-issuer">
-                                ${escapeHtml(course.issuer ?? 'Entidad emisora')}
+                                ${escapeHtml(course.issuer ?? labels.issuerFallback)}
                                 <span class="verified-icon">${icons.verified}</span>
                               </p>
                             </div>
@@ -661,9 +653,7 @@ class CourseCredentials extends HTMLElement {
                                   ? `
                                     <ul class="course-tags">
                                       ${course.tags
-                                        .map(
-                                          (tag) => `<li>${escapeHtml(tag)}</li>`
-                                        )
+                                        .map((tag) => `<li>${escapeHtml(tag)}</li>`)
                                         .join('')}
                                     </ul>
                                   `
@@ -679,7 +669,7 @@ class CourseCredentials extends HTMLElement {
                                       rel="noreferrer"
                                     >
                                       ${icons.external}
-                                      Ver credencial
+                                      ${escapeHtml(labels.viewCredential)}
                                     </a>
                                   `
                                   : ''
@@ -695,7 +685,7 @@ class CourseCredentials extends HTMLElement {
             `
             : `
               <div class="empty-state">
-                <p>📚 No hay credenciales registradas por el momento.</p>
+                <p>${escapeHtml(labels.emptyState)}</p>
               </div>
             `
         }

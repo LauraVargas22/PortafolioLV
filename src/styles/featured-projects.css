@@ -62,7 +62,7 @@
       rgba(110, 211, 255, 0.12),
       rgba(255, 188, 92, 0.1)
     ),
-    rgba(7, 19, 37, 0.68);
+    rgba(14, 14, 18, 0.72);
   color: var(--accent-soft, #a8dbff);
   font-size: 0.74rem;
   font-weight: 700;
@@ -128,7 +128,7 @@
   flex-direction: column;
   border-radius: var(--radius-lg, 20px);
   border: 1px solid rgba(169, 184, 211, 0.16);
-  background: linear-gradient(180deg, rgba(7, 19, 37, 0.88), rgba(7, 19, 37, 0.97));
+  background: linear-gradient(180deg, rgba(19, 20, 26, 0.9), rgba(10, 11, 15, 0.98));
   overflow: hidden;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }

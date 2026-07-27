@@ -1,4 +1,4 @@
-import { studiesTimelineContent } from '../data/studies';
+import { getStudiesTimelineContent } from '../data/studies';
 import { shellStyles } from './shared-styles';
 import { escapeHtml } from './utils';
 
@@ -14,7 +14,8 @@ class StudiesTimeline extends HTMLElement {
   }
 
   render() {
-    const { eyebrow, title, description, items } = studiesTimelineContent;
+    const { eyebrow, title, description, items, skillsTitle, emptyState } =
+      getStudiesTimelineContent();
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -28,10 +29,10 @@ class StudiesTimeline extends HTMLElement {
           position: relative;
           padding: clamp(1.5rem, 3vw, 2.5rem);
           background:
-            radial-gradient(circle at 12% 20%, rgba(110, 211, 255, 0.10), transparent 28%),
+            radial-gradient(circle at 12% 20%, rgba(110, 211, 255, 0.1), transparent 28%),
             radial-gradient(circle at 88% 80%, rgba(255, 45, 117, 0.08), transparent 25%),
-            radial-gradient(circle at 50% 50%, rgba(58, 136, 255, 0.05), transparent 40%),
-            linear-gradient(160deg, rgba(6, 16, 34, 0.96), rgba(10, 27, 53, 0.88));
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 40%),
+            linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
           border-radius: 28px;
           border: 1px solid rgba(169, 184, 211, 0.08);
           box-shadow: 0 24px 54px rgba(2, 6, 23, 0.25);
@@ -114,7 +115,6 @@ class StudiesTimeline extends HTMLElement {
           line-height: 1.7;
         }
 
-        /* ========== ACCORDION LIST ========== */
         .accordion-list {
           position: relative;
           z-index: 1;
@@ -134,7 +134,7 @@ class StudiesTimeline extends HTMLElement {
 
         .accordion-card:hover {
           border-color: rgba(110, 211, 255, 0.12);
-          box-shadow: 0 8px 28px rgba(2, 6, 23, 0.20);
+          box-shadow: 0 8px 28px rgba(2, 6, 23, 0.2);
         }
 
         .accordion-card::before {
@@ -148,7 +148,8 @@ class StudiesTimeline extends HTMLElement {
           transition: opacity 0.4s ease;
         }
 
-        .accordion-card:hover::before {
+        .accordion-card:hover::before,
+        .accordion-card.is-open::before {
           opacity: 1;
         }
 
@@ -156,10 +157,6 @@ class StudiesTimeline extends HTMLElement {
           border-color: rgba(110, 211, 255, 0.15);
           background: rgba(255, 255, 255, 0.04);
           box-shadow: 0 12px 36px rgba(2, 6, 23, 0.25);
-        }
-
-        .accordion-card.is-open::before {
-          opacity: 1;
         }
 
         .accordion-card .card-accent {
@@ -179,7 +176,6 @@ class StudiesTimeline extends HTMLElement {
           opacity: 1;
         }
 
-        /* ========== TRIGGER ========== */
         .accordion-trigger {
           width: 100%;
           display: grid;
@@ -222,7 +218,7 @@ class StudiesTimeline extends HTMLElement {
         .accordion-card.is-open .accordion-index {
           background: rgba(110, 211, 255, 0.18);
           color: white;
-          box-shadow: 0 0 20px rgba(110, 211, 255, 0.10);
+          box-shadow: 0 0 20px rgba(110, 211, 255, 0.1);
         }
 
         .accordion-heading {
@@ -308,7 +304,6 @@ class StudiesTimeline extends HTMLElement {
           transform: rotate(180deg);
         }
 
-        /* ========== PANEL ========== */
         .accordion-panel {
           padding: 0 1.2rem 1.25rem;
           border-top: 1px solid rgba(169, 184, 211, 0.06);
@@ -334,11 +329,6 @@ class StudiesTimeline extends HTMLElement {
           line-height: 1.7;
         }
 
-        .accordion-copy strong {
-          color: rgba(238, 244, 255, 0.9);
-        }
-
-        /* ========== SKILLS ========== */
         .skills-block {
           margin-top: 1rem;
           display: grid;
@@ -356,10 +346,6 @@ class StudiesTimeline extends HTMLElement {
           letter-spacing: 0.05em;
           text-transform: uppercase;
           font-family: var(--font-display);
-        }
-
-        .skills-title .skill-icon {
-          font-size: 1rem;
         }
 
         .skills-list {
@@ -389,7 +375,6 @@ class StudiesTimeline extends HTMLElement {
           transform: translateY(-2px);
         }
 
-        /* ========== EMPTY STATE ========== */
         .empty-state {
           padding: 2rem;
           border-radius: 20px;
@@ -399,10 +384,6 @@ class StudiesTimeline extends HTMLElement {
           text-align: center;
           font-size: 0.95rem;
         }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
 
         @media (max-width: 720px) {
           .timeline-shell {
@@ -521,7 +502,7 @@ class StudiesTimeline extends HTMLElement {
           .accordion-panel {
             animation: none;
           }
-          
+
           .accordion-card,
           .accordion-trigger,
           .accordion-icon,
@@ -554,7 +535,7 @@ class StudiesTimeline extends HTMLElement {
                         index === this._openIndex ? 'is-open' : ''
                       }">
                         <span class="card-accent" aria-hidden="true"></span>
-                        
+
                         <button
                           class="accordion-trigger"
                           type="button"
@@ -590,15 +571,12 @@ class StudiesTimeline extends HTMLElement {
                                     ? `
                                       <div class="skills-block">
                                         <p class="skills-title">
-                                          <span class="skill-icon">⚡</span>
-                                          Habilidades desarrolladas
+                                          <span aria-hidden="true">&#9889;</span>
+                                          ${escapeHtml(skillsTitle)}
                                         </p>
                                         <ul class="skills-list">
                                           ${item.skills
-                                            .map(
-                                              (skill) =>
-                                                `<li>${escapeHtml(skill)}</li>`
-                                            )
+                                            .map((skill) => `<li>${escapeHtml(skill)}</li>`)
                                             .join('')}
                                         </ul>
                                       </div>
@@ -617,7 +595,7 @@ class StudiesTimeline extends HTMLElement {
             `
             : `
               <div class="empty-state">
-                <p>📚 No hay estudios registrados todavía.</p>
+                <p>${escapeHtml(emptyState)}</p>
               </div>
             `
         }

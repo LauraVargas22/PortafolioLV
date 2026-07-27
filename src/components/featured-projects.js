@@ -1,5 +1,5 @@
-import { projects } from '../data/projects';
-import { homeContent } from '../data/site-content';
+import { getFeaturedProjects } from '../data/projects';
+import { getHomeContent } from '../data/site-content';
 import { bootstrapCss } from './bootstrap-css';
 import { sectionFrameStyles } from './shared-styles';
 import { escapeHtml, renderTagList } from './utils';
@@ -21,6 +21,10 @@ class FeaturedProjects extends HTMLElement {
 
   disconnectedCallback() {
     window.removeEventListener('resize', this._handleResize);
+  }
+
+  get _projects() {
+    return getFeaturedProjects();
   }
 
   _handleResize() {
@@ -45,16 +49,16 @@ class FeaturedProjects extends HTMLElement {
   }
 
   get _totalPages() {
-    return Math.max(1, Math.ceil(projects.length / this._itemsPerPage));
+    return Math.max(1, Math.ceil(this._projects.length / this._itemsPerPage));
   }
 
   get _visibleProjects() {
     const startIndex = (this._currentPage - 1) * this._itemsPerPage;
-    return projects.slice(startIndex, startIndex + this._itemsPerPage);
+    return this._projects.slice(startIndex, startIndex + this._itemsPerPage);
   }
 
   render() {
-    const { projects: projectsContent } = homeContent;
+    const { projects: projectsContent } = getHomeContent();
 
     this.shadowRoot.innerHTML = `
       <style>${bootstrapCss}</style>
@@ -64,8 +68,8 @@ class FeaturedProjects extends HTMLElement {
         .projects-frame {
           background:
             radial-gradient(circle at 20% 14%, rgba(255, 45, 117, 0.08), transparent 18%),
-            radial-gradient(circle at 82% 18%, rgba(110, 211, 255, 0.1), transparent 20%),
-            linear-gradient(160deg, rgba(7, 19, 37, 0.9), rgba(10, 27, 53, 0.72));
+            radial-gradient(circle at 82% 18%, rgba(110, 211, 255, 0.08), transparent 20%),
+            linear-gradient(160deg, rgba(12, 12, 15, 0.94), rgba(24, 25, 31, 0.9));
         }
 
         .project-card {
@@ -80,7 +84,7 @@ class FeaturedProjects extends HTMLElement {
           position: relative;
           overflow: hidden;
           border-radius: 26px 26px 20px 20px;
-          background: linear-gradient(180deg, rgba(9, 18, 34, 0.92), rgba(10, 20, 38, 0.72));
+          background: linear-gradient(180deg, rgba(18, 19, 24, 0.92), rgba(32, 34, 40, 0.76));
           box-shadow: 0 18px 42px rgba(2, 6, 23, 0.28);
         }
 
@@ -113,7 +117,7 @@ class FeaturedProjects extends HTMLElement {
           margin: -1.15rem auto 0;
           padding: 1.15rem 1.2rem 1.25rem;
           border-radius: 22px;
-          background: linear-gradient(180deg, rgba(247, 250, 255, 0.98), rgba(233, 241, 255, 0.95));
+          background: linear-gradient(180deg, rgba(239, 242, 247, 0.98), rgba(224, 229, 238, 0.95));
           box-shadow:
             0 18px 38px rgba(2, 6, 23, 0.2),
             0 0 0 1px rgba(255, 255, 255, 0.42);
@@ -346,7 +350,7 @@ class FeaturedProjects extends HTMLElement {
                           ${renderTagList(project.stack.slice(0, 3))}
                         </div>
                         <div class="footer-row">
-                          <a class="repo-link" href="${project.repository}" target="_blank" rel="noreferrer">Repositorio</a>
+                          <a class="repo-link" href="${project.repository}" target="_blank" rel="noreferrer">${escapeHtml(projectsContent.repositoryLabel)}</a>
                         </div>
                       </div>
                     </article>
@@ -355,11 +359,17 @@ class FeaturedProjects extends HTMLElement {
               )
               .join('')}
           </div>
-          <nav class="pagination-wrap" aria-label="Project pagination">
+          <nav class="pagination-wrap" aria-label="${escapeHtml(
+            projectsContent.paginationLabel
+          )}">
             <div class="pagination">
-              <button class="pagination-button" type="button" data-action="previous" ${this._currentPage === 1 ? 'disabled' : ''} aria-label="Pagina anterior">&#8249;</button>
+              <button class="pagination-button" type="button" data-action="previous" ${this._currentPage === 1 ? 'disabled' : ''} aria-label="${escapeHtml(
+                projectsContent.previousPageLabel
+              )}">&#8249;</button>
               <span class="page-indicator" aria-live="polite">${this._currentPage}</span>
-              <button class="pagination-button" type="button" data-action="next" ${this._currentPage === this._totalPages ? 'disabled' : ''} aria-label="Pagina siguiente">&#8250;</button>
+              <button class="pagination-button" type="button" data-action="next" ${this._currentPage === this._totalPages ? 'disabled' : ''} aria-label="${escapeHtml(
+                projectsContent.nextPageLabel
+              )}">&#8250;</button>
             </div>
           </nav>
           <div class="see-more-row">
