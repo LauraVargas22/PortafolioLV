@@ -132,6 +132,10 @@
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
+.project-card--interactive {
+  cursor: pointer;
+}
+
 .project-card::before {
   content: '';
   position: absolute;
@@ -153,6 +157,16 @@
   box-shadow:
     0 22px 46px rgba(2, 6, 23, 0.34),
     0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.project-card:focus-visible {
+  outline: none;
+  transform: translateY(-4px);
+  border-color: var(--project-accent-strong);
+  box-shadow:
+    0 22px 46px rgba(2, 6, 23, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .project-card-media {

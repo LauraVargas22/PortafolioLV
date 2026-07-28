@@ -4,6 +4,26 @@ const asset = (fileName) => new URL(`../images/${fileName}`, import.meta.url).hr
 
 const projectEntries = [
   {
+    id: 'dataglobal',
+    title: {
+      es: 'DATAGLOBAL S.A.S.',
+      en: 'DATAGLOBAL S.A.S.',
+    },
+    category: {
+      es: 'Diseño WEB',
+      en: 'Web Design',
+    },
+    image: asset('dataglobal.png'),
+    summary: {
+      es: 'Página web corporativa para una empresa de tecnología especializada en soluciones de software y servicios digitales.',
+      en: 'Corporate website for a technology company specializing in software solutions and digital services.',
+    },
+    stack: ['NuxtJS', 'TypeScript', 'Vue'],
+    repository: 'https://www.dataglobal.co/',
+    url: 'https://www.dataglobal.co/',
+    featured: true,
+  },
+  {
     id: 'sgta',
     title: {
       es: 'Sistema Automotriz',
@@ -20,6 +40,7 @@ const projectEntries = [
     },
     stack: ['.NET', 'PostgreSQL', 'React', 'TypeScript', 'Vite'],
     repository: 'https://github.com/LauraVargas22/SistemaAutomotriz.git',
+    url: 'https://github.com/LauraVargas22/SistemaAutomotriz.git',
     featured: true,
   },
   {
@@ -39,7 +60,7 @@ const projectEntries = [
     },
     stack: ['JavaScript', 'Lit', 'Vite', 'Web Components'],
     repository: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git',
-    featured: true,
+    url: 'https://github.com/LauraVargas22/FacturaElectronica-lit.git'
   },
   {
     id: 'ligabetplay',
@@ -58,7 +79,7 @@ const projectEntries = [
     },
     stack: ['Python', 'Data structures'],
     repository: 'https://github.com/LauraVargas22/LigaBetplay.git',
-    featured: true,
+    url: 'https://github.com/LauraVargas22/LigaBetplay.git'
   },
   {
     id: 'campusdb',
@@ -77,24 +98,7 @@ const projectEntries = [
     },
     stack: ['MySQL', 'Relational modeling', 'SQL queries'],
     repository: 'https://github.com/LauraVargas22/ProyectoMySQL.git',
-  },
-  {
-    id: 'inventory',
-    title: {
-      es: 'Gestión de Inventario',
-      en: 'Inventory Management',
-    },
-    category: {
-      es: 'Consola en C#',
-      en: 'C# console app',
-    },
-    image: asset('inventory.png'),
-    summary: {
-      es: 'Aplicación de consola tipo CRUD para registrar y controlar operaciones de inventario.',
-      en: 'CRUD-style console application to register and control inventory operations.',
-    },
-    stack: ['C#', 'Figgle', 'CRUD', 'Console'],
-    repository: 'https://github.com/Isa94d-lab/InventoryManagement.git',
+    url: 'https://github.com/LauraVargas22/ProyectoMySQL.git'
   },
   {
     id: 'formula1',
@@ -113,6 +117,28 @@ const projectEntries = [
     },
     stack: ['JavaScript', 'HTML', 'CSS'],
     repository: 'https://github.com/Omarjr33/projectf1.git',
+    url: 'https://github.com/Omarjr33/projectf1.git',
+    featured: true,
+  },
+  {
+    id: 'inventory',
+    title: {
+      es: 'Gestión de Inventario',
+      en: 'Inventory Management',
+    },
+    category: {
+      es: 'Consola en C#',
+      en: 'C# console app',
+    },
+    image: asset('inventory.png'),
+    summary: {
+      es: 'Aplicación de consola tipo CRUD para registrar y controlar operaciones de inventario.',
+      en: 'CRUD-style console application to register and control inventory operations.',
+    },
+    stack: ['C#', 'Figgle', 'CRUD', 'Console'],
+    repository: 'https://github.com/Isa94d-lab/InventoryManagement.git',
+    url: 'https://github.com/Isa94d-lab/InventoryManagement.git',
+    featured: true,
   },
   {
     id: 'campuslove',
@@ -131,6 +157,8 @@ const projectEntries = [
     },
     stack: ['C#', 'Figgle', 'Conditional logic'],
     repository: 'https://github.com/LauraVargas22/CampusLove.git',
+    url: 'https://github.com/LauraVargas22/CampusLove.git',
+    featured: true,
   },
   {
     id: 'chachipun',
@@ -150,6 +178,8 @@ const projectEntries = [
     stack: ['Python', 'Game logic', 'Console'],
     repository:
       'https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura',
+    url: 'https://github.com/LauraVargas22/ProyectoThe-Chachipun_PythonVargasLaura',
+    featured: true,
   },
   {
     id: 'simulador',
@@ -168,6 +198,8 @@ const projectEntries = [
     },
     stack: ['Python', 'Streamlit', 'Physics'],
     repository: 'https://github.com/LauraVargas22/SimuladorMecanica',
+    url: 'https://github.com/LauraVargas22/SimuladorMecanica',
+    featured: true,
   },
 ];
 

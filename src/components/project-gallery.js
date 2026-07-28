@@ -82,16 +82,21 @@ class ProjectGallery extends HTMLElement {
             ${projects
               .map((project, index) => {
                 const palette = palettes[index % palettes.length];
+                const projectUrl = project.url || project.demoUrl || project.repository || '';
+                const titleId = `project-card-title-${escapeHtml(project.id)}`;
 
                 return `
                   <article
-                    class="project-card home-reveal"
+                    class="project-card project-card--interactive home-reveal"
                     style="
                       --project-accent: ${palette.accent};
                       --project-accent-soft: ${palette.accentSoft};
                       --project-accent-strong: ${palette.accentStrong};
                       --project-secondary-soft: ${palette.secondarySoft};
                     "
+                    ${projectUrl ? `data-url="${escapeHtml(projectUrl)}"` : ''}
+                    ${projectUrl ? 'role="link" tabindex="0"' : ''}
+                    ${projectUrl ? `aria-labelledby="${titleId}"` : ''}
                   >
                     <div class="project-card-media">
                       <span class="project-card-badge">${escapeHtml(project.category)}</span>
@@ -105,7 +110,7 @@ class ProjectGallery extends HTMLElement {
                     </div>
 
                     <div class="project-card-body">
-                      <h3 class="project-card-title">${escapeHtml(project.title)}</h3>
+                      <h3 class="project-card-title" id="${titleId}">${escapeHtml(project.title)}</h3>
                       <p class="project-card-summary">${escapeHtml(project.summary)}</p>
 
                       ${
@@ -164,7 +169,44 @@ class ProjectGallery extends HTMLElement {
       </section>
     `;
 
+    this._setupCardNavigation();
     this._setupRevealObserver();
+  }
+
+  _setupCardNavigation() {
+    const interactiveCards = [...this.querySelectorAll('.project-card--interactive[data-url]')];
+
+    interactiveCards.forEach((card) => {
+      card.addEventListener('click', (event) => {
+        if (event.target.closest('.project-card-link')) {
+          return;
+        }
+
+        const url = card.dataset.url;
+
+        if (!url) {
+          return;
+        }
+
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+          return;
+        }
+
+        event.preventDefault();
+
+        const url = card.dataset.url;
+
+        if (!url) {
+          return;
+        }
+
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+    });
   }
 
   _setupRevealObserver() {

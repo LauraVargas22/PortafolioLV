@@ -208,8 +208,8 @@ const homeContent = {
       en: 'Featured projects',
     },
     repositoryLabel: {
-      es: 'Repositorio',
-      en: 'Repository',
+      es: 'Conoce más',
+      en: 'Learn more',
     },
     paginationLabel: {
       es: 'Paginación de proyectos',
@@ -258,8 +258,8 @@ const homeContent = {
       en: 'Software Developer',
     },
     quote: {
-      es: 'Construyamos algo increíble',
-      en: "Let's build something amazing",
+      es: 'Cada proyecto es una oportunidad de aprendizaje',
+      en: 'Every project is a learning opportunity',
     },
     email: 'lauramarianavargasrojas@gmail.com',
     cv: resumeUrl,
