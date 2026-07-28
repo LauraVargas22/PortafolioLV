@@ -74,9 +74,9 @@ class StudiesTimeline extends HTMLElement {
           width: fit-content;
           padding: 0.3rem 0.85rem 0.3rem 0.7rem;
           border-radius: 999px;
-          border: 1px solid rgba(110, 211, 255, 0.18);
-          background: rgba(110, 211, 255, 0.06);
-          color: rgba(169, 184, 211, 0.92);
+          border: 1px solid rgba(255, 110, 248, 0.22);
+          background: rgba(255, 110, 195, 0.08);
+          color: #ff9fc6;
           font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.08em;
@@ -88,7 +88,7 @@ class StudiesTimeline extends HTMLElement {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #6ed3ff;
+          background: #ff2d75;
           animation: pulseDot 2s ease-in-out infinite;
         }
 

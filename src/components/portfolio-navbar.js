@@ -125,8 +125,8 @@ class PortfolioNavbar extends HTMLElement {
           place-items: center;
           border-radius: 999px;
           background:
-            radial-gradient(circle at 35% 28%, rgba(110, 211, 255, 0.18), transparent 55%),
-            linear-gradient(180deg, rgba(24, 24, 30, 0.98), rgba(12, 13, 18, 0.98));
+            radial-gradient(circle at 35% 28%, rgba(255, 110, 224, 0.18), transparent 55%),
+            linear-gradient(180deg, rgba(30, 24, 29, 0.98), rgba(18, 12, 17, 0.98));
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow:
             0 10px 24px rgba(2, 6, 23, 0.2),
@@ -189,7 +189,7 @@ class PortfolioNavbar extends HTMLElement {
 
         .nav-link:hover {
           color: white;
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(209, 38, 152, 0.73);
           transform: translateY(-1px);
         }
 
@@ -202,9 +202,9 @@ class PortfolioNavbar extends HTMLElement {
 
         .nav-link[aria-current='page'] {
           color: white;
-          background: linear-gradient(135deg, rgba(56, 58, 66, 0.96), rgba(28, 30, 36, 0.96));
+          background: linear-gradient(135deg, rgba(66, 56, 64, 0.96), rgba(28, 30, 36, 0.96));
           box-shadow:
-            0 10px 22px rgba(15, 17, 24, 0.34),
+            0 10px 22px rgba(24, 15, 22, 0.34),
             inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
@@ -248,9 +248,9 @@ class PortfolioNavbar extends HTMLElement {
         }
 
         .lang-option.is-active {
-          background: linear-gradient(135deg, rgba(110, 211, 255, 0.92), rgba(58, 136, 255, 0.88));
-          color: #06111f;
-          box-shadow: 0 10px 20px rgba(58, 136, 255, 0.22);
+          background: linear-gradient(135deg, rgba(185, 101, 160, 0.92), rgba(194, 107, 172, 0.589));
+          color: #1f061b;
+          box-shadow: 0 10px 20px rgba(255, 58, 166, 0.34);
         }
 
         .menu-toggle {
@@ -274,7 +274,7 @@ class PortfolioNavbar extends HTMLElement {
 
         .menu-toggle:hover {
           background: rgba(255, 255, 255, 0.06);
-          border-color: rgba(110, 211, 255, 0.34);
+          border-color: rgba(255, 110, 199, 0.34);
           transform: translateY(-1px);
         }
 

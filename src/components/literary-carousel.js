@@ -9,6 +9,7 @@ const DEFAULT_LABELS = {
   previous: 'Show previous book',
   next: 'Show next book',
   goTo: 'Go to book',
+  openReview: 'Read review',
   return: 'Back to cover',
   emptyState: 'There are no books available to show right now.',
   reviewBadge: 'Review',
@@ -39,7 +40,7 @@ const normalizeBook = (book, index) => ({
   cover: book?.cover ?? '',
   coverAlt: book?.coverAlt ?? `Portada de ${book?.title ?? 'Libro'}`,
   status: book?.status ?? 'Pendiente',
-  review: book?.review ?? 'Sin resena disponible.',
+  review: book?.review ?? 'Sin reseña disponible.',
   rating: Number.isFinite(Number(book?.rating)) ? Number(book.rating) : null,
   year: book?.year ?? '---',
   accent: book?.accent ?? '#6ed3ff',
@@ -414,6 +415,14 @@ class LiteraryCarousel extends HTMLElement {
                 <span class="book-status book-status--${tone}">
                   ${escapeHtml(book.status)}
                 </span>
+                <button
+                  class="book-card__trigger"
+                  type="button"
+                  aria-label="${escapeHtml(this._labels.openReview)} ${escapeHtml(book.title)}"
+                >
+                  <span>${escapeHtml(this._labels.openReview)}</span>
+                  <span aria-hidden="true">&#8594;</span>
+                </button>
               </div>
             </div>
             <div class="book-card__face book-card__back">
@@ -504,7 +513,11 @@ class LiteraryCarousel extends HTMLElement {
       return;
     }
 
+    const card = event.target.closest('.book-card');
+    const slide = card?.closest('.book-slide');
+    const index = parseInteger(slide?.dataset.index, -1);
     const returnButton = event.target.closest('.book-card__return');
+    const reviewTrigger = event.target.closest('.book-card__trigger');
 
     if (returnButton) {
       event.preventDefault();
@@ -514,16 +527,18 @@ class LiteraryCarousel extends HTMLElement {
       return;
     }
 
-    const card = event.target.closest('.book-card');
-
     if (!card) {
       return;
     }
 
-    const slide = card.closest('.book-slide');
-    const index = parseInteger(slide?.dataset.index, -1);
-
     if (index < 0) {
+      return;
+    }
+
+    if (reviewTrigger) {
+      event.preventDefault();
+      event.stopPropagation();
+      this._openReview(index, true);
       return;
     }
 
@@ -557,6 +572,7 @@ class LiteraryCarousel extends HTMLElement {
     }
 
     const card = event.target.closest('.book-card');
+    const reviewTrigger = event.target.closest('.book-card__trigger');
 
     if (!card) {
       return;
@@ -568,6 +584,11 @@ class LiteraryCarousel extends HTMLElement {
     const index = parseInteger(slide?.dataset.index, -1);
 
     if (index < 0) {
+      return;
+    }
+
+    if (reviewTrigger) {
+      this._openReview(index, true);
       return;
     }
 
@@ -645,6 +666,23 @@ class LiteraryCarousel extends HTMLElement {
     this._flippedBookId =
       this._flippedBookId === activeBookId ? null : activeBookId;
     this._updatePresentation();
+  }
+
+  _openReview(index, fromUser = false) {
+    const safeIndex = Math.min(Math.max(index, 0), this._books.length - 1);
+    const targetBook = this._books[safeIndex];
+
+    if (!targetBook) {
+      return;
+    }
+
+    this._currentIndex = safeIndex;
+    this._flippedBookId = targetBook.id;
+    this._updatePresentation();
+
+    if (fromUser) {
+      this._restartAutoplay();
+    }
   }
 
   _updatePresentation() {

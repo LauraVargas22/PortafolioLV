@@ -6,7 +6,7 @@ export const technologies = [
     color: '#ff8a3d',
     description: {
       en: 'Semantic structure and accessible layouts.',
-      es: 'Estructura semantica y maquetacion accesible.',
+      es: 'Estructura semántica y maquetación accesible.',
     },
   },
   {
@@ -16,7 +16,7 @@ export const technologies = [
     color: '#38bdf8',
     description: {
       en: 'Responsive interfaces, animation, and polish.',
-      es: 'Interfaces responsive, animacion y detalle visual.',
+      es: 'Interfaces responsive, animación y detalle visual.',
     },
   },
   {
@@ -26,7 +26,7 @@ export const technologies = [
     color: '#f7c948',
     description: {
       en: 'Dynamic experiences and reusable logic.',
-      es: 'Experiencias dinamicas y logica reutilizable.',
+      es: 'Experiencias dinámicas y lógica reutilizable.',
     },
   },
   {
@@ -36,7 +36,7 @@ export const technologies = [
     color: '#9b55bb',
     description: {
       en: 'Responsive and dynamic interface creation.',
-      es: 'Creacion de interfaces responsivas y dinamicas.',
+      es: 'Creación de interfaces responsivas y dinámicas.',
     },
   },
   {
@@ -46,7 +46,7 @@ export const technologies = [
     color: '#60a5fa',
     description: {
       en: 'Automation, problem solving, and clean scripting.',
-      es: 'Automatizacion, resolucion de problemas y scripts limpios.',
+      es: 'Automatización, resolución de problemas y scripts limpios.',
     },
   },
   {
@@ -56,7 +56,7 @@ export const technologies = [
     color: '#c084fc',
     description: {
       en: 'Structured backend logic and hexagonal architecture for applications.',
-      es: 'Logica backend estructurada y arquitectura hexagonal para aplicaciones.',
+      es: 'Lógica backend estructurada y arquitectura hexagonal para aplicaciones.',
     },
   },
   {
@@ -76,7 +76,7 @@ export const technologies = [
     color: '#94a3b8',
     description: {
       en: 'Repository management, sharing, and teamwork.',
-      es: 'Gestion de repositorios, colaboracion y trabajo en equipo.',
+      es: 'Gestión de repositorios, colaboración y trabajo en equipo.',
     },
   },
   {
@@ -96,7 +96,7 @@ export const technologies = [
     color: '#818cf8',
     description: {
       en: 'Robust schemas and query optimization basics.',
-      es: 'Esquemas robustos y bases de optimizacion de consultas.',
+      es: 'Esquemas robustos y bases de optimización de consultas.',
     },
   },
   {
@@ -106,7 +106,7 @@ export const technologies = [
     color: '#c76655',
     description: {
       en: 'Designing databases and stored procedures.',
-      es: 'Diseno de bases de datos y procedimientos almacenados.',
+      es: 'Diseño de bases de datos y procedimientos almacenados.',
     },
   },
   {
@@ -116,7 +116,7 @@ export const technologies = [
     color: '#c25ec5',
     description: {
       en: 'Implementation of logic through Web Forms.',
-      es: 'Implementacion de logica por medio de Web Forms.',
+      es: 'Implementación de lógica por medio de Web Forms.',
     },
   },
   {
@@ -136,7 +136,7 @@ export const technologies = [
     color: '#81f895',
     description: {
       en: 'Application and component design with Vue.js.',
-      es: 'Diseno de aplicaciones y componentes con Vue.js.',
+      es: 'Diseño de aplicaciones y componentes con Vue.js.',
     },
   },
 ];

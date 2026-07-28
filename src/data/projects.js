@@ -15,7 +15,7 @@ const projectEntries = [
     },
     image: asset('sgta.png'),
     summary: {
-      es: 'Aplicacion full stack para administrar clientes, vehiculos, reparaciones y procesos internos de un taller automotriz.',
+      es: 'Aplicación full stack para administrar clientes, vehículos, reparaciones y procesos internos de un taller automotriz.',
       en: 'Full-stack application to manage clients, vehicles, repairs, and internal processes for an automotive workshop.',
     },
     stack: ['.NET', 'PostgreSQL', 'React', 'TypeScript', 'Vite'],
@@ -25,7 +25,7 @@ const projectEntries = [
   {
     id: 'invoice',
     title: {
-      es: 'Factura Electronica',
+      es: 'Factura Electrónica',
       en: 'Electronic Invoice',
     },
     category: {
@@ -34,7 +34,7 @@ const projectEntries = [
     },
     image: asset('invoice.png'),
     summary: {
-      es: 'Sistema web para construir una experiencia de facturacion dinamica mediante componentes reutilizables.',
+      es: 'Sistema web para construir una experiencia de facturación dinámica mediante componentes reutilizables.',
       en: 'Web system designed to build a dynamic invoicing experience through reusable components.',
     },
     stack: ['JavaScript', 'Lit', 'Vite', 'Web Components'],
@@ -53,7 +53,7 @@ const projectEntries = [
     },
     image: asset('ligabetplay.png'),
     summary: {
-      es: 'Aplicacion en Python para modelar y gestionar equipos, jugadores y dinamicas de una liga deportiva.',
+      es: 'Aplicación en Python para modelar y gestionar equipos, jugadores y dinámicas de una liga deportiva.',
       en: 'Python application to model and manage teams, players, and workflows inside a sports league.',
     },
     stack: ['Python', 'Data structures'],
@@ -72,7 +72,7 @@ const projectEntries = [
     },
     image: asset('campusdb.png'),
     summary: {
-      es: 'Base de datos MySQL disenada para administrar procesos educativos y datos asociados a Campuslands.',
+      es: 'Base de datos MySQL diseñada para administrar procesos educativos y datos asociados a Campuslands.',
       en: 'MySQL database designed to manage educational processes and related Campuslands data.',
     },
     stack: ['MySQL', 'Relational modeling', 'SQL queries'],
@@ -81,7 +81,7 @@ const projectEntries = [
   {
     id: 'inventory',
     title: {
-      es: 'Gestion de Inventario',
+      es: 'Gestión de Inventario',
       en: 'Inventory Management',
     },
     category: {
@@ -90,7 +90,7 @@ const projectEntries = [
     },
     image: asset('inventory.png'),
     summary: {
-      es: 'Aplicacion de consola tipo CRUD para registrar y controlar operaciones de inventario.',
+      es: 'Aplicación de consola tipo CRUD para registrar y controlar operaciones de inventario.',
       en: 'CRUD-style console application to register and control inventory operations.',
     },
     stack: ['C#', 'Figgle', 'CRUD', 'Console'],
@@ -99,7 +99,7 @@ const projectEntries = [
   {
     id: 'formula1',
     title: {
-      es: 'Formula Uno',
+      es: 'Fórmula Uno',
       en: 'Formula One',
     },
     category: {
@@ -108,7 +108,7 @@ const projectEntries = [
     },
     image: asset('formula1.png'),
     summary: {
-      es: 'Sitio web interactivo inspirado en la Formula 1, con componentes visuales y dinamicas en JavaScript.',
+      es: 'Sitio web interactivo inspirado en la Fórmula 1, con componentes visuales y dinámicas en JavaScript.',
       en: 'Interactive website inspired by Formula 1, with visual components and JavaScript-driven interactions.',
     },
     stack: ['JavaScript', 'HTML', 'CSS'],
@@ -121,12 +121,12 @@ const projectEntries = [
       en: 'Campus Love',
     },
     category: {
-      es: 'Logica en C#',
+      es: 'Lógica en C#',
       en: 'C# logic',
     },
     image: asset('campuslove.png'),
     summary: {
-      es: 'Aplicacion de consola que simula decisiones y condiciones dentro de un juego de citas ambientado en un campus universitario.',
+      es: 'Aplicación de consola que simula decisiones y condiciones dentro de un juego de citas ambientado en un campus universitario.',
       en: 'Console application that simulates decisions and conditions inside a campus-themed dating game.',
     },
     stack: ['C#', 'Figgle', 'Conditional logic'],
@@ -144,7 +144,7 @@ const projectEntries = [
     },
     image: asset('chachipun.png'),
     summary: {
-      es: 'Juego en Python inspirado en piedra, papel o tijera, con mecanicas propias.',
+      es: 'Juego en Python inspirado en piedra, papel o tijera, con mecánicas propias.',
       en: 'Python game inspired by rock, paper, scissors, with its own creative mechanics.',
     },
     stack: ['Python', 'Game logic', 'Console'],
@@ -154,7 +154,7 @@ const projectEntries = [
   {
     id: 'simulador',
     title: {
-      es: 'Simulador Mecanico',
+      es: 'Simulador Mecánico',
       en: 'Mechanical Simulator',
     },
     category: {

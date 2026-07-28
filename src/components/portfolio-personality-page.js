@@ -30,7 +30,7 @@ class PortfolioPersonalityPage extends HTMLElement {
     setCurrentLanguage(language);
     document.title =
       language === 'es'
-        ? 'Laura Vargas | Sobre mi'
+        ? 'Laura Vargas | Sobre mí'
         : 'Laura Vargas | About me';
 
     this.innerHTML = `

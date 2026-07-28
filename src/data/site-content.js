@@ -11,11 +11,11 @@ const navigationContent = {
     en: 'Software Developer',
   },
   menuLabel: {
-    es: 'Abrir menu',
+    es: 'Abrir menú',
     en: 'Open menu',
   },
   navLabel: {
-    es: 'Navegacion principal',
+    es: 'Navegación principal',
     en: 'Primary navigation',
   },
   languageLabel: {
@@ -31,7 +31,7 @@ const navigationContent = {
     },
     personality: {
       label: {
-        es: 'Sobre mi',
+        es: 'Sobre mí',
         en: 'About me',
       },
     },
@@ -43,8 +43,8 @@ const navigationContent = {
     },
     experience: {
       label: {
-        es: 'Trayectoria',
-        en: 'Experience',
+        es: 'Proyectos',
+        en: 'Projects',
       },
     },
     contact: {
@@ -63,7 +63,7 @@ const footerContent = {
     en: 'Software Developer',
   },
   study: {
-    es: 'Estudiante de Ingenieria en Ciencia de Datos',
+    es: 'Estudiante de Ingeniería en Ciencia de Datos',
     en: 'Data Science Engineering Student',
   },
 };
@@ -97,7 +97,7 @@ const homeContent = {
   },
   about: {
     eyebrow: {
-      es: 'Sobre mi',
+      es: 'Sobre mí',
       en: 'About me',
     },
     title: {
@@ -106,15 +106,15 @@ const homeContent = {
     },
     paragraphs: [
       {
-        es: 'Desarrolladora de software en formacion con nivel intermedio de ingles y experiencia en tecnologias como Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL y PostgreSQL.',
-        en: 'Software developer in training with intermediate English skills and hands-on experience with technologies such as Python, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL.',
+        es: 'Desarrolladora de software en formación con nivel intermedio de inglés y experiencia en tecnologías como WebForms, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL y PostgreSQL.',
+        en: 'Software developer in training with intermediate English skills and hands-on experience with technologies such as WebForms, HTML, CSS, JavaScript, C#, Git, GitHub, MySQL, and PostgreSQL.',
       },
       {
-        es: 'He participado en proyectos de desarrollo web, diseno de bases de datos y aplicaciones de consola, fortaleciendo tanto la parte tecnica como la capacidad de organizar soluciones con criterio.',
+        es: 'He participado en proyectos de desarrollo web, diseño de bases de datos y aplicaciones de consola, fortaleciendo tanto la parte técnica como la capacidad de organizar soluciones con criterio.',
         en: 'I have worked on web development projects, database design, and console applications, strengthening both my technical foundation and my ability to organize solutions with intention.',
       },
       {
-        es: 'Me caracterizan la comunicacion, el liderazgo, la adaptabilidad y el trabajo en equipo, cualidades que facilitan la colaboracion en entornos academicos y profesionales.',
+        es: 'Me caracterizan la comunicación, el liderazgo, la adaptabilidad y el trabajo en equipo, cualidades que facilitan la colaboración en entornos académicos y profesionales.',
         en: 'I am known for communication, leadership, adaptability, and teamwork, qualities that make collaboration easier in both academic and professional environments.',
       },
     ],
@@ -122,7 +122,7 @@ const homeContent = {
       {
         src: asset('Front.png'),
         alt: {
-          es: 'Ilustracion de desarrollo frontend',
+          es: 'Ilustración de desarrollo frontend',
           en: 'Frontend development illustration',
         },
         title: {
@@ -137,7 +137,7 @@ const homeContent = {
       {
         src: asset('Pc.jpg'),
         alt: {
-          es: 'Ilustracion de bases de datos',
+          es: 'Ilustración de bases de datos',
           en: 'Database design illustration',
         },
         title: {
@@ -145,14 +145,14 @@ const homeContent = {
           en: 'Databases',
         },
         subtitle: {
-          es: 'Disenadora',
+          es: 'Diseñadora',
           en: 'Designer',
         },
       },
       {
         src: asset('Back.png'),
         alt: {
-          es: 'Ilustracion de desarrollo backend',
+          es: 'Ilustración de desarrollo backend',
           en: 'Backend development illustration',
         },
         title: {
@@ -168,24 +168,24 @@ const homeContent = {
   },
   knowledge: {
     heading: {
-      es: 'Tecnologias que manejo',
+      es: 'Tecnologías que manejo',
       en: 'Technologies I work with',
     },
     subheading: {
-      es: 'Herramientas con las que construyo interfaces responsive, logica backend y bases de datos confiables.',
+      es: 'Herramientas con las que construyo interfaces responsive, lógica backend y bases de datos confiables.',
       en: 'Tools I use to build responsive interfaces, backend logic, and reliable databases.',
     },
     labels: {
       carouselLabel: {
-        es: 'Carrusel de tecnologias',
+        es: 'Carrusel de tecnologías',
         en: 'Technology carousel',
       },
       previous: {
-        es: 'Mostrar tecnologias anteriores',
+        es: 'Mostrar tecnologías anteriores',
         en: 'Show previous technologies',
       },
       next: {
-        es: 'Mostrar tecnologias siguientes',
+        es: 'Mostrar tecnologías siguientes',
         en: 'Show next technologies',
       },
       level: {
@@ -193,14 +193,14 @@ const homeContent = {
         en: 'Proficiency',
       },
       goTo: {
-        es: 'Ir a la tecnologia',
+        es: 'Ir a la tecnología',
         en: 'Go to technology',
       },
     },
   },
   projects: {
     eyebrow: {
-      es: 'Seleccion de proyectos',
+      es: 'Selección de proyectos',
       en: 'Project selection',
     },
     title: {
@@ -212,15 +212,15 @@ const homeContent = {
       en: 'Repository',
     },
     paginationLabel: {
-      es: 'Paginacion de proyectos',
+      es: 'Paginación de proyectos',
       en: 'Project pagination',
     },
     previousPageLabel: {
-      es: 'Pagina anterior',
+      es: 'Página anterior',
       en: 'Previous page',
     },
     nextPageLabel: {
-      es: 'Pagina siguiente',
+      es: 'Página siguiente',
       en: 'Next page',
     },
     cta: {
@@ -237,18 +237,35 @@ const homeContent = {
       en: 'Contact',
     },
     title: {
-      es: 'Construyamos algo con personalidad y estructura',
-      en: "Let's build something with personality and structure",
+      es: 'Será un gusto conversar contigo',
+      en: 'I would be happy to talk with you',
     },
     description: {
-      es: 'Si quieres hablar sobre colaboraciones, oportunidades o simplemente conectar, este espacio queda como punto de contacto principal del portafolio.',
-      en: 'If you want to talk about collaborations, opportunities, or simply connect, this section works as the main contact point of the portfolio.',
+      es: 'Si deseas conversar sobre una oportunidad profesional, una colaboración o simplemente intercambiar ideas, estaré encantada de conocer tu propuesta.',
+      en: 'If you want to talk about professional opportunities, collaborations, or simply exchange ideas, I would be delighted to hear your proposal.',
+    },
+    emailLabel: {
+      es: 'Envíame un correo',
+      en: 'Send me an email',
+    },
+    linksLabel: {
+      es: 'También puedes encontrarme en',
+      en: 'You can also find me on',
+    },
+    name: 'Laura Vargas',
+    role: {
+      es: 'Desarrolladora de Software',
+      en: 'Software Developer',
+    },
+    quote: {
+      es: 'Construyamos algo increíble',
+      en: "Let's build something amazing",
     },
     email: 'lauramarianavargasrojas@gmail.com',
     cv: resumeUrl,
     primaryCta: {
       label: {
-        es: 'Contactame',
+        es: 'Contáctame',
         en: 'Contact me',
       },
     },
@@ -263,21 +280,21 @@ const homeContent = {
 
 const personalityContent = {
   pageTitle: {
-    es: 'Un poco sobre mi',
+    es: 'Un poco sobre mí',
     en: 'A little about me',
   },
   mission: {
-    es: 'Mediante mi experiencia en desarrollo de software y competencias interpersonales, busco resolver retos tecnologicos fomentando entornos de trabajo colaborativos que impulsen el progreso de la sociedad.',
+    es: 'Mediante mi experiencia en desarrollo de software y competencias interpersonales, busco resolver retos tecnológicos fomentando entornos de trabajo colaborativos que impulsen el progreso de la sociedad.',
     en: 'Through my experience in software development and interpersonal skills, I aim to solve technological challenges while fostering collaborative environments that support social progress.',
   },
   vision: {
-    es: 'Quiero destacar como desarrolladora de software resaltando mis habilidades interpersonales, adaptandome a diferentes contextos y creando soluciones tecnologicas inclusivas y accesibles.',
+    es: 'Quiero destacar como desarrolladora de software resaltando mis habilidades interpersonales, adaptándome a diferentes contextos y creando soluciones tecnológicas inclusivas y accesibles.',
     en: 'I want to stand out as a software developer by relying on my interpersonal strengths, adapting to different contexts, and creating inclusive and accessible technological solutions.',
   },
   values: [
     {
       title: {
-        es: 'Empatia',
+        es: 'Empatía',
         en: 'Empathy',
       },
       description: {
@@ -291,13 +308,13 @@ const personalityContent = {
         en: 'Leadership',
       },
       description: {
-        es: 'Inspirar y motivar desde la confianza, la responsabilidad y la organizacion.',
+        es: 'Inspirar y motivar desde la confianza, la responsabilidad y la organización.',
         en: 'Inspiring and motivating through trust, responsibility, and organization.',
       },
     },
     {
       title: {
-        es: 'Companerismo',
+        es: 'Compañerismo',
         en: 'Collaboration',
       },
       description: {
@@ -308,7 +325,7 @@ const personalityContent = {
   ],
   missionCard: {
     title: {
-      es: 'Mision',
+      es: 'Misión',
       en: 'Mission',
     },
     eyebrow: {
@@ -316,21 +333,21 @@ const personalityContent = {
       en: 'Essential pillar',
     },
     alt: {
-      es: 'Ilustracion de mision profesional',
+      es: 'Ilustración de misión profesional',
       en: 'Professional mission illustration',
     },
   },
   visionCard: {
     title: {
-      es: 'Vision',
+      es: 'Visión',
       en: 'Vision',
     },
     eyebrow: {
-      es: 'Direccion profesional',
+      es: 'Dirección profesional',
       en: 'Professional direction',
     },
     alt: {
-      es: 'Ilustracion de vision profesional',
+      es: 'Ilustración de visión profesional',
       en: 'Professional vision illustration',
     },
   },
@@ -340,7 +357,7 @@ const personalityContent = {
       en: 'Values',
     },
     eyebrow: {
-      es: 'Base de colaboracion',
+      es: 'Base de colaboración',
       en: 'Collaboration base',
     },
     copy: {
@@ -348,7 +365,7 @@ const personalityContent = {
       en: 'The values that support the way I learn, collaborate, and build solutions.',
     },
     alt: {
-      es: 'Ilustracion de valores',
+      es: 'Ilustración de valores',
       en: 'Values illustration',
     },
   },
@@ -365,8 +382,8 @@ const personalityContent = {
       en: 'Literary interests',
     },
     description: {
-      es: 'Cada libro abre una conversacion distinta entre la imaginacion, la memoria y la forma en la que entiendo el mundo.',
-      en: 'Every book opens a different conversation between imagination, memory, and the way I understand the world.',
+      es: 'No duermas para descansar; duerme para soñar, porque los sueños están para cumplirse.',
+      en: "Don't sleep to rest; sleep to dream, because dreams are meant to be fulfilled.",
     },
     labels: {
       carousel: {
@@ -385,6 +402,10 @@ const personalityContent = {
         es: 'Ir al libro',
         en: 'Go to book',
       },
+      openReview: {
+        es: 'Ver reseña',
+        en: 'Read review',
+      },
       return: {
         es: 'Volver a la portada',
         en: 'Back to cover',
@@ -394,11 +415,11 @@ const personalityContent = {
         en: 'There are no books available to show right now.',
       },
       reviewBadge: {
-        es: 'Resena',
+        es: 'Reseña',
         en: 'Review',
       },
       ratingLabel: {
-        es: 'Calificacion',
+        es: 'Calificación',
         en: 'Rating',
       },
       byConnector: {
@@ -416,15 +437,15 @@ const personalityContent = {
 const studiesContent = {
   banner: {
     eyebrow: {
-      es: 'Recorrido formativo',
-      en: 'Learning journey',
+      es: 'Recorrido formativo y profesional',
+      en: 'Learning and professional journey',
     },
     title: {
-      es: 'Estudios',
-      en: 'Studies',
+      es: 'Trayectoria',
+      en: 'Studie',
     },
     description: {
-      es: 'Un recorrido por mi formacion academica y los hitos que han fortalecido mis habilidades tecnicas, comunicativas y de aprendizaje continuo.',
+      es: 'Un recorrido por mi formación académica y los hitos que han fortalecido mis habilidades técnicas, comunicativas y de aprendizaje continuo.',
       en: 'A tour through my academic background and the milestones that have strengthened my technical, communication, and continuous-learning skills.',
     },
   },
@@ -438,7 +459,7 @@ const studiesContent = {
       en: 'Additional courses',
     },
     description: {
-      es: 'Cursos y credenciales que fortalecen mi crecimiento profesional y consolidan mis habilidades tecnicas y blandas.',
+      es: 'Cursos y credenciales que fortalecen mi crecimiento profesional y consolidan mis habilidades técnicas y blandas.',
       en: 'Courses and credentials that reinforce my professional growth and strengthen both my technical and soft skills.',
     },
     labels: {
@@ -494,7 +515,7 @@ const studiesContent = {
           en: 'English for IT 2 credential issued by Cisco',
         },
         summary: {
-          es: 'Credencial orientada al ingles aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B2.',
+          es: 'Credencial orientada al inglés aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B2.',
           en: 'Credential focused on English for IT environments, covering software, networking, customer support, and security at a B2 level.',
         },
         tags: ['English for IT', 'B2'],
@@ -517,7 +538,7 @@ const studiesContent = {
           en: 'English for IT 1 credential issued by Cisco',
         },
         summary: {
-          es: 'Credencial orientada al ingles aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B1.',
+          es: 'Credencial orientada al inglés aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B1.',
           en: 'Credential focused on English for IT environments, covering software, networking, customer support, and security at a B1 level.',
         },
         tags: ['English for IT', 'B1'],
@@ -540,14 +561,14 @@ const studiesContent = {
           en: 'Artificial Intelligence Fundamentals credential issued by IBM',
         },
         summary: {
-          es: 'Credencial orientada a la comprension de conceptos fundamentales de inteligencia artificial, incluyendo aprendizaje automatico, redes neuronales y procesamiento del lenguaje natural.',
+          es: 'Credencial orientada a la comprensión de conceptos fundamentales de inteligencia artificial, incluyendo aprendizaje automático, redes neuronales y procesamiento del lenguaje natural.',
           en: 'Credential focused on core artificial intelligence concepts, including machine learning, neural networks, and natural language processing.',
         },
         tags: ['IA', 'Fundamentos'],
       },
       {
         title: {
-          es: 'Aspectos basicos: Datos en todas partes',
+          es: 'Aspectos básicos: Datos en todas partes',
           en: 'Foundations: Data, Data, Everywhere',
         },
         issuer: 'Google',
@@ -563,10 +584,10 @@ const studiesContent = {
           en: 'Data foundations credential issued by Google',
         },
         summary: {
-          es: 'Credencial orientada a conceptos fundamentales de datos, incluyendo recopilacion, analisis y visualizacion para la toma de decisiones.',
+          es: 'Credencial orientada a conceptos fundamentales de datos, incluyendo recopilación, análisis y visualización para la toma de decisiones.',
           en: 'Credential focused on foundational data concepts, including collection, analysis, and visualization for decision-making.',
         },
-        tags: ['Datos', 'Analisis'],
+        tags: ['Datos', 'Análisis'],
       },
     ],
   },
@@ -575,21 +596,21 @@ const studiesContent = {
 const experienceContent = {
   banner: {
     eyebrow: {
-      es: 'Trayectoria creativa',
-      en: 'Creative path',
+      es: 'Fullstack',
+      en: 'Fullstack',
     },
     title: {
-      es: 'Trayectoria',
-      en: 'Experience',
+      es: 'Proyectos',
+      en: 'Projects',
     },
     description: {
-      es: 'Una coleccion de proyectos personales y colaborativos que refleja mi evolucion en desarrollo, diseno de interfaces, logica y construccion de experiencias utiles.',
+      es: 'Una colección de proyectos personales y colaborativos que refleja mi evolución en desarrollo, diseño de interfaces, lógica y construcción de experiencias útiles.',
       en: 'A collection of personal and collaborative projects that reflects my growth in development, interface design, logic, and useful digital experiences.',
     },
   },
   labels: {
     code: {
-      es: 'Codigo',
+      es: 'Código',
       en: 'Code',
     },
     demo: {

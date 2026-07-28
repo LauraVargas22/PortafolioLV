@@ -10,7 +10,7 @@ const bookEntries = [
       es: 'Noticia de un secuestro',
       en: 'News of a Kidnapping',
     },
-    author: 'Gabriel Garcia Marquez',
+    author: 'Gabriel García Márquez',
     cover: asset('noticia-secuestro.png'),
     coverAlt: {
       es: 'Portada de Noticia de un secuestro',
@@ -21,7 +21,7 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una reconstruccion periodistica impactante que muestra las consecuencias del narcotrafico en Colombia a traves de relatos reales llenos de tension y humanidad.',
+      es: 'Una reconstrucción periodística impactante que muestra las consecuencias del narcotráfico en Colombia a través de relatos reales llenos de tensión y humanidad.',
       en: 'A powerful journalistic reconstruction that shows the consequences of drug trafficking in Colombia through real stories full of tension and humanity.',
     },
     rating: 4.8,
@@ -32,13 +32,13 @@ const bookEntries = [
   {
     id: 'la-rebelion-de-la-granja',
     title: {
-      es: 'La rebelion de la granja',
+      es: 'La rebelión de la granja',
       en: 'Animal Farm',
     },
     author: 'George Orwell',
     cover: asset('rebelion-granja.png'),
     coverAlt: {
-      es: 'Portada de La rebelion de la granja',
+      es: 'Portada de La rebelión de la granja',
       en: 'Cover of Animal Farm',
     },
     status: {
@@ -46,7 +46,7 @@ const bookEntries = [
       en: 'Reading',
     },
     review: {
-      es: 'Una satira politica breve pero profunda que demuestra como el poder puede transformar incluso las mejores intenciones.',
+      es: 'Una sátira política breve pero profunda que demuestra cómo el poder puede transformar incluso las mejores intenciones.',
       en: 'A short but profound political satire that shows how power can transform even the best intentions.',
     },
     rating: 4.7,
@@ -57,13 +57,13 @@ const bookEntries = [
   {
     id: 'jaime-garzon-el-genial-impertinente',
     title: {
-      es: 'Jaime Garzon: El genial impertinente',
+      es: 'Jaime Garzón: El genial impertinente',
       en: 'Jaime Garzon: The Brilliant Troublemaker',
     },
-    author: 'German Izquierdo',
+    author: 'Germán Izquierdo',
     cover: asset('jaime-garzon.png'),
     coverAlt: {
-      es: 'Portada de Jaime Garzon: El genial impertinente',
+      es: 'Portada de Jaime Garzón: El genial impertinente',
       en: 'Cover of Jaime Garzon: The Brilliant Troublemaker',
     },
     status: {
@@ -71,7 +71,7 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una biografia que permite conocer la vida, el humor y el legado de una de las figuras mas influyentes de la historia reciente de Colombia.',
+      es: 'Una biografía que permite conocer la vida, el humor y el legado de una de las figuras más influyentes de la historia reciente de Colombia.',
       en: 'A biography that explores the life, humor, and legacy of one of the most influential figures in recent Colombian history.',
     },
     rating: 4.9,
@@ -82,8 +82,8 @@ const bookEntries = [
   {
     id: 'harry-potter-y-la-piedra-filosofal',
     title: {
-      es: 'Harry Potter y la piedra filosofal',
-      en: "Harry Potter and the Philosopher's Stone",
+      es: 'Harry Potter',
+      en: "Harry Potter",
     },
     author: 'J. K. Rowling',
     cover: asset('harry-potter.png'),
@@ -96,8 +96,8 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'El comienzo de una saga inolvidable que combina amistad, magia y crecimiento personal en un universo lleno de imaginacion.',
-      en: 'The beginning of an unforgettable saga that blends friendship, magic, and personal growth in an imaginative universe.',
+      es: 'Saga de los libros de Harry Potter que combina amistad, magia y crecimiento personal en un universo imaginativo.',
+      en: 'The Harry Potter book series that combines friendship, magic, and personal growth in an imaginative universe.',
     },
     rating: 5,
     year: 1997,
@@ -107,13 +107,13 @@ const bookEntries = [
   {
     id: 'corazon-diario-de-un-nino',
     title: {
-      es: 'Corazon: Diario de un nino',
+      es: 'Corazón: Diario de un niño',
       en: "Heart: A Boy's Journal",
     },
     author: 'Edmondo De Amicis',
     cover: asset('corazon.png'),
     coverAlt: {
-      es: 'Portada de Corazon: Diario de un nino',
+      es: 'Portada de Corazón: Diario de un niño',
       en: "Cover of Heart: A Boy's Journal",
     },
     status: {
@@ -121,7 +121,7 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una historia clasica que transmite valores como la empatia, la amistad, el esfuerzo y el respeto a traves de las experiencias de un nino durante un ano escolar.',
+      es: 'Una historia clásica que transmite valores como la empatía, la amistad, el esfuerzo y el respeto a través de las experiencias de un niño durante un año escolar.',
       en: 'A classic story that shares values such as empathy, friendship, effort, and respect through the experiences of a child during a school year.',
     },
     rating: 4.6,
@@ -132,13 +132,13 @@ const bookEntries = [
   {
     id: 'el-amor-en-los-tiempos-del-colera',
     title: {
-      es: 'El amor en los tiempos del colera',
+      es: 'El amor en los tiempos del cólera',
       en: 'Love in the Time of Cholera',
     },
-    author: 'Gabriel Garcia Marquez',
+    author: 'Gabriel García Márquez',
     cover: asset('amor-colera.png'),
     coverAlt: {
-      es: 'Portada de El amor en los tiempos del colera',
+      es: 'Portada de El amor en los tiempos del cólera',
       en: 'Cover of Love in the Time of Cholera',
     },
     status: {
@@ -146,10 +146,10 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una novela sobre la paciencia, el paso del tiempo y la persistencia del amor, escrita con el estilo caracteristico del realismo magico.',
+      es: 'Una novela sobre la paciencia, el paso del tiempo y la persistencia del amor, escrita con el estilo característico del realismo mágico.',
       en: 'A novel about patience, the passage of time, and the persistence of love, written in the distinctive style of magical realism.',
     },
-    rating: 4.9,
+    rating: 4.5,
     year: 1985,
     accent: '#BE123C',
     accentSoft: 'rgba(190, 18, 60, 0.22)',
@@ -168,10 +168,10 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una de las tragedias mas importantes de Shakespeare, centrada en la venganza, el poder y los conflictos internos del ser humano.',
+      es: 'Una de las tragedias más importantes de Shakespeare, centrada en la venganza, el poder y los conflictos internos del ser humano.',
       en: "One of Shakespeare's most important tragedies, centered on revenge, power, and the inner conflicts of human beings.",
     },
-    rating: 4.8,
+    rating: 4.4,
     year: 1603,
     accent: '#334155',
     accentSoft: 'rgba(51, 65, 85, 0.22)',
@@ -193,10 +193,10 @@ const bookEntries = [
       en: 'Finished',
     },
     review: {
-      es: 'Una tragedia que explora los efectos destructivos de los celos, la manipulacion y la desconfianza en las relaciones humanas.',
+      es: 'Una tragedia que explora los efectos destructivos de los celos, la manipulación y la desconfianza en las relaciones humanas.',
       en: 'A tragedy that explores the destructive effects of jealousy, manipulation, and distrust in human relationships.',
     },
-    rating: 4.7,
+    rating: 4.5,
     year: 1604,
     accent: '#0F766E',
     accentSoft: 'rgba(15, 118, 110, 0.22)',

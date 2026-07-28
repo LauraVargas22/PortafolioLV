@@ -122,9 +122,9 @@
   width: fit-content;
   padding: 0.35rem 0.72rem;
   border-radius: 999px;
-  border: 1px solid rgba(110, 211, 255, 0.22);
-  background: rgba(110, 211, 255, 0.08);
-  color: var(--home-accent);
+  border: 1px solid rgba(255, 110, 248, 0.22);
+  background: rgba(255, 110, 195, 0.08);
+  color: var(--home-accent-2);
   font-family: var(--font-display, inherit);
   font-size: 0.72rem;
   font-weight: 700;

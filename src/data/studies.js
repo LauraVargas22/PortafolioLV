@@ -6,11 +6,11 @@ const studiesTimelineContent = {
     en: 'Journey',
   },
   title: {
-    es: 'Trayectoria academica y profesional',
+    es: 'Trayectoria académica y profesional',
     en: 'Academic and professional path',
   },
   description: {
-    es: 'Aqui se encuentran algunos hitos academicos y profesionales que han fortalecido mi desarrollo integral.',
+    es: 'Aquí se encuentran algunos hitos académicos y profesionales que han fortalecido mi desarrollo integral.',
     en: 'Here are some academic and professional milestones that have strengthened my overall growth.',
   },
   skillsTitle: {
@@ -28,15 +28,15 @@ const studiesTimelineContent = {
         en: 'Core studies',
       },
       category: {
-        es: 'Formacion academica',
+        es: 'Formación académica',
         en: 'Academic education',
       },
       period: {
-        es: 'Bachiller con profundizacion en pedagogia',
+        es: 'Bachiller con profundización en pedagogía',
         en: 'High school diploma with emphasis in pedagogy',
       },
       description: {
-        es: 'Escuela Normal Superior Maria Auxiliadora - Noviembre 2023',
+        es: 'Escuela Normal Superior María Auxiliadora - Noviembre 2023',
         en: 'Escuela Normal Superior Maria Auxiliadora - November 2023',
       },
       skills: [
@@ -45,7 +45,7 @@ const studiesTimelineContent = {
           en: 'Teamwork',
         },
         {
-          es: 'Pensamiento critico',
+          es: 'Pensamiento crítico',
           en: 'Critical thinking',
         },
         {
@@ -53,7 +53,7 @@ const studiesTimelineContent = {
           en: 'Leadership',
         },
         {
-          es: 'Resolucion de problemas',
+          es: 'Resolución de problemas',
           en: 'Problem solving',
         },
       ],
@@ -64,11 +64,11 @@ const studiesTimelineContent = {
         en: 'Foreign language',
       },
       category: {
-        es: 'Ingles',
+        es: 'Inglés',
         en: 'English',
       },
       period: {
-        es: 'Ingles con enfoque academico',
+        es: 'Inglés con enfoque académico',
         en: 'Academic English track',
       },
       description: {
@@ -79,15 +79,15 @@ const studiesTimelineContent = {
     },
     {
       title: {
-        es: 'Tecnico en Desarrollo de Software',
+        es: 'Técnico en Desarrollo de Software',
         en: 'Software Development Technician',
       },
       category: {
-        es: 'Programacion',
+        es: 'Programación',
         en: 'Programming',
       },
       period: {
-        es: 'Programacion y desarrollo de software',
+        es: 'Programación y desarrollo de software',
         en: 'Programming and software development',
       },
       description: {
@@ -96,11 +96,11 @@ const studiesTimelineContent = {
       },
       skills: [
         {
-          es: 'Logica de programacion',
+          es: 'Lógica de programación',
           en: 'Programming logic',
         },
         {
-          es: 'Analisis de bases de datos',
+          es: 'Análisis de bases de datos',
           en: 'Database analysis',
         },
         {
@@ -115,11 +115,11 @@ const studiesTimelineContent = {
     },
     {
       title: {
-        es: 'Ingenieria en Ciencia de Datos',
+        es: 'Ingeniería en Ciencia de Datos',
         en: 'Data Science Engineering',
       },
       category: {
-        es: 'Ingenieria',
+        es: 'Ingeniería',
         en: 'Engineering',
       },
       period: {
@@ -132,11 +132,11 @@ const studiesTimelineContent = {
       },
       skills: [
         {
-          es: 'Analisis de datos',
+          es: 'Análisis de datos',
           en: 'Data analysis',
         },
         {
-          es: 'Logica matematica',
+          es: 'Lógica matemática',
           en: 'Mathematical reasoning',
         },
       ],
@@ -168,7 +168,7 @@ const studiesTimelineContent = {
           en: 'Web applications',
         },
         {
-          es: 'Buenas practicas de desarrollo',
+          es: 'Buenas prácticas de desarrollo',
           en: 'Development best practices',
         },
         {
