@@ -3,38 +3,62 @@ import './hero-section.js';
 import './site-footer.js';
 import './technology-carousel.js';
 import './featured-projects.js';
-import { homeContent, socialLinks } from '../data/site-content';
+import { getHomeContent, socialLinks } from '../data/site-content';
 import { technologies } from '../data/technologies';
+import {
+  getCurrentLanguage,
+  onLanguageChange,
+  setCurrentLanguage,
+} from '../i18n';
 import { escapeHtml } from './utils';
 
-const highlightedWords = [
-  'Python',
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'C#',
-  'GitHub',
-  'Git',
-  'MySQL',
-  'PostgreSQL',
-  'communication',
-  'leadership',
-  'adaptability',
-  'teamwork',
-];
+const highlightedWordsByLanguage = {
+  es: [
+    'WebForms',
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'C#',
+    'GitHub',
+    'Git',
+    'MySQL',
+    'PostgreSQL',
+    'comunicación',
+    'liderazgo',
+    'adaptabilidad',
+    'trabajo en equipo',
+  ],
+  en: [
+    'WebForms',
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'C#',
+    'GitHub',
+    'Git',
+    'MySQL',
+    'PostgreSQL',
+    'communication',
+    'leadership',
+    'adaptability',
+    'teamwork',
+  ],
+};
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const highlightText = (text) => {
+const highlightText = (text, language) => {
   let highlighted = escapeHtml(text);
 
-  highlightedWords.forEach((word) => {
-    const matcher = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'g');
-    highlighted = highlighted.replace(
-      matcher,
-      `<span class="home-highlight">${word}</span>`
-    );
-  });
+  (highlightedWordsByLanguage[language] ?? highlightedWordsByLanguage.en).forEach(
+    (word) => {
+      const matcher = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
+      highlighted = highlighted.replace(
+        matcher,
+        (match) => `<span class="home-highlight">${match}</span>`
+      );
+    }
+  );
 
   return highlighted;
 };
@@ -43,13 +67,33 @@ class PortfolioHomePage extends HTMLElement {
   constructor() {
     super();
     this._observer = null;
+    this._removeLanguageListener = null;
   }
 
   connectedCallback() {
-    const hero = homeContent.hero;
-    const about = homeContent.about;
-    const contact = homeContent.contact;
-    const heroLinks = socialLinks.filter((link) => link.label !== 'Email');
+    this._removeLanguageListener = onLanguageChange(() => this.render());
+    this.render();
+  }
+
+  disconnectedCallback() {
+    this._observer?.disconnect();
+    this._observer = null;
+    this._removeLanguageListener?.();
+    this._removeLanguageListener = null;
+  }
+
+  render() {
+    const language = getCurrentLanguage();
+    const homeContent = getHomeContent(language);
+    const { about, knowledge, contact } = homeContent;
+    const contactLinks = socialLinks.filter((link) => link.label !== 'Email');
+
+    setCurrentLanguage(language);
+    document.title =
+      language === 'es' ? 'Laura Vargas | Inicio' : 'Laura Vargas | Home';
+
+    this._observer?.disconnect();
+    this._observer = null;
 
     this.innerHTML = `
       <div style="padding-bottom: 1rem;">
@@ -64,7 +108,7 @@ class PortfolioHomePage extends HTMLElement {
           <div class="container-xl">
             <div class="home-section-shell home-section-shell--about home-reveal">
               <div class="home-section-heading home-reveal">
-                <span class="home-section-eyebrow">Sobre mí</span>
+                <span class="home-section-eyebrow">${escapeHtml(about.eyebrow)}</span>
                 <h2 class="home-section-title">${escapeHtml(about.title)}</h2>
               </div>
 
@@ -76,7 +120,7 @@ class PortfolioHomePage extends HTMLElement {
                       ${about.paragraphs
                         .map(
                           (paragraph) => `
-                            <p class="home-about-text">${highlightText(paragraph)}</p>
+                            <p class="home-about-text">${highlightText(paragraph, language)}</p>
                           `
                         )
                         .join('')}
@@ -119,9 +163,9 @@ class PortfolioHomePage extends HTMLElement {
                 visible-items="3"
                 autoplay="true"
                 autoplay-interval="4200"
-                heading="Technologies I know"
-                subheading=""
-                locale="en">
+                heading="${escapeHtml(knowledge.heading)}"
+                subheading="${escapeHtml(knowledge.subheading)}"
+                locale="${escapeHtml(language)}">
               </technology-carousel>
             </div>
           </div>
@@ -136,53 +180,81 @@ class PortfolioHomePage extends HTMLElement {
         <section id="contact" class="page-section home-section">
           <div id="contactMe" class="anchor-target" aria-hidden="true"></div>
           <div class="container-xl">
-            <div class="home-section-shell home-section-shell--contact home-reveal">
-              <div class="row g-4 g-xl-5 align-items-stretch">
-                <div class="col-12 col-lg-7 order-2 order-lg-1">
-                  <div class="home-contact-copy home-reveal">
-                    <span class="home-contact-eyebrow">${escapeHtml(contact.eyebrow)}</span>
-                    <h2 class="home-section-title">${escapeHtml(contact.title)}</h2>
-                    <p class="home-contact-description">${escapeHtml(contact.description)}</p>
+            <div class="home-contact-shell home-reveal">
+              <div class="home-contact-grid">
 
-                    <div class="d-flex flex-column flex-sm-row gap-3 home-contact-actions">
-                      <a class="home-primary-button" href="mailto:${escapeHtml(contact.email)}">
-                        Contact Me
-                      </a>
-                      <a
-                        class="home-secondary-button"
-                        href="${escapeHtml(contact.cv)}"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        ${escapeHtml(hero.primaryCta.label)}
-                      </a>
+                <div class="home-contact-left">
+                  <h2 class="home-contact-title">${escapeHtml(contact.eyebrow)}</h2>
+                  <div class="home-contact-underline"></div>
+                  <h3 class="home-contact-subtitle">${escapeHtml(contact.title)}</h3>
+
+                  <p class="home-contact-description">${escapeHtml(contact.description)}</p>
+
+                  <a class="home-contact-email-pill" href="mailto:${escapeHtml(contact.email)}">
+                    <span class="home-contact-email-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                        <path d="M3 7l9 6 9-6"/>
+                      </svg>
+                    </span>
+                    <span class="home-contact-email-text">
+                      <strong>${escapeHtml(contact.emailLabel)}</strong>
+                      <span>${escapeHtml(contact.email)}</span>
+                    </span>
+                    <span class="home-contact-email-arrow">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M13 6l6 6-6 6"/>
+                      </svg>
+                    </span>
+                  </a>
+
+                  <div class="home-contact-links-block">
+                    <p class="home-contact-links-label">${escapeHtml(contact.linksLabel)}</p>
+                    <div class="home-contact-links">
+                      ${contactLinks
+                        .map(
+                          (link) => `
+                            <a
+                              class="home-contact-link-pill"
+                              href="${escapeHtml(link.href)}"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              ${escapeHtml(link.label)}
+                            </a>
+                          `
+                        )
+                        .join('')}
                     </div>
                   </div>
                 </div>
 
-                <div class="col-12 col-lg-5 order-1 order-lg-2">
-                  <div class="home-contact-card home-reveal">
-                    <div class="home-contact-card-surface">
-                      <h3 class="home-contact-mail">${escapeHtml(contact.email)}</h3>
-                      <div class="d-flex flex-wrap gap-2 home-contact-links">
-                        ${socialLinks
-                          .map(
-                            (link) => `
-                              <a
-                                class="home-social-pill"
-                                href="${escapeHtml(link.href)}"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                ${escapeHtml(link.label)}
-                              </a>
-                            `
-                          )
-                          .join('')}
-                      </div>
+                <div class="home-contact-divider" aria-hidden="true"></div>
+
+                <div class="home-contact-right">
+                  <div class="home-business-card">
+                    <span class="home-business-card-sparkle sparkle-1">&#10022;</span>
+                    <span class="home-business-card-sparkle sparkle-2">&#10022;</span>
+
+                    <div class="home-business-card-avatar">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+                      </svg>
                     </div>
+
+                    <h3 class="home-business-card-name">${escapeHtml(contact.name)}</h3>
+                    <p class="home-business-card-role">${escapeHtml(contact.role)}</p>
+
+                    <hr class="home-business-card-divider" />
+
+                    <p class="home-business-card-quote">
+                      ${escapeHtml(contact.quote)}
+                      <span aria-hidden="true">&#9829;</span>
+                    </p>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -194,14 +266,10 @@ class PortfolioHomePage extends HTMLElement {
     const carousel = this.querySelector('technology-carousel');
     if (carousel) {
       carousel.technologies = technologies;
+      carousel.labels = knowledge.labels;
     }
 
     this._setupRevealObserver();
-  }
-
-  disconnectedCallback() {
-    this._observer?.disconnect();
-    this._observer = null;
   }
 
   _setupRevealObserver() {

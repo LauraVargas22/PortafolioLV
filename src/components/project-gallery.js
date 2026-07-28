@@ -1,5 +1,5 @@
-import { projects } from '../data/projects';
-import { experienceContent } from '../data/site-content';
+import { getProjects } from '../data/projects';
+import { getExperienceContent } from '../data/site-content';
 import { escapeHtml } from './utils';
 import '../styles/featured-projects.css';
 
@@ -50,7 +50,18 @@ class ProjectGallery extends HTMLElement {
   }
 
   connectedCallback() {
-    const { banner } = experienceContent;
+    this.render();
+  }
+
+  disconnectedCallback() {
+    this._observer?.disconnect();
+    this._observer = null;
+  }
+
+  render() {
+    const projects = getProjects();
+    const experienceContent = getExperienceContent();
+    const { banner, labels } = experienceContent;
 
     this.innerHTML = `
       <section class="trajectory-panel">
@@ -71,16 +82,21 @@ class ProjectGallery extends HTMLElement {
             ${projects
               .map((project, index) => {
                 const palette = palettes[index % palettes.length];
+                const projectUrl = project.url || project.demoUrl || project.repository || '';
+                const titleId = `project-card-title-${escapeHtml(project.id)}`;
 
                 return `
                   <article
-                    class="project-card home-reveal"
+                    class="project-card project-card--interactive home-reveal"
                     style="
                       --project-accent: ${palette.accent};
                       --project-accent-soft: ${palette.accentSoft};
                       --project-accent-strong: ${palette.accentStrong};
                       --project-secondary-soft: ${palette.secondarySoft};
                     "
+                    ${projectUrl ? `data-url="${escapeHtml(projectUrl)}"` : ''}
+                    ${projectUrl ? 'role="link" tabindex="0"' : ''}
+                    ${projectUrl ? `aria-labelledby="${titleId}"` : ''}
                   >
                     <div class="project-card-media">
                       <span class="project-card-badge">${escapeHtml(project.category)}</span>
@@ -94,14 +110,14 @@ class ProjectGallery extends HTMLElement {
                     </div>
 
                     <div class="project-card-body">
-                      <h3 class="project-card-title">${escapeHtml(project.title)}</h3>
+                      <h3 class="project-card-title" id="${titleId}">${escapeHtml(project.title)}</h3>
                       <p class="project-card-summary">${escapeHtml(project.summary)}</p>
 
                       ${
-                        (project.tags?.length || project.stack?.length)
+                        project.stack?.length
                           ? `
                             <ul class="project-card-tags">
-                              ${(project.tags ?? project.stack ?? [])
+                              ${project.stack
                                 .map((tag) => `<li>${escapeHtml(tag)}</li>`)
                                 .join('')}
                             </ul>
@@ -111,17 +127,17 @@ class ProjectGallery extends HTMLElement {
 
                       <div class="project-card-links">
                         ${
-                          (project.repoUrl ?? project.repository)
+                          project.repository
                             ? `
                               <a
                                 class="project-card-link project-card-link--repo"
-                                href="${escapeHtml(project.repoUrl ?? project.repository)}"
+                                href="${escapeHtml(project.repository)}"
                                 target="_blank"
                                 rel="noreferrer"
-                                aria-label="Repositorio de ${escapeHtml(project.title)}"
+                                aria-label="${escapeHtml(labels.repositoryAria)} ${escapeHtml(project.title)}"
                               >
                                 ${icons.github}
-                                <span>Codigo</span>
+                                <span>${escapeHtml(labels.code)}</span>
                               </a>
                             `
                             : ''
@@ -134,10 +150,10 @@ class ProjectGallery extends HTMLElement {
                                 href="${escapeHtml(project.demoUrl)}"
                                 target="_blank"
                                 rel="noreferrer"
-                                aria-label="Demo de ${escapeHtml(project.title)}"
+                                aria-label="${escapeHtml(labels.demoAria)} ${escapeHtml(project.title)}"
                               >
                                 ${icons.external}
-                                <span>Demo</span>
+                                <span>${escapeHtml(labels.demo)}</span>
                               </a>
                             `
                             : ''
@@ -153,12 +169,44 @@ class ProjectGallery extends HTMLElement {
       </section>
     `;
 
+    this._setupCardNavigation();
     this._setupRevealObserver();
   }
 
-  disconnectedCallback() {
-    this._observer?.disconnect();
-    this._observer = null;
+  _setupCardNavigation() {
+    const interactiveCards = [...this.querySelectorAll('.project-card--interactive[data-url]')];
+
+    interactiveCards.forEach((card) => {
+      card.addEventListener('click', (event) => {
+        if (event.target.closest('.project-card-link')) {
+          return;
+        }
+
+        const url = card.dataset.url;
+
+        if (!url) {
+          return;
+        }
+
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+          return;
+        }
+
+        event.preventDefault();
+
+        const url = card.dataset.url;
+
+        if (!url) {
+          return;
+        }
+
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+    });
   }
 
   _setupRevealObserver() {

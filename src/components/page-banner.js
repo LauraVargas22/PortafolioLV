@@ -65,15 +65,14 @@ class PageBanner extends HTMLElement {
           gap: 0.55rem;
           padding: 0.45rem 0.9rem;
           border-radius: 999px;
-          border: 1px solid rgba(110, 211, 255, 0.18);
+          border: 1px solid rgba(255, 110, 248, 0.24);
           background: linear-gradient(
               135deg,
-              rgba(255, 96, 145, 0.16),
-              rgba(110, 211, 255, 0.12),
-              rgba(255, 188, 92, 0.1)
+              rgba(255, 96, 145, 0.2),
+              rgba(255, 45, 117, 0.1)
             ),
             rgba(7, 19, 37, 0.68);
-          color: var(--accent-soft);
+          color: #ff9fc6;
           font-size: 0.74rem;
           font-weight: 700;
           letter-spacing: 0.08em;
@@ -85,7 +84,7 @@ class PageBanner extends HTMLElement {
           width: 0.5rem;
           height: 0.5rem;
           border-radius: 999px;
-          background: linear-gradient(135deg, #ff6091, #6ed3ff, #ffbc5c);
+          background: linear-gradient(135deg, #ff8ab5, #ff2d75);
           box-shadow: 0 0 14px rgba(255, 96, 145, 0.34);
         }
 

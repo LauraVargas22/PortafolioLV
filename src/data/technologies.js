@@ -56,7 +56,7 @@ export const technologies = [
     color: '#c084fc',
     description: {
       en: 'Structured backend logic and hexagonal architecture for applications.',
-      es: 'Lógica backend y arquitectura hexagonal para aplicaciones.',
+      es: 'Lógica backend estructurada y arquitectura hexagonal para aplicaciones.',
     },
   },
   {
@@ -66,7 +66,7 @@ export const technologies = [
     color: '#fb7185',
     description: {
       en: 'Version control for safe and collaborative delivery.',
-      es: 'Control de versiones y colaboración en proyectos.',
+      es: 'Control de versiones para entregas seguras y colaborativas.',
     },
   },
   {
@@ -76,7 +76,7 @@ export const technologies = [
     color: '#94a3b8',
     description: {
       en: 'Repository management, sharing, and teamwork.',
-      es: 'Gestión de repositorios, colaboración y seguimiento.',
+      es: 'Gestión de repositorios, colaboración y trabajo en equipo.',
     },
   },
   {
@@ -96,7 +96,7 @@ export const technologies = [
     color: '#818cf8',
     description: {
       en: 'Robust schemas and query optimization basics.',
-      es: 'Esquemas relacionales y normalización.',
+      es: 'Esquemas robustos y bases de optimización de consultas.',
     },
   },
   {
@@ -116,7 +116,7 @@ export const technologies = [
     color: '#c25ec5',
     description: {
       en: 'Implementation of logic through Web Forms.',
-      es: 'Implementación de lógica por medio de Web Forms',
+      es: 'Implementación de lógica por medio de Web Forms.',
     },
   },
   {
@@ -136,7 +136,7 @@ export const technologies = [
     color: '#81f895',
     description: {
       en: 'Application and component design with Vue.js.',
-      es: 'Diseño de aplicativos y componentes con Vue.js.',
+      es: 'Diseño de aplicaciones y componentes con Vue.js.',
     },
-  }
+  },
 ];

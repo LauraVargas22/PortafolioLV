@@ -1,4 +1,4 @@
- import { homeContent } from '../data/site-content';
+import { getHomeContent } from '../data/site-content';
 import { bootstrapCss } from './bootstrap-css';
 import { sectionFrameStyles } from './shared-styles';
 import { escapeHtml } from './utils';
@@ -10,7 +10,11 @@ class HeroSection extends HTMLElement {
   }
 
   connectedCallback() {
-    const { hero } = homeContent;
+    this.render();
+  }
+
+  render() {
+    const { hero } = getHomeContent();
 
     this.shadowRoot.innerHTML = `
       <style>${bootstrapCss}</style>
@@ -25,10 +29,10 @@ class HeroSection extends HTMLElement {
 
         .hero-frame {
           background:
-            radial-gradient(circle at 16% 26%, rgba(110, 211, 255, 0.16), transparent 22%),
-            radial-gradient(circle at 82% 18%, rgba(255, 45, 117, 0.12), transparent 18%),
-            radial-gradient(circle at 68% 86%, rgba(58, 136, 255, 0.14), transparent 24%),
-            linear-gradient(160deg, rgba(6, 16, 34, 0.98), rgba(8, 21, 44, 0.92));
+            radial-gradient(circle at 16% 26%, rgba(110, 211, 255, 0.14), transparent 22%),
+            radial-gradient(circle at 82% 18%, rgba(255, 45, 117, 0.1), transparent 18%),
+            radial-gradient(circle at 68% 86%, rgba(255, 255, 255, 0.05), transparent 24%),
+            linear-gradient(160deg, rgba(12, 12, 15, 0.98), rgba(22, 24, 30, 0.94));
         }
 
         .hero-frame::after {
@@ -138,7 +142,7 @@ class HeroSection extends HTMLElement {
           height: clamp(11rem, 34vw, 21rem);
           left: 50%;
           top: 50%;
-          background: radial-gradient(circle, rgba(110, 211, 255, 0.42), rgba(110, 211, 255, 0.08) 56%, transparent 72%);
+          background: radial-gradient(circle, rgba(110, 211, 255, 0.34), rgba(110, 211, 255, 0.06) 56%, transparent 72%);
           transform: translate(-56%, -50%);
           animation: haloPulse 6s ease-in-out infinite;
         }
@@ -148,7 +152,7 @@ class HeroSection extends HTMLElement {
           height: clamp(8rem, 24vw, 14rem);
           right: 12%;
           top: 16%;
-          background: radial-gradient(circle, rgba(255, 45, 117, 0.34), rgba(255, 45, 117, 0.08) 52%, transparent 72%);
+          background: radial-gradient(circle, rgba(255, 45, 117, 0.28), rgba(255, 45, 117, 0.08) 52%, transparent 72%);
           animation: pinkPulse 7s ease-in-out infinite reverse;
         }
 
@@ -168,8 +172,8 @@ class HeroSection extends HTMLElement {
           inset: 6% 10% 8%;
           border-radius: 38% 62% 58% 42% / 40% 42% 58% 60%;
           background:
-            radial-gradient(circle at 30% 32%, rgba(110, 211, 255, 0.26), transparent 30%),
-            linear-gradient(180deg, rgba(13, 32, 63, 0.92), rgba(5, 13, 28, 0.74));
+            radial-gradient(circle at 30% 32%, rgba(110, 211, 255, 0.2), transparent 30%),
+            linear-gradient(180deg, rgba(26, 28, 36, 0.94), rgba(12, 13, 18, 0.8));
           border: 1px solid rgba(169, 184, 211, 0.16);
           box-shadow: 0 28px 70px rgba(2, 6, 23, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(18px);
@@ -220,7 +224,7 @@ class HeroSection extends HTMLElement {
           padding: 0.95rem;
           background:
             linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03)),
-            linear-gradient(180deg, rgba(7, 19, 37, 0.65), rgba(7, 19, 37, 0.22));
+            linear-gradient(180deg, rgba(24, 24, 30, 0.78), rgba(11, 12, 17, 0.32));
           border: 1px solid rgba(169, 184, 211, 0.22);
           box-shadow: 0 22px 60px rgba(2, 6, 23, 0.38), 0 0 34px rgba(58, 136, 255, 0.12);
           backdrop-filter: blur(18px);
@@ -403,7 +407,7 @@ class HeroSection extends HTMLElement {
                   <span class="portrait-orbit one" aria-hidden="true"></span>
                   <span class="portrait-orbit two" aria-hidden="true"></span>
                   <div class="portrait-frame">
-                    <img class="portrait" src="${hero.image}" alt="Laura Vargas">
+                    <img class="portrait" src="${hero.image}" alt="${escapeHtml(hero.imageAlt)}">
                   </div>
                 </div>
               </div>

@@ -41,11 +41,12 @@ export const sectionFrameStyles = `
     width: fit-content;
     padding: 0.45rem 0.85rem;
     border-radius: 999px;
-    border: 1px solid rgba(110, 211, 255, 0.22);
-    background: rgba(110, 211, 255, 0.08);
-    color: var(--accent-soft);
+    border: 1px solid rgba(255, 110, 248, 0.22);
+    background: rgba(255, 110, 195, 0.08);
+    color: var(--home-accent-2, #ff2d75);
     font-family: var(--font-display);
     font-size: 0.82rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -176,7 +177,7 @@ export const shellStyles = `
     border-radius: var(--radius-xl);
     background:
       radial-gradient(circle at top right, rgba(110, 211, 255, 0.14), transparent 24%),
-      linear-gradient(160deg, rgba(7, 19, 37, 0.94), rgba(10, 27, 53, 0.84));
+      linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
     overflow: hidden;
@@ -202,21 +203,21 @@ export const shellStyles = `
     margin-bottom: 1.6rem;
   }
 
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: fit-content;
-    padding: 0.45rem 0.85rem;
-    border-radius: 999px;
-    border: 1px solid rgba(110, 211, 255, 0.22);
-    background: rgba(110, 211, 255, 0.08);
-    color: var(--accent-soft);
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 110, 248, 0.22);
+  background: rgba(255, 110, 195, 0.08);
+  color: var(--home-accent-2, #ff2d75);
+  font-family: var(--font-display, inherit);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
   .title {
     margin: 0;
@@ -296,7 +297,7 @@ export const shellStyles = `
     z-index: 1;
     padding: 1.3rem;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(11, 28, 55, 0.92), rgba(6, 17, 33, 0.98));
+    background: linear-gradient(180deg, rgba(27, 28, 34, 0.94), rgba(12, 13, 18, 0.98));
     border: 1px solid rgba(169, 184, 211, 0.14);
     box-shadow: 0 16px 36px rgba(2, 6, 23, 0.22);
   }
