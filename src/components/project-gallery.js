@@ -1,6 +1,7 @@
 import { getProjects } from '../data/projects';
 import { getExperienceContent } from '../data/site-content';
 import { escapeHtml } from './utils';
+import './enterprise-projects.js';
 import '../styles/featured-projects.css';
 
 const icons = {
@@ -165,6 +166,8 @@ class ProjectGallery extends HTMLElement {
               })
               .join('')}
           </div>
+
+          <enterprise-projects class="home-reveal"></enterprise-projects>
         </div>
       </section>
     `;

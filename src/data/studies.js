@@ -10,8 +10,8 @@ const studiesTimelineContent = {
     en: 'Academic and professional path',
   },
   description: {
-    es: 'Aquí se encuentran algunos hitos académicos y profesionales que han fortalecido mi desarrollo integral.',
-    en: 'Here are some academic and professional milestones that have strengthened my overall growth.',
+    es: 'Aquí se encuentran algunos logros académicos y profesionales que han fortalecido mi desarrollo integral.',
+    en: 'Here are some academic and professional achievements that have strengthened my overall growth.',
   },
   skillsTitle: {
     es: 'Habilidades desarrolladas',
