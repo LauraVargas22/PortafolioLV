@@ -459,6 +459,40 @@ const enterpriseCompanyEntries = [
         accentSoft: 'rgba(110, 211, 255, 0.2)',
         accentStrong: 'rgba(110, 211, 255, 0.34)',
       },
+      {
+        id: 'ofertas',
+        icon: 'ofertas',
+        name: {
+          es: 'Ofertas',
+          en: 'Offers',
+        },
+        shortDescription: {
+          es: 'Módulo para la gestión de ofertas comerciales y paremetrización a clientes y productos específicos.',
+          en: 'Module for managing commercial offers and parameterizing clients and specific products.',
+        },
+        description: {
+          es: 'Herramienta para la creación, seguimiento y control de ofertas comerciales, incluyendo parametrización de clientes y productos específicos y aplicación de descuentos en pedidos.',
+          en: 'Tool for creating, tracking, and controlling commercial offers, including parameterization of clients and specific products, and applying discounts to orders.',
+        },
+        technologies: ['Web Forms', 'SQL Server', 'VB.NET'],
+        functionalities: [
+          {
+            es: 'Gestión de ofertas comerciales',
+            en: 'Commercial offer management',
+          },
+          {
+            es: 'Aplicación de descuentos en pedidos',
+            en: 'Discount application in orders',
+          },
+          {
+            es: 'Parametrización de clientes y productos',
+            en: 'Client and product parameterization',
+          },
+        ],
+        accent: '#ff6b91',
+        accentSoft: 'rgba(255, 107, 145, 0.2)',
+        accentStrong: 'rgba(255, 107, 145, 0.34)',
+      },
     ],
   },
   {
