@@ -27,6 +27,8 @@ class StudiesTimeline extends HTMLElement {
 
         .timeline-shell {
           position: relative;
+          --timeline-gap: clamp(1rem, 2.2vw, 1.5rem);
+          --timeline-center-column: clamp(3.8rem, 6vw, 4.8rem);
           padding: clamp(1.5rem, 3vw, 2.5rem);
           background:
             radial-gradient(circle at 12% 20%, rgba(110, 211, 255, 0.1), transparent 28%),
@@ -119,7 +121,96 @@ class StudiesTimeline extends HTMLElement {
           position: relative;
           z-index: 1;
           display: grid;
-          gap: 0.85rem;
+          gap: 0.95rem;
+          padding-block: 0.15rem;
+        }
+
+        .accordion-list::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0.75rem;
+          bottom: 0.75rem;
+          width: 1px;
+          transform: translateX(-50%);
+          background: linear-gradient(
+            180deg,
+            rgba(110, 211, 255, 0.18),
+            rgba(226, 232, 240, 0.05) 45%,
+            rgba(255, 45, 117, 0.14)
+          );
+          box-shadow: 0 0 18px rgba(110, 211, 255, 0.06);
+          pointer-events: none;
+        }
+
+        .timeline-item {
+          position: relative;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) var(--timeline-center-column) minmax(0, 1fr);
+          column-gap: var(--timeline-gap);
+          align-items: start;
+        }
+
+        .timeline-item--left .accordion-card {
+          grid-column: 1;
+        }
+
+        .timeline-item--right .accordion-card {
+          grid-column: 3;
+        }
+
+        .timeline-marker {
+          position: relative;
+          grid-column: 2;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          min-height: 100%;
+          padding-top: 0.72rem;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .timeline-node {
+          position: relative;
+          display: inline-flex;
+          width: 3rem;
+          height: 3rem;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          border: 1px solid rgba(110, 211, 255, 0.14);
+          background: rgba(17, 24, 39, 0.94);
+          color: #6ed3ff;
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          font-family: var(--font-display);
+          box-shadow:
+            0 0 0 6px rgba(10, 12, 18, 0.92),
+            0 10px 22px rgba(2, 6, 23, 0.18);
+          transition: all 0.3s ease;
+        }
+
+        .timeline-node::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          width: calc(var(--timeline-gap) + 0.45rem);
+          height: 1px;
+          transform: translateY(-50%);
+          opacity: 0.72;
+          transition: opacity 0.3s ease, background 0.3s ease;
+        }
+
+        .timeline-item--left .timeline-node::before {
+          right: 100%;
+          background: linear-gradient(90deg, transparent, rgba(110, 211, 255, 0.22));
+        }
+
+        .timeline-item--right .timeline-node::before {
+          left: 100%;
+          background: linear-gradient(90deg, rgba(110, 211, 255, 0.22), transparent);
         }
 
         .accordion-card {
@@ -130,6 +221,7 @@ class StudiesTimeline extends HTMLElement {
           background: rgba(255, 255, 255, 0.03);
           box-shadow: 0 4px 16px rgba(2, 6, 23, 0.15);
           transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          min-width: 0;
         }
 
         .accordion-card:hover {
@@ -159,6 +251,28 @@ class StudiesTimeline extends HTMLElement {
           box-shadow: 0 12px 36px rgba(2, 6, 23, 0.25);
         }
 
+        .timeline-item:hover .timeline-node,
+        .timeline-item.is-open .timeline-node {
+          background: rgba(110, 211, 255, 0.18);
+          border-color: rgba(110, 211, 255, 0.22);
+          color: white;
+          box-shadow:
+            0 0 0 6px rgba(10, 12, 18, 0.92),
+            0 0 20px rgba(110, 211, 255, 0.12);
+        }
+
+        .timeline-item--left:hover .timeline-node::before,
+        .timeline-item--left.is-open .timeline-node::before {
+          opacity: 1;
+          background: linear-gradient(90deg, transparent, rgba(110, 211, 255, 0.38));
+        }
+
+        .timeline-item--right:hover .timeline-node::before,
+        .timeline-item--right.is-open .timeline-node::before {
+          opacity: 1;
+          background: linear-gradient(90deg, rgba(110, 211, 255, 0.38), transparent);
+        }
+
         .accordion-card .card-accent {
           position: absolute;
           left: 0;
@@ -176,12 +290,22 @@ class StudiesTimeline extends HTMLElement {
           opacity: 1;
         }
 
+        .timeline-item--left .card-accent {
+          left: auto;
+          right: 0;
+          border-radius: 999px 0 0 999px;
+        }
+
+        .timeline-item--left .accordion-card::before {
+          background: linear-gradient(225deg, rgba(110, 211, 255, 0.04), transparent 50%);
+        }
+
         .accordion-trigger {
           width: 100%;
           display: grid;
-          grid-template-columns: auto minmax(0, 1fr) auto;
+          grid-template-columns: minmax(0, 1fr) auto;
           align-items: center;
-          gap: 1rem;
+          gap: 0.9rem;
           padding: 1.1rem 1.2rem;
           border: 0;
           background: transparent;
@@ -196,29 +320,6 @@ class StudiesTimeline extends HTMLElement {
           outline: 2px solid rgba(110, 211, 255, 0.4);
           outline-offset: -2px;
           border-radius: 18px;
-        }
-
-        .accordion-index {
-          display: inline-flex;
-          width: 2.5rem;
-          height: 2.5rem;
-          align-items: center;
-          justify-content: center;
-          border-radius: 999px;
-          background: rgba(110, 211, 255, 0.08);
-          color: #6ed3ff;
-          font-size: 0.8rem;
-          font-weight: 800;
-          letter-spacing: 0.06em;
-          font-family: var(--font-display);
-          flex-shrink: 0;
-          transition: all 0.3s ease;
-        }
-
-        .accordion-card.is-open .accordion-index {
-          background: rgba(110, 211, 255, 0.18);
-          color: white;
-          box-shadow: 0 0 20px rgba(110, 211, 255, 0.1);
         }
 
         .accordion-heading {
@@ -385,6 +486,63 @@ class StudiesTimeline extends HTMLElement {
           font-size: 0.95rem;
         }
 
+        @media (max-width: 900px) {
+          .timeline-shell {
+            --timeline-center-column: 3rem;
+            --timeline-gap: 0.9rem;
+          }
+
+          .accordion-list::before {
+            left: calc((var(--timeline-center-column) / 2) - 0.05rem);
+            transform: none;
+          }
+
+          .timeline-item {
+            grid-template-columns: var(--timeline-center-column) minmax(0, 1fr);
+            column-gap: 0.85rem;
+          }
+
+          .timeline-marker {
+            grid-column: 1;
+            padding-top: 0.65rem;
+          }
+
+          .timeline-item .accordion-card {
+            grid-column: 2;
+          }
+
+          .timeline-node {
+            width: 2.45rem;
+            height: 2.45rem;
+            font-size: 0.72rem;
+          }
+
+          .timeline-item--left .timeline-node::before,
+          .timeline-item--right .timeline-node::before,
+          .timeline-item--left:hover .timeline-node::before,
+          .timeline-item--left.is-open .timeline-node::before,
+          .timeline-item--right:hover .timeline-node::before,
+          .timeline-item--right.is-open .timeline-node::before {
+            left: 100%;
+            right: auto;
+            width: 0.85rem;
+            opacity: 1;
+            background: linear-gradient(90deg, rgba(110, 211, 255, 0.24), transparent);
+          }
+
+          .timeline-item--left .card-accent,
+          .timeline-item--right .card-accent {
+            left: 0;
+            right: auto;
+            border-radius: 0 999px 999px 0;
+          }
+
+          .timeline-item--left .accordion-card::before,
+          .timeline-item--right .accordion-card::before {
+            background: linear-gradient(135deg, rgba(110, 211, 255, 0.04), transparent 50%);
+          }
+        }
+
         @media (max-width: 720px) {
           .timeline-shell {
             padding: 1rem;
@@ -392,24 +550,19 @@ class StudiesTimeline extends HTMLElement {
           }
 
           .accordion-trigger {
-            grid-template-columns: auto minmax(0, 1fr);
-            align-items: start;
-            padding: 0.9rem;
+            padding: 0.9rem 0.95rem;
             gap: 0.75rem;
           }
 
-          .accordion-index {
+          .accordion-icon {
+            width: 2.2rem;
+            height: 2.2rem;
+          }
+
+          .timeline-node {
             width: 2.2rem;
             height: 2.2rem;
             font-size: 0.7rem;
-          }
-
-          .accordion-icon {
-            grid-column: 2;
-            justify-self: end;
-            width: 2.2rem;
-            height: 2.2rem;
-            margin-top: -2.2rem;
           }
 
           .accordion-heading {
@@ -436,6 +589,8 @@ class StudiesTimeline extends HTMLElement {
 
         @media (max-width: 575px) {
           .timeline-shell {
+            --timeline-center-column: 2.55rem;
+            --timeline-gap: 0.7rem;
             padding: 0.8rem;
             border-radius: 16px;
           }
@@ -445,13 +600,20 @@ class StudiesTimeline extends HTMLElement {
           }
 
           .accordion-trigger {
-            padding: 0.75rem;
+            padding: 0.75rem 0.82rem;
           }
 
-          .accordion-index,
-          .accordion-icon {
+          .accordion-icon,
+          .timeline-node {
             width: 2rem;
             height: 2rem;
+          }
+
+          .timeline-node {
+            font-size: 0.64rem;
+            box-shadow:
+              0 0 0 4px rgba(10, 12, 18, 0.92),
+              0 8px 18px rgba(2, 6, 23, 0.18);
           }
 
           .accordion-icon svg {
@@ -507,7 +669,7 @@ class StudiesTimeline extends HTMLElement {
           .accordion-trigger,
           .accordion-icon,
           .accordion-icon svg,
-          .accordion-index,
+          .timeline-node,
           .skills-list li {
             transition: none !important;
           }
@@ -529,67 +691,75 @@ class StudiesTimeline extends HTMLElement {
             ? `
               <div class="accordion-list">
                 ${items
-                  .map(
-                    (item, index) => `
-                      <article class="accordion-card ${
-                        index === this._openIndex ? 'is-open' : ''
+                  .map((item, index) => {
+                    const isOpen = index === this._openIndex;
+                    const side = index % 2 === 0 ? 'right' : 'left';
+
+                    return `
+                      <div class="timeline-item timeline-item--${side} ${
+                        isOpen ? 'is-open' : ''
                       }">
-                        <span class="card-accent" aria-hidden="true"></span>
+                        <span class="timeline-marker" aria-hidden="true">
+                          <span class="timeline-node">${String(index + 1).padStart(2, '0')}</span>
+                        </span>
 
-                        <button
-                          class="accordion-trigger"
-                          type="button"
-                          data-index="${index}"
-                          aria-expanded="${index === this._openIndex}"
-                          aria-controls="study-panel-${index}"
-                        >
-                          <span class="accordion-index">${String(index + 1).padStart(2, '0')}</span>
-                          <span class="accordion-heading">
-                            <span class="accordion-meta">
-                              <span>${escapeHtml(item.category)}</span>
+                        <article class="accordion-card ${isOpen ? 'is-open' : ''}">
+                          <span class="card-accent" aria-hidden="true"></span>
+
+                          <button
+                            class="accordion-trigger"
+                            type="button"
+                            data-index="${index}"
+                            aria-expanded="${isOpen}"
+                            aria-controls="study-panel-${index}"
+                          >
+                            <span class="accordion-heading">
+                              <span class="accordion-meta">
+                                <span>${escapeHtml(item.category)}</span>
+                              </span>
+                              <h3 class="accordion-title">${escapeHtml(item.title)}</h3>
+                              <p class="accordion-period">
+                                <span class="period-dot"></span>
+                                ${escapeHtml(item.period)}
+                              </p>
                             </span>
-                            <h3 class="accordion-title">${escapeHtml(item.title)}</h3>
-                            <p class="accordion-period">
-                              <span class="period-dot"></span>
-                              ${escapeHtml(item.period)}
-                            </p>
-                          </span>
-                          <span class="accordion-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M6 9l6 6 6-6"></path>
-                            </svg>
-                          </span>
-                        </button>
+                            <span class="accordion-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 9l6 6 6-6"></path>
+                              </svg>
+                            </span>
+                          </button>
 
-                        ${
-                          index === this._openIndex
-                            ? `
-                              <div class="accordion-panel" id="study-panel-${index}">
-                                <p class="accordion-copy">${escapeHtml(item.description)}</p>
-                                ${
-                                  item.skills?.length
-                                    ? `
-                                      <div class="skills-block">
-                                        <p class="skills-title">
-                                          <span aria-hidden="true">&#9889;</span>
-                                          ${escapeHtml(skillsTitle)}
-                                        </p>
-                                        <ul class="skills-list">
-                                          ${item.skills
-                                            .map((skill) => `<li>${escapeHtml(skill)}</li>`)
-                                            .join('')}
-                                        </ul>
-                                      </div>
-                                    `
-                                    : ''
-                                }
-                              </div>
-                            `
-                            : ''
-                        }
-                      </article>
-                    `
-                  )
+                          ${
+                            isOpen
+                              ? `
+                                <div class="accordion-panel" id="study-panel-${index}">
+                                  <p class="accordion-copy">${escapeHtml(item.description)}</p>
+                                  ${
+                                    item.skills?.length
+                                      ? `
+                                        <div class="skills-block">
+                                          <p class="skills-title">
+                                            <span aria-hidden="true">&#9889;</span>
+                                            ${escapeHtml(skillsTitle)}
+                                          </p>
+                                          <ul class="skills-list">
+                                            ${item.skills
+                                              .map((skill) => `<li>${escapeHtml(skill)}</li>`)
+                                              .join('')}
+                                          </ul>
+                                        </div>
+                                      `
+                                      : ''
+                                  }
+                                </div>
+                              `
+                              : ''
+                          }
+                        </article>
+                      </div>
+                    `;
+                  })
                   .join('')}
               </div>
             `

@@ -1,17 +1,62 @@
+import { getCurrentLanguage } from '../i18n';
 import { getStudiesContent } from '../data/site-content';
-import { bootstrapCss } from './bootstrap-css';
 import { shellStyles } from './shared-styles';
 import { escapeHtml } from './utils';
 
+const DEFAULT_ACCENT = {
+  color: '#6ed3ff',
+  soft: 'rgba(110, 211, 255, 0.18)',
+  strong: 'rgba(110, 211, 255, 0.34)',
+  glow: 'rgba(58, 136, 255, 0.22)',
+};
+
+const FALLBACK_PROVIDER_META = {
+  'Cisco Networking Academy': {
+    categoryKey: 'languages',
+    category: {
+      es: 'Idiomas',
+      en: 'Languages',
+    },
+    accent: {
+      color: '#6ed3ff',
+      soft: 'rgba(110, 211, 255, 0.18)',
+      strong: 'rgba(110, 211, 255, 0.34)',
+      glow: 'rgba(58, 136, 255, 0.24)',
+    },
+  },
+  IBM: {
+    categoryKey: 'artificial-intelligence',
+    category: {
+      es: 'Inteligencia Artificial',
+      en: 'Artificial Intelligence',
+    },
+    accent: {
+      color: '#ff6091',
+      soft: 'rgba(255, 96, 145, 0.18)',
+      strong: 'rgba(255, 96, 145, 0.34)',
+      glow: 'rgba(143, 124, 255, 0.24)',
+    },
+  },
+  Google: {
+    categoryKey: 'data',
+    category: {
+      es: 'Datos',
+      en: 'Data',
+    },
+    accent: {
+      color: '#ffbc5c',
+      soft: 'rgba(255, 188, 92, 0.18)',
+      strong: 'rgba(255, 188, 92, 0.34)',
+      glow: 'rgba(255, 188, 92, 0.22)',
+    },
+  },
+};
+
 const icons = {
-  badge: `
+  verified: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 3l2.7 5.46 6.03.88-4.36 4.25 1.03 6.01L12 16.9 6.6 19.6l1.03-6.01L3.27 9.34l6.03-.88L12 3z"></path>
-    </svg>`,
-  calendar: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-      <path d="M16 2v4M8 2v4M3 10h18"></path>
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>`,
   external: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -19,15 +64,28 @@ const icons = {
       <path d="M10 14L19 5"></path>
       <path d="M19 14v5h-14v-14h5"></path>
     </svg>`,
-  star: `
-    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-    </svg>`,
-  verified: `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-    </svg>`,
+};
+
+const resolveText = (value, language) => {
+  if (!value) {
+    return '';
+  }
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'object') {
+    return (
+      value[language] ??
+      value.en ??
+      value.es ??
+      Object.values(value).find((entry) => typeof entry === 'string') ??
+      ''
+    );
+  }
+
+  return '';
 };
 
 class CourseCredentials extends HTMLElement {
@@ -37,10 +95,16 @@ class CourseCredentials extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this._courses = [];
+    this._observer = null;
+    this._reducedMotionQuery =
+      typeof window !== 'undefined'
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : null;
   }
 
   set courses(value) {
     this._courses = Array.isArray(value) ? value : [];
+
     if (this.isConnected) {
       this.render();
     }
@@ -50,6 +114,11 @@ class CourseCredentials extends HTMLElement {
     this.render();
   }
 
+  disconnectedCallback() {
+    this._observer?.disconnect();
+    this._observer = null;
+  }
+
   attributeChangedCallback() {
     if (this.isConnected) {
       this.render();
@@ -57,15 +126,21 @@ class CourseCredentials extends HTMLElement {
   }
 
   render() {
+    const language = getCurrentLanguage();
     const eyebrow = this.getAttribute('eyebrow') ?? 'Credentials';
     const title = this.getAttribute('title') ?? 'Additional courses';
     const description =
       this.getAttribute('description') ??
       'Credentials and complementary courses with verifiable evidence.';
-    const labels = getStudiesContent().coursesDraft.labels;
+    const labels = getStudiesContent(language).coursesDraft.labels;
+    const courses = this._courses.map((course, index) =>
+      this._normalizeCourse(course, index, language)
+    );
+
+    this._observer?.disconnect();
+    this._observer = null;
 
     this.shadowRoot.innerHTML = `
-      <style>${bootstrapCss}</style>
       <style>
         ${shellStyles}
 
@@ -75,35 +150,40 @@ class CourseCredentials extends HTMLElement {
 
         .credentials-shell {
           position: relative;
-          padding: clamp(1.5rem, 3vw, 2.5rem);
+          max-width: var(--content-width);
+          margin: 0 auto;
+          padding: clamp(1.35rem, 3vw, 2.4rem);
+          border-radius: 30px;
+          border: 1px solid rgba(169, 184, 211, 0.1);
           background:
-            radial-gradient(circle at 15% 25%, rgba(110, 211, 255, 0.08), transparent 30%),
-            radial-gradient(circle at 85% 75%, rgba(255, 45, 117, 0.06), transparent 25%),
-            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 40%),
-            linear-gradient(160deg, rgba(12, 12, 15, 0.96), rgba(24, 25, 31, 0.9));
-          border-radius: 28px;
-          border: 1px solid rgba(169, 184, 211, 0.08);
-          box-shadow: 0 24px 54px rgba(2, 6, 23, 0.25);
+            radial-gradient(circle at 12% 18%, rgba(110, 211, 255, 0.12), transparent 24%),
+            radial-gradient(circle at 88% 12%, rgba(255, 96, 145, 0.1), transparent 22%),
+            radial-gradient(circle at 52% 100%, rgba(255, 188, 92, 0.08), transparent 26%),
+            linear-gradient(160deg, rgba(10, 12, 18, 0.98), rgba(21, 24, 33, 0.92));
+          box-shadow: 0 28px 64px rgba(2, 6, 23, 0.28);
+          overflow: hidden;
         }
 
         .credentials-shell::before {
           content: '';
           position: absolute;
           inset: 0;
-          border-radius: 28px;
           background:
-            repeating-linear-gradient(45deg,
-              transparent,
-              transparent 35px,
-              rgba(110, 211, 255, 0.015) 35px,
-              rgba(110, 211, 255, 0.015) 36px
-            ),
-            repeating-linear-gradient(-45deg,
-              transparent,
-              transparent 35px,
-              rgba(255, 45, 117, 0.015) 35px,
-              rgba(255, 45, 117, 0.015) 36px
-            );
+            linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 30%),
+            linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
+          pointer-events: none;
+        }
+
+        .credentials-shell::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+          background-size: 96px 96px;
+          mask-image: radial-gradient(circle at center, black, transparent 85%);
+          opacity: 0.24;
           pointer-events: none;
         }
 
@@ -111,8 +191,8 @@ class CourseCredentials extends HTMLElement {
           position: relative;
           z-index: 1;
           display: grid;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
+          gap: 0.55rem;
+          margin-bottom: clamp(1.45rem, 3vw, 2rem);
         }
 
         .eyebrow {
@@ -137,12 +217,7 @@ class CourseCredentials extends HTMLElement {
           height: 6px;
           border-radius: 50%;
           background: #ff2d75;
-          animation: pulseDot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseDot {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.3; transform: scale(0.7); }
+          box-shadow: 0 0 14px rgba(255, 45, 117, 0.36);
         }
 
         .title {
@@ -157,393 +232,349 @@ class CourseCredentials extends HTMLElement {
 
         .description {
           margin: 0;
-          max-width: 32rem;
-          color: rgba(226, 232, 240, 0.72);
+          max-width: 38rem;
+          color: rgba(226, 232, 240, 0.76);
           font-size: 0.98rem;
           line-height: 1.7;
         }
 
-        .courses-grid {
+        .header-divider {
+          width: min(100%, 16rem);
+          height: 1px;
+          margin-top: 0.3rem;
+          background: linear-gradient(90deg, rgba(110, 211, 255, 0.04), rgba(110, 211, 255, 0.5), rgba(255, 96, 145, 0.44), rgba(255, 188, 92, 0.1));
+          box-shadow: 0 0 24px rgba(110, 211, 255, 0.12);
+        }
+
+        .credentials-grid {
           position: relative;
           z-index: 1;
           display: grid;
-          gap: 1rem;
+          grid-template-columns: 1fr;
+          gap: clamp(0.95rem, 2vw, 1.3rem);
+          justify-items: center;
+          align-items: stretch;
         }
 
-        .course-card {
+        .credential-card {
           position: relative;
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
+          width: min(100%, 21.75rem);
+          height: 100%;
+          border-radius: 22px;
           overflow: hidden;
-          border-radius: 20px;
-          border: 1px solid rgba(169, 184, 211, 0.08);
-          background: rgba(255, 255, 255, 0.03);
-          box-shadow: 0 4px 16px rgba(2, 6, 23, 0.12);
-          transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+          border: 1px solid rgba(169, 184, 211, 0.14);
+          background:
+            radial-gradient(circle at top right, var(--credential-accent-soft), transparent 28%),
+            linear-gradient(180deg, rgba(18, 20, 27, 0.98), rgba(9, 11, 16, 0.98));
+          box-shadow:
+            0 12px 30px rgba(2, 6, 23, 0.18),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+          opacity: 0;
+          transform: translateY(28px);
+          transition:
+            opacity 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+            transform 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+            border-color 240ms ease,
+            box-shadow 240ms ease;
         }
 
-        .course-card::before {
+        .credential-card::before {
           content: '';
           position: absolute;
           inset: 0;
-          border-radius: 20px;
-          background: linear-gradient(135deg, rgba(110, 211, 255, 0.04), transparent 60%);
+          background:
+            linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 20%),
+            linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
           pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.4s ease;
         }
 
-        .course-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(110, 211, 255, 0.12);
-          box-shadow: 0 12px 32px rgba(2, 6, 23, 0.25);
-        }
-
-        .course-card:hover::before {
-          opacity: 1;
-        }
-
-        .course-card .card-accent {
+        .credential-card::after {
+          content: '';
           position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 3px;
-          border-radius: 0 999px 999px 0;
-          background: linear-gradient(180deg, #6ed3ff, #ff2d75);
+          inset: auto 1rem 0.8rem;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--credential-accent-strong), transparent);
           opacity: 0;
-          transition: opacity 0.35s ease;
+          transition: opacity 240ms ease;
+          pointer-events: none;
         }
 
-        .course-card:hover .card-accent {
+        .credential-card.is-visible {
+          opacity: 1;
+          transform: none;
+        }
+
+        .credential-card:hover,
+        .credential-card:focus-within {
+          transform: translateY(-4px);
+          border-color: var(--credential-accent-strong);
+          box-shadow:
+            0 18px 38px rgba(2, 6, 23, 0.24),
+            0 0 0 1px rgba(255, 255, 255, 0.03),
+            0 0 18px var(--credential-accent-glow);
+        }
+
+        .credential-card:hover::after,
+        .credential-card:focus-within::after {
           opacity: 1;
         }
 
-        .course-layout {
-          display: flex;
-          flex-direction: column;
-        }
-
-        @media (min-width: 576px) {
-          .course-layout {
-            flex-direction: row;
-          }
-        }
-
-        .course-media {
+        .credential-media {
           position: relative;
           display: block;
-          flex: none;
-          width: 100%;
-          aspect-ratio: 16 / 9;
           overflow: hidden;
-          background: linear-gradient(180deg, rgba(24, 25, 31, 0.3), rgba(12, 12, 15, 0.72)), #08090d;
+          min-height: 11.5rem;
+          aspect-ratio: 16 / 10;
+          background:
+            radial-gradient(circle at top, var(--credential-accent-soft), transparent 38%),
+            linear-gradient(180deg, rgba(16, 18, 25, 0.4), rgba(8, 10, 15, 0.9));
           text-decoration: none;
         }
 
-        @media (min-width: 576px) {
-          .course-media {
-            width: 13rem;
-            aspect-ratio: 4 / 3;
-          }
-        }
-
-        @media (min-width: 992px) {
-          .course-media {
-            width: 14rem;
-            aspect-ratio: 4 / 3;
-          }
-        }
-
-        .course-media img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-
-        .course-card:hover .course-media img {
-          transform: scale(1.04);
-        }
-
-        .course-media .media-overlay {
+        .credential-media::before {
+          content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, transparent 40%, rgba(2, 6, 23, 0.6));
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 32%),
+            radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.12), transparent 22%);
+          pointer-events: none;
+          z-index: 1;
         }
 
-        .course-card:hover .media-overlay {
-          opacity: 1;
-        }
-
-        .media-overlay .view-icon {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1.2rem;
-          border-radius: 999px;
-          background: rgba(110, 211, 255, 0.15);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          color: white;
-          font-size: 0.8rem;
-          font-weight: 600;
-          transform: translateY(12px);
-          transition: transform 0.3s ease;
-        }
-
-        .course-card:hover .media-overlay .view-icon {
-          transform: translateY(0);
-        }
-
-        .course-media .media-badge {
+        .credential-media::after {
+          content: '';
           position: absolute;
-          top: 0.75rem;
-          right: 0.75rem;
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-          padding: 0.25rem 0.6rem;
-          border-radius: 999px;
-          background: rgba(255, 45, 117, 0.2);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 45, 117, 0.15);
-          color: #ff6b9d;
-          font-size: 0.6rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
+          inset: 42% 0 0;
+          background: linear-gradient(180deg, transparent, rgba(8, 10, 15, 0.18) 20%, rgba(8, 10, 15, 0.88));
+          pointer-events: none;
+          z-index: 2;
         }
 
-        .course-media .media-badge svg {
-          width: 0.7rem;
-          height: 0.7rem;
-          fill: #ff6b9d;
+        .credential-media img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: transform 340ms ease;
         }
 
-        .course-body {
-          min-width: 0;
-          flex: 1;
-          padding: 1.1rem 1.2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
+        .credential-card:hover .credential-media img,
+        .credential-card:focus-within .credential-media img {
+          transform: scale(1.025);
         }
 
-        .course-top-row {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 0.5rem 0.9rem;
-        }
-
-        .course-kicker {
+        .credential-badge {
+          position: absolute;
+          top: 0.8rem;
+          right: 0.8rem;
+          z-index: 3;
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          padding: 0.2rem 0.6rem;
+          min-height: 1.85rem;
+          padding: 0.32rem 0.62rem;
           border-radius: 999px;
-          border: 1px solid rgba(110, 211, 255, 0.12);
-          background: rgba(110, 211, 255, 0.06);
-          color: #6ed3ff;
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          font-family: var(--font-display);
-        }
-
-        .course-kicker svg {
-          width: 0.8rem;
-          height: 0.8rem;
-        }
-
-        .course-meta {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          color: rgba(168, 219, 255, 0.6);
-          font-size: 0.75rem;
-          font-weight: 500;
-        }
-
-        .course-meta svg {
-          width: 0.85rem;
-          height: 0.85rem;
-        }
-
-        .course-title {
-          margin: 0;
+          border: 1px solid var(--credential-accent-strong);
+          background: rgba(7, 12, 20, 0.54);
+          backdrop-filter: blur(12px);
           color: white;
-          font-family: var(--font-display);
-          font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem);
+          font-size: 0.6rem;
           font-weight: 700;
-          line-height: 1.15;
-          letter-spacing: -0.02em;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          box-shadow: 0 10px 18px rgba(2, 6, 23, 0.14);
         }
 
-        .course-issuer {
-          margin: 0.05rem 0 0;
-          color: rgba(168, 219, 255, 0.85);
-          font-size: 0.88rem;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-        }
-
-        .course-issuer .verified-icon {
-          display: inline-flex;
-          color: #4ade80;
-          width: 1rem;
-          height: 1rem;
-        }
-
-        .course-summary {
-          margin: 0.2rem 0 0;
-          color: rgba(226, 232, 240, 0.65);
-          font-size: 0.88rem;
-          line-height: 1.6;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .course-bottom-row {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 0.6rem;
-          margin-top: 0.3rem;
-        }
-
-        .course-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        .course-tags li {
-          padding: 0.25rem 0.7rem;
-          border-radius: 999px;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(169, 184, 211, 0.08);
-          color: rgba(226, 232, 240, 0.6);
-          font-size: 0.7rem;
-          font-weight: 600;
-          transition: all 0.25s ease;
-        }
-
-        .course-tags li:hover {
-          background: rgba(110, 211, 255, 0.06);
-          border-color: rgba(110, 211, 255, 0.12);
-          color: rgba(238, 244, 255, 0.85);
-        }
-
-        .course-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          margin-left: auto;
-          padding: 0.45rem 1rem;
-          border-radius: 999px;
-          border: 1px solid rgba(110, 211, 255, 0.15);
-          background: linear-gradient(135deg, rgba(58, 136, 255, 0.85), rgba(110, 211, 255, 0.75));
-          color: #03101f;
-          text-decoration: none;
-          font-size: 0.78rem;
-          font-weight: 700;
-          white-space: nowrap;
-          transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .course-link:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 12px 24px rgba(58, 136, 255, 0.25);
-          color: #03101f;
-          text-decoration: none;
-        }
-
-        .course-link svg {
+        .credential-badge svg,
+        .credential-issuer-icon,
+        .credential-link-icon {
           width: 0.9rem;
           height: 0.9rem;
           flex-shrink: 0;
         }
 
+        .credential-body {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          gap: 0.68rem;
+          padding: 0.88rem 0.92rem 0.94rem;
+        }
+
+        .credential-date {
+          margin: 0;
+          color: rgba(169, 184, 211, 0.72);
+          font-size: 0.76rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .credential-title {
+          margin: 0;
+          color: white;
+          font-family: var(--font-display);
+          font-size: clamp(1rem, 0.94rem + 0.24vw, 1.18rem);
+          font-weight: 700;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          text-wrap: balance;
+        }
+
+        .credential-issuer {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          color: var(--credential-accent);
+          font-size: 0.82rem;
+          font-weight: 700;
+          line-height: 1.4;
+        }
+
+        .credential-issuer-icon {
+          color: #8df1b6;
+        }
+
+        .credential-summary {
+          margin: 0;
+          color: rgba(226, 232, 240, 0.74);
+          font-size: 0.84rem;
+          line-height: 1.58;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+
+        .credential-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+        }
+
+        .credential-tags li {
+          padding: 0.24rem 0.56rem;
+          border-radius: 999px;
+          border: 1px solid rgba(169, 184, 211, 0.12);
+          background: rgba(255, 255, 255, 0.035);
+          color: rgba(226, 232, 240, 0.72);
+          font-size: 0.65rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+        }
+
+        .credential-action {
+          margin-top: auto;
+          padding-top: 0.2rem;
+        }
+
+        .credential-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+          width: 100%;
+          box-sizing: border-box;
+          min-height: 2.75rem;
+          padding: 0.66rem 0.8rem;
+          border-radius: 14px;
+          border: 1px solid rgba(169, 184, 211, 0.12);
+          background: rgba(255, 255, 255, 0.03);
+          color: rgba(238, 244, 255, 0.92);
+          text-decoration: none;
+          font-size: 0.9rem;
+          font-weight: 700;
+          transition:
+            color 220ms ease,
+            border-color 220ms ease,
+            background 220ms ease,
+            transform 220ms ease,
+            box-shadow 220ms ease;
+        }
+
+        .credential-link:hover,
+        .credential-link:focus-visible {
+          color: var(--credential-accent);
+          border-color: var(--credential-accent-strong);
+          background: rgba(255, 255, 255, 0.045);
+          box-shadow: 0 12px 26px rgba(2, 6, 23, 0.18);
+          outline: none;
+        }
+
+        .credential-link:hover .credential-link-icon,
+        .credential-link:focus-visible .credential-link-icon {
+          transform: translate3d(3px, -2px, 0);
+        }
+
+        .credential-link-icon {
+          flex: 0 0 auto;
+          transition: transform 220ms ease;
+        }
+
         .empty-state {
+          position: relative;
+          z-index: 1;
           padding: 2rem;
           border-radius: 20px;
-          border: 1px dashed rgba(169, 184, 211, 0.1);
+          border: 1px dashed rgba(169, 184, 211, 0.14);
           background: rgba(255, 255, 255, 0.02);
-          color: rgba(226, 232, 240, 0.5);
+          color: rgba(226, 232, 240, 0.58);
           text-align: center;
           font-size: 0.95rem;
         }
 
-        @media (max-width: 720px) {
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        @media (min-width: 768px) {
+          .credentials-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .credentials-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+
+        @media (max-width: 767px) {
           .credentials-shell {
             padding: 1rem;
-            border-radius: 20px;
+            border-radius: 22px;
           }
 
-          .course-body {
-            padding: 0.9rem 1rem;
-          }
-
-          .course-link {
-            margin-left: 0;
-            width: 100%;
-            justify-content: center;
+          .credential-media {
+            min-height: 10.75rem;
           }
         }
 
         @media (max-width: 575px) {
           .credentials-shell {
-            padding: 0.8rem;
-            border-radius: 16px;
+            padding: 0.85rem;
+            border-radius: 18px;
           }
 
           .section-header {
             margin-bottom: 1.25rem;
-          }
-
-          .course-media {
-            aspect-ratio: 16 / 9;
-          }
-
-          .course-body {
-            padding: 0.8rem 0.9rem;
-            gap: 0.4rem;
-          }
-
-          .course-title {
-            font-size: 0.95rem;
-          }
-
-          .course-issuer {
-            font-size: 0.8rem;
-          }
-
-          .course-summary {
-            font-size: 0.82rem;
-          }
-
-          .course-tags li {
-            font-size: 0.65rem;
-            padding: 0.2rem 0.6rem;
-          }
-
-          .course-link {
-            font-size: 0.72rem;
-            padding: 0.4rem 0.9rem;
           }
 
           .eyebrow {
@@ -551,31 +582,73 @@ class CourseCredentials extends HTMLElement {
           }
 
           .description {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
+          }
+
+          .credential-card {
+            width: 100%;
+            border-radius: 20px;
+          }
+
+          .credential-media {
+            min-height: 10rem;
+          }
+
+          .credential-badge {
+            top: 0.75rem;
+            right: 0.75rem;
+            padding-inline: 0.62rem;
+            font-size: 0.6rem;
+          }
+
+          .credential-body {
+            padding: 0.86rem;
+            gap: 0.66rem;
+          }
+
+          .credential-title {
+            font-size: 0.98rem;
+          }
+
+          .credential-issuer {
+            font-size: 0.8rem;
+          }
+
+          .credential-summary {
+            font-size: 0.83rem;
+            line-height: 1.6;
+          }
+
+          .credential-link {
+            min-height: 2.7rem;
+            padding: 0.68rem 0.78rem;
+            font-size: 0.86rem;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .course-card,
-          .course-card img,
-          .course-link,
-          .course-tags li,
-          .media-overlay .view-icon {
+          .credential-card {
+            opacity: 1;
+            transform: none;
+          }
+
+          .credential-card,
+          .credential-media img,
+          .credential-link,
+          .credential-link-icon {
             transition: none !important;
           }
 
-          .course-card:hover {
-            transform: none !important;
+          .credential-card:hover,
+          .credential-card:focus-within {
+            transform: none;
           }
 
-          .course-card:hover img {
-            transform: none !important;
-          }
-
-          .media-overlay,
-          .media-overlay .view-icon {
-            opacity: 0 !important;
-            transform: none !important;
+          .credential-card:hover .credential-media img,
+          .credential-card:focus-within .credential-media img,
+          .credential-link:hover .credential-link-icon,
+          .credential-link:focus-visible .credential-link-icon {
+            transform: none;
           }
         }
       </style>
@@ -588,98 +661,15 @@ class CourseCredentials extends HTMLElement {
           </span>
           <h2 class="title">${escapeHtml(title)}</h2>
           <p class="description">${escapeHtml(description)}</p>
+          <div class="header-divider" aria-hidden="true"></div>
         </header>
 
         ${
-          this._courses.length
+          courses.length
             ? `
-              <div class="courses-grid">
-                ${this._courses
-                  .map(
-                    (course) => `
-                      <article class="course-card">
-                        <span class="card-accent" aria-hidden="true"></span>
-
-                        <div class="course-layout">
-                          <a
-                            class="course-media"
-                            href="${escapeHtml(course.credentialUrl ?? '#')}"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="${escapeHtml(labels.credentialAria)} ${escapeHtml(course.title ?? labels.courseFallback)}"
-                          >
-                            <img
-                              src="${escapeHtml(course.image ?? '')}"
-                              alt="${escapeHtml(course.imageAlt ?? course.title ?? labels.courseFallback)}"
-                              loading="lazy"
-                            />
-                            <span class="media-badge">
-                              ${icons.star}
-                              ${escapeHtml(labels.certificate)}
-                            </span>
-                            <span class="media-overlay">
-                              <span class="view-icon">
-                                ${icons.external}
-                                ${escapeHtml(labels.viewCredential)}
-                              </span>
-                            </span>
-                          </a>
-
-                          <div class="course-body">
-                            <div class="course-top-row">
-                              <span class="course-kicker">
-                                ${icons.badge}
-                                ${escapeHtml(labels.verified)}
-                              </span>
-                              <span class="course-meta">
-                                ${icons.calendar}
-                                ${escapeHtml(course.issuedAt ?? labels.pendingDate)}
-                              </span>
-                            </div>
-
-                            <div>
-                              <h3 class="course-title">${escapeHtml(course.title ?? labels.courseFallback)}</h3>
-                              <p class="course-issuer">
-                                ${escapeHtml(course.issuer ?? labels.issuerFallback)}
-                                <span class="verified-icon">${icons.verified}</span>
-                              </p>
-                            </div>
-
-                            <p class="course-summary">${escapeHtml(course.summary ?? '')}</p>
-
-                            <div class="course-bottom-row">
-                              ${
-                                Array.isArray(course.tags) && course.tags.length
-                                  ? `
-                                    <ul class="course-tags">
-                                      ${course.tags
-                                        .map((tag) => `<li>${escapeHtml(tag)}</li>`)
-                                        .join('')}
-                                    </ul>
-                                  `
-                                  : ''
-                              }
-                              ${
-                                course.credentialUrl
-                                  ? `
-                                    <a
-                                      class="course-link"
-                                      href="${escapeHtml(course.credentialUrl)}"
-                                      target="_blank"
-                                      rel="noreferrer"
-                                    >
-                                      ${icons.external}
-                                      ${escapeHtml(labels.viewCredential)}
-                                    </a>
-                                  `
-                                  : ''
-                              }
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    `
-                  )
+              <div class="credentials-grid">
+                ${courses
+                  .map((course, index) => this._renderCourse(course, labels, index))
                   .join('')}
               </div>
             `
@@ -691,6 +681,170 @@ class CourseCredentials extends HTMLElement {
         }
       </div>
     `;
+
+    this._setupRevealObserver();
+  }
+
+  _normalizeCourse(course, index, language) {
+    const fallbackMeta = FALLBACK_PROVIDER_META[course?.issuer] ?? {};
+    const accent = {
+      ...DEFAULT_ACCENT,
+      ...(fallbackMeta.accent ?? {}),
+      ...(course?.accent ?? {}),
+    };
+    const category =
+      resolveText(course?.category, language) ||
+      resolveText(fallbackMeta.category, language);
+
+    return {
+      ...course,
+      categoryKey: course?.categoryKey ?? fallbackMeta.categoryKey ?? `credential-${index}`,
+      category,
+      title: resolveText(course?.title, language),
+      issuedAt: resolveText(course?.issuedAt, language),
+      imageAlt: resolveText(course?.imageAlt, language),
+      summary: resolveText(course?.summary, language),
+      accent,
+    };
+  }
+
+  _renderCourse(course, labels, index) {
+    const courseTitle = course.title || labels.courseFallback;
+    const courseIssuer = course.issuer || labels.issuerFallback;
+    const issuedAt = course.issuedAt || labels.pendingDate;
+    const imageAlt = course.imageAlt || courseTitle;
+    const credentialLabel = `${labels.credentialAria} ${courseTitle}`;
+
+    return `
+      <article
+        class="credential-card"
+        data-category="${escapeHtml(course.categoryKey ?? '')}"
+        data-category-label="${escapeHtml(course.category ?? '')}"
+        style="
+          --credential-accent: ${course.accent.color};
+          --credential-accent-soft: ${course.accent.soft};
+          --credential-accent-strong: ${course.accent.strong};
+          --credential-accent-glow: ${course.accent.glow};
+          --reveal-delay: ${index * 80}ms;
+        "
+      >
+        ${
+          course.credentialUrl
+            ? `
+              <a
+                class="credential-media"
+                href="${escapeHtml(course.credentialUrl)}"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="${escapeHtml(credentialLabel)}"
+              >
+                <img
+                  src="${escapeHtml(course.image ?? '')}"
+                  alt="${escapeHtml(imageAlt)}"
+                  loading="lazy"
+                >
+                <span class="credential-badge">
+                  ${icons.verified}
+                  <span>${escapeHtml(labels.verified)}</span>
+                </span>
+              </a>
+            `
+            : `
+              <div class="credential-media">
+                <img
+                  src="${escapeHtml(course.image ?? '')}"
+                  alt="${escapeHtml(imageAlt)}"
+                  loading="lazy"
+                >
+                <span class="credential-badge">
+                  ${icons.verified}
+                  <span>${escapeHtml(labels.verified)}</span>
+                </span>
+              </div>
+            `
+        }
+
+        <div class="credential-body">
+          <p class="credential-date">${escapeHtml(issuedAt)}</p>
+          <div class="credential-copy">
+            <h3 class="credential-title">${escapeHtml(courseTitle)}</h3>
+            <p class="credential-issuer">
+              <span>${escapeHtml(courseIssuer)}</span>
+              <span class="credential-issuer-icon">${icons.verified}</span>
+            </p>
+          </div>
+
+          <p class="credential-summary">${escapeHtml(course.summary ?? '')}</p>
+
+          ${
+            Array.isArray(course.tags) && course.tags.length
+              ? `
+                <ul class="credential-tags">
+                  ${course.tags
+                    .map((tag) => `<li>${escapeHtml(tag)}</li>`)
+                    .join('')}
+                </ul>
+              `
+              : ''
+          }
+
+          ${
+            course.credentialUrl
+              ? `
+                <div class="credential-action">
+                  <a
+                    class="credential-link"
+                    href="${escapeHtml(course.credentialUrl)}"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="${escapeHtml(credentialLabel)}"
+                  >
+                    <span>${escapeHtml(labels.viewCredential)}</span>
+                    <span class="credential-link-icon">${icons.external}</span>
+                  </a>
+                </div>
+              `
+              : '<span class="sr-only"></span>'
+          }
+        </div>
+      </article>
+    `;
+  }
+
+  _setupRevealObserver() {
+    const revealItems = [...this.shadowRoot.querySelectorAll('.credential-card')];
+
+    if (!revealItems.length) {
+      return;
+    }
+
+    if (
+      this._reducedMotionQuery?.matches ||
+      typeof window === 'undefined' ||
+      !('IntersectionObserver' in window)
+    ) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+      return;
+    }
+
+    this._observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add('is-visible');
+          this._observer?.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: '0px 0px -8% 0px',
+      }
+    );
+
+    revealItems.forEach((item) => this._observer?.observe(item));
   }
 }
 

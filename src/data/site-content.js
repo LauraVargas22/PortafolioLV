@@ -230,6 +230,68 @@ const homeContent = {
       },
       href: 'experience.html',
     },
+    enterprise: {
+      title: {
+        es: 'Proyectos Empresariales',
+        en: 'Enterprise Projects',
+      },
+      description: {
+        es: 'Soluciones y sistemas desarrollados en Dataglobal SAS para empresas y sus diferentes áreas de negocio.',
+        en: 'Solutions and systems built in Dataglobal SAS for companies and their different business areas.',
+      },
+      projectsHeading: {
+        es: 'Módulos desarrollados',
+        en: 'Developed modules',
+      },
+      projectsDescription: {
+        es: 'Explora los módulos y sistemas agrupados por experiencia empresarial.',
+        en: 'Explore the modules and systems grouped by enterprise experience.',
+      },
+      showProjectsLabel: {
+        es: 'Ver todos los módulos',
+        en: 'View all modules',
+      },
+      hideProjectsLabel: {
+        es: 'Ocultar módulos',
+        en: 'Hide modules',
+      },
+      previousPageLabel: {
+        es: 'Mostrar módulos empresariales anteriores',
+        en: 'Show previous enterprise modules',
+      },
+      nextPageLabel: {
+        es: 'Mostrar módulos empresariales siguientes',
+        en: 'Show next enterprise modules',
+      },
+      carouselLabel: {
+        es: 'Carrusel de módulos empresariales',
+        en: 'Enterprise modules carousel',
+      },
+      goToPageLabel: {
+        es: 'Ir a la página',
+        en: 'Go to page',
+      },
+      detailsLabel: {
+        es: 'Ver detalles',
+        en: 'View details',
+      },
+      hideDetailsLabel: {
+        es: 'Ocultar detalles',
+        en: 'Hide details',
+      },
+      functionalitiesLabel: {
+        es: 'Funciones principales',
+        en: 'Key functionalities',
+      },
+      detailsSoon: {
+        es: 'Detalle preparado para ampliarse posteriormente.',
+        en: 'Details are ready to be expanded later.',
+      },
+      companyCardLabel: {
+        es: 'Resumen empresarial de',
+        en: 'Enterprise summary for',
+      },
+    },
   },
   contact: {
     eyebrow: {
@@ -445,8 +507,8 @@ const studiesContent = {
       en: 'Studie',
     },
     description: {
-      es: 'Un recorrido por mi formación académica y los hitos que han fortalecido mis habilidades técnicas, comunicativas y de aprendizaje continuo.',
-      en: 'A tour through my academic background and the milestones that have strengthened my technical, communication, and continuous-learning skills.',
+      es: 'Un recorrido por mi formación académica y algunos logros que han fortalecido mis habilidades técnicas, comunicativas y de aprendizaje continuo.',
+      en: 'A tour through my academic background and some achievements that have strengthened my technical, communication, and continuous-learning skills.',
     },
   },
   coursesDraft: {
@@ -502,6 +564,11 @@ const studiesContent = {
           es: 'English for IT 2',
           en: 'English for IT 2',
         },
+        categoryKey: 'languages',
+        category: {
+          es: 'Idiomas',
+          en: 'Languages',
+        },
         issuer: 'Cisco Networking Academy',
         issuedAt: {
           es: 'Julio 2026',
@@ -518,12 +585,23 @@ const studiesContent = {
           es: 'Credencial orientada al inglés aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B2.',
           en: 'Credential focused on English for IT environments, covering software, networking, customer support, and security at a B2 level.',
         },
+        accent: {
+          color: '#6ed3ff',
+          soft: 'rgba(110, 211, 255, 0.18)',
+          strong: 'rgba(110, 211, 255, 0.34)',
+          glow: 'rgba(58, 136, 255, 0.24)',
+        },
         tags: ['English for IT', 'B2'],
       },
       {
         title: {
           es: 'English for IT 1',
           en: 'English for IT 1',
+        },
+        categoryKey: 'languages',
+        category: {
+          es: 'Idiomas',
+          en: 'Languages',
         },
         issuer: 'Cisco Networking Academy',
         issuedAt: {
@@ -541,12 +619,23 @@ const studiesContent = {
           es: 'Credencial orientada al inglés aplicado en entornos IT, con enfoque en software, networking, soporte al cliente y seguridad en nivel B1.',
           en: 'Credential focused on English for IT environments, covering software, networking, customer support, and security at a B1 level.',
         },
+        accent: {
+          color: '#6ed3ff',
+          soft: 'rgba(110, 211, 255, 0.18)',
+          strong: 'rgba(110, 211, 255, 0.34)',
+          glow: 'rgba(58, 136, 255, 0.24)',
+        },
         tags: ['English for IT', 'B1'],
       },
       {
         title: {
           es: 'Fundamentos de Inteligencia Artificial',
           en: 'Artificial Intelligence Fundamentals',
+        },
+        categoryKey: 'artificial-intelligence',
+        category: {
+          es: 'Inteligencia Artificial',
+          en: 'Artificial Intelligence',
         },
         issuer: 'IBM',
         issuedAt: {
@@ -563,6 +652,12 @@ const studiesContent = {
         summary: {
           es: 'Credencial orientada a la comprensión de conceptos fundamentales de inteligencia artificial, incluyendo aprendizaje automático, redes neuronales y procesamiento del lenguaje natural.',
           en: 'Credential focused on core artificial intelligence concepts, including machine learning, neural networks, and natural language processing.',
+        },
+        accent: {
+          color: '#ff6091',
+          soft: 'rgba(255, 96, 145, 0.18)',
+          strong: 'rgba(255, 96, 145, 0.34)',
+          glow: 'rgba(143, 124, 255, 0.24)',
         },
         tags: ['IA', 'Fundamentos'],
       },
