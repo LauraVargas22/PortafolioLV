@@ -239,6 +239,7 @@ class HeroSection extends HTMLElement {
 
         .portrait {
           width: 100%;
+          height: auto;
           display: block;
           border-radius: 26px;
           border: 1px solid rgba(255, 255, 255, 0.08);
@@ -407,7 +408,15 @@ class HeroSection extends HTMLElement {
                   <span class="portrait-orbit one" aria-hidden="true"></span>
                   <span class="portrait-orbit two" aria-hidden="true"></span>
                   <div class="portrait-frame">
-                    <img class="portrait" src="${hero.image}" alt="${escapeHtml(hero.imageAlt)}">
+                    <img
+                      class="portrait"
+                      src="${hero.image}"
+                      alt="${escapeHtml(hero.imageAlt)}"
+                      width="1280"
+                      height="853"
+                      decoding="async"
+                      fetchpriority="high"
+                    >
                   </div>
                 </div>
               </div>

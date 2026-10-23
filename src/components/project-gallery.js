@@ -106,6 +106,9 @@ class ProjectGallery extends HTMLElement {
                         src="${escapeHtml(project.image)}"
                         alt="${escapeHtml(project.title)}"
                         loading="lazy"
+                        decoding="async"
+                        width="1280"
+                        height="800"
                       >
                       <div class="project-card-shade" aria-hidden="true"></div>
                     </div>

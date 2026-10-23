@@ -99,6 +99,8 @@ class FeaturedProjects extends HTMLElement {
 
         .thumb {
           width: 100%;
+          height: 100%;
+          display: block;
           aspect-ratio: 16 / 10;
           object-fit: cover;
           transition: transform 320ms ease;
@@ -340,7 +342,15 @@ class FeaturedProjects extends HTMLElement {
                   }">
                     <article class="project-card">
                       <div class="thumb-wrap">
-                        <img class="thumb" src="${project.image}" alt="${escapeHtml(project.title)}">
+                        <img
+                          class="thumb"
+                          src="${project.image}"
+                          alt="${escapeHtml(project.title)}"
+                          width="1280"
+                          height="800"
+                          loading="lazy"
+                          decoding="async"
+                        >
                       </div>
                       <div class="content">
                         <span class="meta">${escapeHtml(project.category)}</span>

@@ -1151,6 +1151,9 @@ class EnterpriseProjects extends HTMLElement {
               src="${escapeHtml(company.backgroundImage)}"
               alt="${escapeHtml(company.backgroundImageAlt)}"
               loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
             >
           </div>
         </div>

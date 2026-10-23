@@ -393,6 +393,9 @@ class LiteraryCarousel extends HTMLElement {
                 src="${escapeHtml(book.cover)}"
                 alt="${escapeHtml(book.coverAlt)}"
                 loading="lazy"
+                decoding="async"
+                width="480"
+                height="686"
               />
               <div class="book-card__shade" aria-hidden="true"></div>
               <div class="book-card__topline">

@@ -1,6 +1,22 @@
 import { getCurrentLanguage, resolveLocalizedValue } from '../i18n';
 
-const asset = (fileName) => new URL(`../images/${fileName}`, import.meta.url).href;
+const imageAssets = {
+  'sgta.png': new URL('../images/sgta.png', import.meta.url).href,
+  'invoice.png': new URL('../images/invoice.png', import.meta.url).href,
+  'campusdb.png': new URL('../images/campusdb.png', import.meta.url).href,
+  'formula1.png': new URL('../images/formula1.png', import.meta.url).href,
+  'simulador.png': new URL('../images/simulador.png', import.meta.url).href,
+  'logoLadeca.jpg': new URL('../images/logoLadeca.jpg', import.meta.url).href,
+  'ladeca.jpg': new URL('../images/ladeca.jpg', import.meta.url).href,
+  'acreditacionisa.png': new URL('../images/acreditacionisa.png', import.meta.url).href,
+  'dataglobal.jpg': new URL('../images/optimized/dataglobal.jpg', import.meta.url).href,
+  'ligabetplay.jpg': new URL('../images/optimized/ligabetplay.jpg', import.meta.url).href,
+  'inventory.jpg': new URL('../images/optimized/inventory.jpg', import.meta.url).href,
+  'campuslove.jpg': new URL('../images/optimized/campuslove.jpg', import.meta.url).href,
+  'chachipun.jpg': new URL('../images/optimized/chachipun.jpg', import.meta.url).href,
+};
+const asset = (fileName) => imageAssets[fileName];
+const optimizedAsset = (fileName) => imageAssets[fileName];
 
 const projectEntries = [
   {
@@ -13,7 +29,7 @@ const projectEntries = [
       es: 'Diseño WEB',
       en: 'Web Design',
     },
-    image: asset('dataglobal.png'),
+    image: optimizedAsset('dataglobal.jpg'),
     summary: {
       es: 'Página web corporativa para una empresa de tecnología especializada en soluciones de software y servicios digitales.',
       en: 'Corporate website for a technology company specializing in software solutions and digital services.',
@@ -72,7 +88,7 @@ const projectEntries = [
       es: 'Backend',
       en: 'Backend',
     },
-    image: asset('ligabetplay.png'),
+    image: optimizedAsset('ligabetplay.jpg'),
     summary: {
       es: 'Aplicación en Python para modelar y gestionar equipos, jugadores y dinámicas de una liga deportiva.',
       en: 'Python application to model and manage teams, players, and workflows inside a sports league.',
@@ -130,7 +146,7 @@ const projectEntries = [
       es: 'Consola en C#',
       en: 'C# console app',
     },
-    image: asset('inventory.png'),
+    image: optimizedAsset('inventory.jpg'),
     summary: {
       es: 'Aplicación de consola tipo CRUD para registrar y controlar operaciones de inventario.',
       en: 'CRUD-style console application to register and control inventory operations.',
@@ -150,7 +166,7 @@ const projectEntries = [
       es: 'Lógica en C#',
       en: 'C# logic',
     },
-    image: asset('campuslove.png'),
+    image: optimizedAsset('campuslove.jpg'),
     summary: {
       es: 'Aplicación de consola que simula decisiones y condiciones dentro de un juego de citas ambientado en un campus universitario.',
       en: 'Console application that simulates decisions and conditions inside a campus-themed dating game.',
@@ -170,7 +186,7 @@ const projectEntries = [
       es: 'Juego en Python',
       en: 'Python game',
     },
-    image: asset('chachipun.png'),
+    image: optimizedAsset('chachipun.jpg'),
     summary: {
       es: 'Juego en Python inspirado en piedra, papel o tijera, con mecánicas propias.',
       en: 'Python game inspired by rock, paper, scissors, with its own creative mechanics.',

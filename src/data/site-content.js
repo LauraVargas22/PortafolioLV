@@ -1,6 +1,20 @@
 import { getCurrentLanguage, resolveLocalizedValue } from '../i18n';
 
-const asset = (fileName) => new URL(`../images/${fileName}`, import.meta.url).href;
+const imageAssets = {
+  'Pc.jpg': new URL('../images/Pc.jpg', import.meta.url).href,
+  'mision.png': new URL('../images/mision.png', import.meta.url).href,
+  'vision.png': new URL('../images/vision.png', import.meta.url).href,
+  'valores.png': new URL('../images/valores.png', import.meta.url).href,
+  'english-for-it-2-badge.png': new URL('../images/english-for-it-2-badge.png', import.meta.url).href,
+  'english-for-it-1-badge.png': new URL('../images/english-for-it-1-badge.png', import.meta.url).href,
+  'artificial-intelligence.png': new URL('../images/artificial-intelligence.png', import.meta.url).href,
+  'datos.png': new URL('../images/datos.png', import.meta.url).href,
+  'aboutme.jpg': new URL('../images/optimized/aboutme.jpg', import.meta.url).href,
+  'Front.jpg': new URL('../images/optimized/Front.jpg', import.meta.url).href,
+  'Back.jpg': new URL('../images/optimized/Back.jpg', import.meta.url).href,
+};
+const asset = (fileName) => imageAssets[fileName];
+const optimizedAsset = (fileName) => imageAssets[fileName];
 const resumeUrl =
   'https://www.canva.com/design/DAGpnJeNmq4/mliQF_3gsvryGqRamQYc1A/view?utm_content=DAGpnJeNmq4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3cedd1cb24';
 
@@ -89,7 +103,7 @@ const homeContent = {
       },
       href: resumeUrl,
     },
-    image: asset('aboutme.png'),
+    image: optimizedAsset('aboutme.jpg'),
     imageAlt: {
       es: 'Retrato de Laura Vargas',
       en: 'Portrait of Laura Vargas',
@@ -120,7 +134,7 @@ const homeContent = {
     ],
     cards: [
       {
-        src: asset('Front.png'),
+        src: optimizedAsset('Front.jpg'),
         alt: {
           es: 'Ilustración de desarrollo frontend',
           en: 'Frontend development illustration',
@@ -150,7 +164,7 @@ const homeContent = {
         },
       },
       {
-        src: asset('Back.png'),
+        src: optimizedAsset('Back.jpg'),
         alt: {
           es: 'Ilustración de desarrollo backend',
           en: 'Backend development illustration',

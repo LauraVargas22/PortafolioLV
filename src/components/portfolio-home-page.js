@@ -139,6 +139,9 @@ class PortfolioHomePage extends HTMLElement {
                               src="${escapeHtml(card.src)}"
                               alt="${escapeHtml(card.alt)}"
                               loading="lazy"
+                              decoding="async"
+                              width="1024"
+                              height="1536"
                             >
                             <div class="home-about-overlay"></div>
                             <div class="home-about-card-copy">

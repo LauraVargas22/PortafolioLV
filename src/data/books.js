@@ -1,7 +1,16 @@
 import { getCurrentLanguage, resolveLocalizedValue } from '../i18n';
 
-const asset = (fileName) =>
-  new URL(`../images/books/${fileName}`, import.meta.url).href;
+const bookAssets = {
+  'noticia-secuestro.jpg': new URL('../images/books/optimized/noticia-secuestro.jpg', import.meta.url).href,
+  'rebelion-granja.jpg': new URL('../images/books/optimized/rebelion-granja.jpg', import.meta.url).href,
+  'jaime-garzon.jpg': new URL('../images/books/optimized/jaime-garzon.jpg', import.meta.url).href,
+  'harry-potter.jpg': new URL('../images/books/optimized/harry-potter.jpg', import.meta.url).href,
+  'corazon.jpg': new URL('../images/books/optimized/corazon.jpg', import.meta.url).href,
+  'amor-colera.jpg': new URL('../images/books/optimized/amor-colera.jpg', import.meta.url).href,
+  'hamlet.jpg': new URL('../images/books/optimized/hamlet.jpg', import.meta.url).href,
+  'otelo.jpg': new URL('../images/books/optimized/otelo.jpg', import.meta.url).href,
+};
+const optimizedAsset = (fileName) => bookAssets[fileName];
 
 const bookEntries = [
   {
@@ -11,7 +20,7 @@ const bookEntries = [
       en: 'News of a Kidnapping',
     },
     author: 'Gabriel García Márquez',
-    cover: asset('noticia-secuestro.png'),
+    cover: optimizedAsset('noticia-secuestro.jpg'),
     coverAlt: {
       es: 'Portada de Noticia de un secuestro',
       en: 'Cover of News of a Kidnapping',
@@ -36,7 +45,7 @@ const bookEntries = [
       en: 'Animal Farm',
     },
     author: 'George Orwell',
-    cover: asset('rebelion-granja.png'),
+    cover: optimizedAsset('rebelion-granja.jpg'),
     coverAlt: {
       es: 'Portada de La rebelión de la granja',
       en: 'Cover of Animal Farm',
@@ -61,7 +70,7 @@ const bookEntries = [
       en: 'Jaime Garzon: The Brilliant Troublemaker',
     },
     author: 'Germán Izquierdo',
-    cover: asset('jaime-garzon.png'),
+    cover: optimizedAsset('jaime-garzon.jpg'),
     coverAlt: {
       es: 'Portada de Jaime Garzón: El genial impertinente',
       en: 'Cover of Jaime Garzon: The Brilliant Troublemaker',
@@ -86,7 +95,7 @@ const bookEntries = [
       en: "Harry Potter",
     },
     author: 'J. K. Rowling',
-    cover: asset('harry-potter.png'),
+    cover: optimizedAsset('harry-potter.jpg'),
     coverAlt: {
       es: 'Portada de Harry Potter y la piedra filosofal',
       en: "Cover of Harry Potter and the Philosopher's Stone",
@@ -111,7 +120,7 @@ const bookEntries = [
       en: "Heart: A Boy's Journal",
     },
     author: 'Edmondo De Amicis',
-    cover: asset('corazon.png'),
+    cover: optimizedAsset('corazon.jpg'),
     coverAlt: {
       es: 'Portada de Corazón: Diario de un niño',
       en: "Cover of Heart: A Boy's Journal",
@@ -136,7 +145,7 @@ const bookEntries = [
       en: 'Love in the Time of Cholera',
     },
     author: 'Gabriel García Márquez',
-    cover: asset('amor-colera.png'),
+    cover: optimizedAsset('amor-colera.jpg'),
     coverAlt: {
       es: 'Portada de El amor en los tiempos del cólera',
       en: 'Cover of Love in the Time of Cholera',
@@ -158,7 +167,7 @@ const bookEntries = [
     id: 'hamlet',
     title: 'Hamlet',
     author: 'William Shakespeare',
-    cover: asset('hamlet.png'),
+    cover: optimizedAsset('hamlet.jpg'),
     coverAlt: {
       es: 'Portada de Hamlet',
       en: 'Cover of Hamlet',
@@ -183,7 +192,7 @@ const bookEntries = [
       en: 'Othello',
     },
     author: 'William Shakespeare',
-    cover: asset('otelo.png'),
+    cover: optimizedAsset('otelo.jpg'),
     coverAlt: {
       es: 'Portada de Otelo',
       en: 'Cover of Othello',
